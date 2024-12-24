@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+}
+
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+.scroller {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
