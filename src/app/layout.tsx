@@ -5,6 +5,7 @@ import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconCol
 import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 import "../../styles/globals.css";
+import { ToastProvider, ToastViewport } from "@/components/ui/toast";
 
 const dockItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -32,8 +33,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
-          <FloatingDock items={dockItems} />
+          <ToastProvider>
+            {children}
+            <FloatingDock items={dockItems} />
+            <ToastViewport />
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>

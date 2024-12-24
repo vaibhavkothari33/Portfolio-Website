@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "./input";
 import { Textarea } from "./textarea";
 import Link from "next/link";
+import emailjs from "emailjs-com";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const formSchema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -18,24 +21,43 @@ interface IFormInput {
 }
 
 export const ContactForm = () => {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IFormInput>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      alert("Message sent successfully!");
-    } else {
-      alert("Failed to send message.");
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, 
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_email: data.email,
+          message: data.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! 
+      );
+
+      if (result.status === 200) {
+        toast({
+          description: "Your message has been sent successfully .",
+        });
+        reset();
+      } else {
+        toast({
+          description: "Failed to send message.",
+        });
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        description: "Failed to send message.",
+      });
     }
   };
 
@@ -112,6 +134,7 @@ export const ContactForm = () => {
         </Link>
         .
       </p>
+      <Toaster />
     </div>
   );
 };
