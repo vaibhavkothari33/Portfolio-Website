@@ -90,22 +90,27 @@ const dockItems = [
 const items = [
   {
 
-    title: "Developer",
-    image: "https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4", // Add your image URL
+    title: "Treasure Hunt Winner",
+    image: "https://i.ibb.co/vZc6CWD/Screenshot-2024-12-24-211712.png",
   },
   {
-    title: "Designer",
-    image: "https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4", // Add your image URL
+    title: "Workshop Speaker",
+    image: "https://i.ibb.co/K6fDF5H/Screenshot-2024-12-24-211849.png",
   },
   {
-    title: "Graphic Designer",
-    image: "https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4", // Add your image URL
+    title: "me",
+    image: "https://i.ibb.co/C13qzBy/Whats-App-Image-2024-12-24-at-9-31-46-PM.jpg",
   },
   {
-    title: "coder",
-    image: "https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4", // Add your image URL
+    title: "Hackathon Winner",
+    image: "https://i.ibb.co/4VsBh60/Screenshot-2024-12-24-212538.png",
   },
-  // Add more items
+  {
+    title: "With the OG🔥",
+    image: "https://i.ibb.co/1L1DN7d/Whats-App-Image-2024-12-24-at-9-30-24-PM.jpg",
+  },
+  
+  
 ];
 
 
