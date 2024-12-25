@@ -30,7 +30,7 @@ const timelineData: TimelineEntry[] = [
         <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">October 2024 - December 2024</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Collaborated with a team of 4 developers to design and deploy robust websites.</li>
-          <li>Contributed to the creation of NexCraft's main website, enhancing usability and performance.</li>
+          <li>Contributed to the creation of NexCraft&apos;s main website, enhancing usability and performance.</li>
         </ul>
       </div>
     ),
@@ -114,13 +114,13 @@ export default function Home() {
         <div className="text-center mt-[-100px] flex flex-col items-center gap-6">
           <Image
             src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
-            alt="Vaibhav's Avatar"
+            alt="Vaibhav&apos;s Avatar"
             className="w-40 h-40 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg"
             width={160}
             height={160}
           />
           <div className="text-5xl mb-5 font-bold text-black dark:text-white">
-            Hi, I'm <Highlight><Highlight>Vaibhav</Highlight></Highlight><br />
+            Hi, I&apos;m <Highlight><Highlight>Vaibhav</Highlight></Highlight><br />
           </div>
           <div className="text-xl md:text-4xl text-gray-700 dark:text-gray-300">
             A <Highlight>developer</Highlight> who customizes everything with <br />

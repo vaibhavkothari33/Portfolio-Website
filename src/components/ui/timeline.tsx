@@ -1,6 +1,5 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
@@ -38,18 +37,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       ref={containerRef}
     >
      <div className="max-w-6xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-  <h2 className="text-3xl md:text-5xl mb-4 text-black dark:text-white font-extrabold">
-    <b>About</b>
-  </h2>
-  <p className="text-neutral-700 dark:text-neutral-300 text-lg md:text-xl max-w-3xl">
-    Hi, I'm Vaibhav, a passionate <b className="font-extrabold">Full-Stack Developer</b> and tech enthusiast currently pursuing a <b className="font-extrabold">Bachelor of Technology in Computer Science Engineering</b> at Bennett University (2023-2027). My journey revolves around building innovative solutions, contributing to <b className="font-extrabold">open-source projects</b>, and continuously exploring new technologies, including the exciting world of <b className="font-extrabold">Machine Learning</b>.
-  </p>
-</div>
-<h2 className="text-2xl text-center md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-    Milestones of My Tech Odyssey
-  </h2>
-
-
+        <h2 className="text-3xl md:text-5xl mb-4 text-black dark:text-white font-extrabold">
+          <b>About</b>
+        </h2>
+        <p className="text-neutral-700 dark:text-neutral-300 text-lg md:text-xl max-w-3xl">
+          Hi, I&apos;m Vaibhav, a passionate <b className="font-extrabold">Full-Stack Developer</b> and tech enthusiast currently pursuing a <b className="font-extrabold">Bachelor of Technology in Computer Science Engineering</b> at Bennett University (2023-2027). My journey revolves around building innovative solutions, contributing to <b className="font-extrabold">open-source projects</b>, and continuously exploring new technologies, including the exciting world of <b className="font-extrabold">Machine Learning</b>.
+        </p>
+     </div>
+     <h2 className="text-2xl text-center md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
+        Milestones of My Tech Odyssey
+      </h2>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
