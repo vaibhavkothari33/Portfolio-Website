@@ -32,7 +32,7 @@ const FloatingDockDesktop = ({
   items: { title: string; icon: React.ReactNode; href: string; id?: string }[];
   className?: string;
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  const mouseX = useMotionValue(Infinity);
   const { theme, setTheme } = useTheme();
 
   const handleThemeSwitch = () => {
@@ -62,6 +62,7 @@ const FloatingDockDesktop = ({
     </motion.div>
   );
 };
+
 function IconContainer({
   mouseX,
   title,

@@ -1,5 +1,4 @@
 "use client";
-import type { Metadata } from "next";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";

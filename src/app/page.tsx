@@ -1,11 +1,10 @@
 "use client";
-import { FollowerPointerCard, FollowPointer } from "@/components/ui/following-pointer";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import ProjectSection from "@/components/ui/project-section";
 import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
-import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react"; // Example icons
+import Image from 'next/image';
 
 type TimelineEntry = {
   title: React.ReactNode;
@@ -16,10 +15,12 @@ const timelineData: TimelineEntry[] = [
   {
     title: (
       <div className="flex items-center gap-4">
-        <img
+        <Image
           src="https://i.ibb.co/D8cjVTX/Screenshot-2024-12-24-004030.png"
           alt="NexCraft Logo"
           className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
         />
         <span className="text-2xl font-bold">Web Developer Intern at NexCraft</span>
       </div>
@@ -37,10 +38,12 @@ const timelineData: TimelineEntry[] = [
   {
     title: (
       <div className="flex items-center gap-4">
-        <img
+        <Image
           src="https://i.ibb.co/t3JZbhp/Screenshot-2024-12-24-011803.png"
           alt="Club Logo"
           className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
         />
         <span className="text-2xl font-bold">Technical Lead at Full Stack Club</span>
       </div>
@@ -59,10 +62,12 @@ const timelineData: TimelineEntry[] = [
   {
     title: (
       <div className="flex items-center gap-4">
-        <img
+        <Image
           src="https://i.ibb.co/mDD48fh/Screenshot-2024-12-24-011922.png"
           alt="GFG Logo"
           className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
         />
         <span className="text-2xl font-bold">Technical Team Member at Geeks for Geeks</span>
       </div>
@@ -79,17 +84,8 @@ const timelineData: TimelineEntry[] = [
   },
 ];
 
-const dockItems = [
-  { title: "Home", icon: <IconHome />, href: "#" },
-  { title: "Linked-in", icon: <IconBrandLinkedin />, href: "#" },
-  { title: "GitHub", icon: <IconBrandGithub />, href: "#" },
-  { title: "X", icon: <IconBrandTwitter />, href: "#" },
-  { title: "Theme", icon: <IconColorPicker />, href: "#" },
-];
-
 const items = [
   {
-
     title: "Treasure Hunt Winner",
     image: "https://i.ibb.co/vZc6CWD/Screenshot-2024-12-24-211712.png",
   },
@@ -102,27 +98,26 @@ const items = [
     image: "https://i.ibb.co/C13qzBy/Whats-App-Image-2024-12-24-at-9-31-46-PM.jpg",
   },
   {
-    title: "Hackachino Winner",
+    title: "Hackathon Winner",
     image: "https://i.ibb.co/4VsBh60/Screenshot-2024-12-24-212538.png",
   },
   {
     title: "With the OG🔥",
     image: "https://i.ibb.co/1L1DN7d/Whats-App-Image-2024-12-24-at-9-30-24-PM.jpg",
   },
-  
-  
 ];
-
 
 export default function Home() {
   return (
     <div>
       <HeroHighlight>
         <div className="text-center mt-[-100px] flex flex-col items-center gap-6">
-          <img
+          <Image
             src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
             alt="Vaibhav's Avatar"
             className="w-40 h-40 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg"
+            width={160}
+            height={160}
           />
           <div className="text-5xl mb-5 font-bold text-black dark:text-white">
             Hi, I'm <Highlight><Highlight>Vaibhav</Highlight></Highlight><br />
