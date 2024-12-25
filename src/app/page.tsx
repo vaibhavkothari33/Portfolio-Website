@@ -102,7 +102,7 @@ const items = [
     image: "https://i.ibb.co/C13qzBy/Whats-App-Image-2024-12-24-at-9-31-46-PM.jpg",
   },
   {
-    title: "Hackathon Winner",
+    title: "Hackachino Winner",
     image: "https://i.ibb.co/4VsBh60/Screenshot-2024-12-24-212538.png",
   },
   {
