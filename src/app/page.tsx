@@ -4,7 +4,7 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import ProjectSection from "@/components/ui/project-section";
 import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
-import Skills from "@/components/ui/Skills"; // Import the Skills component
+import Skills from "@/components/ui/Skills";
 import Image from 'next/image';
 
 type TimelineEntry = {
@@ -93,6 +93,10 @@ const items = [
   {
     title: "Workshop Speaker",
     image: "https://i.ibb.co/K6fDF5H/Screenshot-2024-12-24-211849.png",
+  },
+  {
+    title: "Hackfest at GFG HQ",
+    image: "https://i.ibb.co/Jt55ZQ2/Whats-App-Image-2024-12-25-at-7-24-34-PM.jpg",
   },
   {
     title: "me",
