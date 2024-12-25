@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+Sitemap: https://vaibhavkothari.vercel.app/sitemap.xml
+Sitemap: https://vaibhavkothari.vercel.app/sitemap.xml.gz
