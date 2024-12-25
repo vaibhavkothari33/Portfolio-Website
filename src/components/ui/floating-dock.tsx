@@ -76,7 +76,32 @@ function IconContainer({
   href: string;
   onClick?: () => void;
 }) {
-  const ref = useRef<HTMLDivElement | null>(null); // Fix added here
+  if (onClick) {
+    return (
+      <IconContainerDiv
+        mouseX={mouseX}
+        title={title}
+        icon={icon}
+        onClick={onClick}
+      />
+    );
+  } else {
+    return <IconContainerAnchor mouseX={mouseX} title={title} icon={icon} href={href} />;
+  }
+}
+
+function IconContainerDiv({
+  mouseX,
+  title,
+  icon,
+  onClick,
+}: {
+  mouseX: MotionValue;
+  title: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -95,13 +120,75 @@ function IconContainer({
 
   const [hovered, setHovered] = useState(false);
 
-  const Container = onClick ? "div" : "a"; // Use div for onClick, a for href.
+  return (
+    <div
+      ref={ref}
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+    >
+      <motion.div
+        style={{ width, height }}
+        className="flex items-center justify-center"
+      >
+        <motion.div
+          style={{ width: widthIcon, height: heightIcon }}
+          className="flex items-center justify-center"
+        >
+          {icon}
+        </motion.div>
+      </motion.div>
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 2, x: "-50%" }}
+            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+          >
+            {title}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function IconContainerAnchor({
+  mouseX,
+  title,
+  icon,
+  href,
+}: {
+  mouseX: MotionValue;
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+}) {
+  const ref = useRef<HTMLAnchorElement | null>(null);
+
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const widthTransform = useTransform(distance, [-150, 0, 150], [50, 90, 50]);
+  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
+  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+
+  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  const height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  const widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
+  const heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <Container
+    <a
       ref={ref}
-      href={!onClick ? href : undefined} // Render the href for anchor tag behavior.
-      onClick={onClick}
+      href={href}
       target={href?.startsWith("http") ? "_blank" : undefined} // Open external links in a new tab.
       rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
       onMouseEnter={() => setHovered(true)}
@@ -131,6 +218,6 @@ function IconContainer({
           </motion.div>
         )}
       </AnimatePresence>
-    </Container>
+    </a>
   );
 }
