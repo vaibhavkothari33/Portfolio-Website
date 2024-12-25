@@ -4,6 +4,7 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import ProjectSection from "@/components/ui/project-section";
 import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
+import Skills from "@/components/ui/Skills"; // Import the Skills component
 import Image from 'next/image';
 
 type TimelineEntry = {
@@ -120,17 +121,18 @@ export default function Home() {
             height={160}
           />
           <div className="text-5xl mb-5 font-bold text-black dark:text-white">
-            Hi, I&apos;m <Highlight><Highlight>Vaibhav</Highlight></Highlight><br />
+            Hi, I&apos;m <Highlight>Vaibhav</Highlight><br />
           </div>
           <div className="text-xl md:text-4xl text-gray-700 dark:text-gray-300">
             A <Highlight>developer</Highlight> who customizes everything with <br />
-            <Highlight> open source technologies.</Highlight> <br />
+            <Highlight>open source technologies.</Highlight> <br />
             <span className="text-xl">(Yes, even my coffee order).</span><br /><br />
             <Highlight>I use arch btw</Highlight> <br />
           </div>
         </div>
       </HeroHighlight>
       <Timeline data={timelineData} />
+      <Skills /> {/* Integrate the Skills component */}
       <ProjectSection />
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={items} />
       <ContactForm />
