@@ -3,6 +3,7 @@ import { FloatingDock } from "@/components/ui/floating-dock";
 import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";
 import "../../styles/globals.css";
+import { Analytics } from '@vercel/analytics/next'
 import { ToastProvider, ToastViewport } from "@/components/ui/toast";
 
 const dockItems = [
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark">
           <ToastProvider>
             {children}
+            <Analytics />
             <FloatingDock items={dockItems} />
             <ToastViewport />
           </ToastProvider>
