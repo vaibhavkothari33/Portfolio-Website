@@ -1,9 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
-
 const Resume = () => {
-  const router = useRouter();
-
   const handleDownload = () => {
     // Trigger the download of the PDF
     window.open("/resume.pdf", "_blank");
