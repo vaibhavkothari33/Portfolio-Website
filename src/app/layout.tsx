@@ -12,7 +12,7 @@ const dockItems = [
   { title: "GitHub", icon: <IconBrandGithub />, href: "https://github.com/vaibhavkothari33/" },
   { title: "X", icon: <IconBrandTwitter />, href: "https://x.com/VaibhavKotharii" },
   { title: "Theme", icon: <IconColorPicker />, href: "#", id: "theme-switcher" },
-  { title: "Links", icon: <IconLink />, href: "/links" }, 
+  // { title: "Links", icon: <IconLink />, href: "/links" }, 
 ];
 
 export default function RootLayout({
