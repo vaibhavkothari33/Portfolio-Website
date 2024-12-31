@@ -1,6 +1,7 @@
 "use client";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker, IconLink } from "@tabler/icons-react";
+import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
+// import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker, IconLink } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";
 import "../../styles/globals.css";
 import { Analytics } from '@vercel/analytics/next'
