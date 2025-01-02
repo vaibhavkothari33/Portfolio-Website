@@ -85,7 +85,7 @@ const timelineData: TimelineEntry[] = [
   },
 ];
 
-const items = [
+const achievement = [
   {
     title: "Treasure Hunt Winner",
     image: "https://i.ibb.co/vZc6CWD/Screenshot-2024-12-24-211712.png",
@@ -136,9 +136,9 @@ export default function Home() {
         </div>
       </HeroHighlight>
       <Timeline data={timelineData} />
-      <Skills /> {/* Integrate the Skills component */}
+      <Skills /> 
       <ProjectSection />
-      <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={items} />
+      <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
       <ContactForm />
     </div>
   );

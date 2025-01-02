@@ -1,5 +1,5 @@
 "use client";
-import styled from 'styled-components';
+import "@/components/ui/button.css";
 import {
   useScroll,
   useTransform,
@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 
 interface TimelineEntry {
-  title: React.ReactNode; 
+  title: React.ReactNode;
   content: React.ReactNode;
 }
 
@@ -44,20 +44,19 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         <p className="text-neutral-700 dark:text-neutral-300 text-lg md:text-xl max-w-3xl">
           Hi, I&apos;m Vaibhav, a passionate <b className="font-extrabold">Full-Stack Developer</b> and tech enthusiast currently pursuing a <b className="font-extrabold">Bachelor of Technology in Computer Science Engineering</b> at Bennett University (2023-2027). My journey revolves around building innovative solutions, contributing to <b className="font-extrabold">open-source projects</b>, and continuously exploring new technologies, including the exciting world of <b className="font-extrabold">Machine Learning</b>.
         </p>
-        <StyledWrapper>
+        {/* resume button */}
+        <a href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer">
           <button className="button">
             <span className="button_lg">
               <span className="button_sl" />
               <span className="button_text">
-                <a href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  View My Resume
-                </a>
+                View My Resume
               </span>
             </span>
           </button>
-        </StyledWrapper>
+        </a>
       </div>
       <h2 className="text-2xl text-center md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
         Milestones of My Tech Odyssey
@@ -70,8 +69,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-black dark:bg-white flex items-center justify-center">
+                <div className="h-4 w-4 rounded-full bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 p-2" />
               </div>
               <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500 ">
                 {item.title}
@@ -104,125 +103,3 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     </div>
   );
 };
-
-const StyledWrapper = styled.div`
-  .button {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    background: none;
-    color: #0f1923;
-    cursor: pointer;
-    position: relative;
-    padding: 8px;
-    margin-bottom: 20px;
-    margin-top: 30px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 14px;
-    transition: all .15s ease;
-  }
-
-  .button::before,
-  .button::after {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 0;
-    left: 0;
-    height: calc(50% - 5px);
-    border: 1px solid #7D8082;
-    transition: all .15s ease;
-  }
-
-  .button::before {
-    top: 0;
-    border-bottom-width: 0;
-  }
-
-  .button::after {
-    bottom: 0;
-    border-top-width: 0;
-  }
-
-  .button:active,
-  .button:focus {
-    outline: none;
-  }
-
-  .button:active::before,
-  .button:active::after {
-    right: 3px;
-    left: 3px;
-  }
-
-  .button:active::before {
-    top: 3px;
-  }
-
-  .button:active::after {
-    bottom: 3px;
-  }
-
-  .button_lg {
-    position: relative;
-    display: block;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #0f1923;
-    overflow: hidden;
-    box-shadow: inset 0px 0px 0px 1px transparent;
-  }
-
-  .button_lg::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 2px;
-    background-color: #0f1923;
-  }
-
-  .button_lg::after {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 4px;
-    height: 4px;
-    background-color: #0f1923;
-    transition: all .2s ease;
-  }
-
-  .button_sl {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: -1px;
-    left: -8px;
-    width: 0;
-    background-color: #ff4655;
-    transform: skew(-15deg);
-    transition: all .2s ease;
-  }
-
-  .button_text {
-    position: relative;
-  }
-
-  .button:hover {
-    color: #0f1923;
-  }
-
-  .button:hover .button_sl {
-    width: calc(100% + 15px);
-  }
-
-  .button:hover .button_lg::after {
-    background-color: #fff;
-  }`;
-

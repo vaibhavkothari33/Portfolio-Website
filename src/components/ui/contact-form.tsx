@@ -133,6 +133,8 @@ export const ContactForm = () => {
           LinkedIn
         </Link>
         .
+        <br />
+        I am always open to new opportunities and collaborations.
       </p>
       <Toaster />
     </div>
