@@ -37,8 +37,12 @@ export const FollowerPointerCard = ({
   };
 
   const handleMouseEnter = () => {
+    if (ref.current) {
+      setRect(ref.current.getBoundingClientRect());
+    }
     setIsInside(true);
   };
+  
 
   return (
     <div
@@ -76,7 +80,15 @@ export const FollowPointer = ({
     "var(--blue-500)",
     "var(--red-500)",
     "var(--yellow-500)",
+    "var(--orange-500)",
+    "var(--purple-500)",
+    "var(--pink-500)",
+    "var(--indigo-500)",
+    "var(--lime-500)",
+    "var(--amber-500)",
+    "var(--cyan-500)",
   ];
+  
 
   return (
     <motion.div
