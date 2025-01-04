@@ -39,68 +39,67 @@ const projects = [
 ];
 
 export const ProjectSection = () => {
-  return (
-    <section className="py-36 px-6 sm:px-36 lg:px-80 bg-white  text-black dark:bg-neutral-950 dark:text-white">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">My Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <FollowerPointerCard
-              key={index}
-              className="p-4 bg-white border border-gray-800 dark:bg-neutral-900 dark:border-gray-400 shadow-lg rounded-lg transition-transform transform hover:scale-105"
-              title={project.title}  // Add title prop
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-md"
-                width={400}
-                height={200}
-              />
-              <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
-              <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                {project.description}
-              </p>
-              <br />
-              <div className="mt-2 flex flex-wrap gap-2">
-                {project.technologies.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="inline-block bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium"
+    return (
+      <section className="py-36 px-6 sm:px-12 md:px-24 lg:px-80 bg-white text-black dark:bg-neutral-950 dark:text-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">My Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <FollowerPointerCard
+                key={index}
+                className="p-4 bg-white border border-gray-800 dark:bg-neutral-900 dark:border-gray-400 shadow-lg rounded-lg transition-transform transform hover:scale-105"
+                title={project.title} // Add title prop
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover rounded-md"
+                  width={400}
+                  height={200}
+                />
+                <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
+                <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                  {project.description}
+                </p>
+                <br />
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {project.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="inline-block bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex justify-end mt-6 space-x-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-md shadow-md hover:bg-gray-700 transition-all"
                   >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex justify-end mt-6 space-x-4">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-gray-800 rounded-md shadow-md hover:bg-gray-700 transition-all"
-                >
-                  <IconBrandGithub className="w-4 h-4" />
-                  GitHub
-                </a>
-                <a
-                  href={project.preview}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Preview"
-                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-500 transition-all"
-                >
-                  <IconLink className="w-4 h-4" />
-                  Preview
-                </a>
-              </div>
-
-
-            </FollowerPointerCard>
-          ))}
+                    <IconBrandGithub className="w-4 h-4" />
+                    GitHub
+                  </a>
+                  <a
+                    href={project.preview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Preview"
+                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-500 transition-all"
+                  >
+                    <IconLink className="w-4 h-4" />
+                    Preview
+                  </a>
+                </div>
+              </FollowerPointerCard>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+    
 };
 
 export default ProjectSection;
