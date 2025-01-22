@@ -28,7 +28,9 @@ export default function RootLayout({
           <ToastProvider>
             {children}
             <Analytics />
-            <FloatingDock items={dockItems} />
+            <FloatingDock
+              items={dockItems}
+            />
             <ToastViewport />
           </ToastProvider>
         </ThemeProvider>

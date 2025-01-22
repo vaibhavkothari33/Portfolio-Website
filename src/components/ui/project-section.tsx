@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "Postly",
-    image: "https://i.ibb.co/qsbX8R7/Screenshot-2024-12-25-021126.png",
-    technologies: ["React", "Redux", "Appwrite", "Node.js"],
-    description: "A feature-rich blogging platform where users can share their thoughts and images seamlessly.",
-    github: "https://github.com/vaibhavkothari33/Postly",
+    title: "FiteX",
+    image: "/Fitex.png",
+    technologies: ["React-Native", "GoogleFit", "FireBase", "Gen AI"],
+    description: "FiteX is a modern fitness app designed to help users stay active, healthy, and motivated. ",
+    github: "https://github.com/vaibhavkothari33/FiteX",
     preview: "",
   },
   {

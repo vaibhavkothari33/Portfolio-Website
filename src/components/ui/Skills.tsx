@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 
 const skills = [
-    "Next.js", "TypeScript", "React Js", "JavaScript", "Node.js", "Python", "FastAPI", "Django", "FireBase", "appwrite", "Git", "CSS", "HTML"
+    "Next.js", "TypeScript", "React Js","React-Native", "JavaScript", "Node.js", "Python", "FastAPI", "Django", "FireBase", "appwrite", "Git", "CSS", "HTML"
 ];
 
 const colors = [
     "bg-gray-400 text-black dark:bg-gray-800 dark:text-white",
     "bg-blue-400 text-black dark:bg-blue-800 dark:text-white",
     "bg-pink-400 text-black dark:bg-pink-800 dark:text-white",
+    "bg-cyan-400 text-black dark:bg-cyan-600 dark:text-white",
     "bg-yellow-400 text-black dark:bg-yellow-500 dark:text-white",
     "bg-green-400 text-black dark:bg-green-800 dark:text-white",
     "bg-purple-400 text-black dark:bg-purple-800 dark:text-white",
