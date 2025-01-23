@@ -6,7 +6,7 @@ tags:
   - Hooks
   - JavaScript
   - Web Development
-image: /FiteX.png
+image: /image.png
 ---
 # Mastering React Hooks: A Simple Guide
 
