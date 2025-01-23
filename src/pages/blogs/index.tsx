@@ -14,7 +14,7 @@ interface BlogsPageProps {
 const BlogsPage: React.FC<BlogsPageProps> = ({ blogs = [] }) => {
   if (blogs.length === 0) {
     return (
-      <div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-800 text-white flex items-center justify-center">
         <p>No blogs found</p>
       </div>
     );

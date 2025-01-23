@@ -8,7 +8,7 @@ const BlogCard: React.FC<Blog> = ({
   tags = [] 
 }) => {
   return (
-    <div className="bg-neutral-900 p-6 rounded-lg mb-4">
+    <div className="bg-neutral-800 p-6 rounded-lg mb-4">
       <Link href={`/blogs/${slug}`} className="hover:text-blue-400">
         <h2 className="text-2xl font-bold">{title}</h2>
       </Link>
