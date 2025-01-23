@@ -118,7 +118,8 @@ export default function Home() {
       <HeroHighlight>
         <div className="text-center mt-[-100px] flex flex-col items-center gap-6">
           <Image
-            src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
+            // src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
+            src="/vaibhav.JPG"
             alt="Vaibhav&apos;s Avatar"
             className="w-40 h-40 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg"
             width={160}

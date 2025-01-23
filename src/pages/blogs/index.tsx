@@ -1,73 +1,107 @@
-"use client";
-import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-import Image from "next/image";
-import Link from "next/link";
+import { GetStaticProps } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { Blog } from '@/types/blog';
 import "../../../styles/globals.css";
 
-type Blog = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-};
+interface BlogsPageProps {
+  blogs: Blog[];
+}
 
-const blogs: Blog[] = [
-  {
-    id: "1",
-    title: "Understanding React Hooks",
-    description: "A deep dive into React Hooks and how to use them effectively.",
-    image: "/Fitex.png",
-    date: "January 20, 2025",
-  },
-  {
-    id: "1",
-    title: "Understanding React Hooks",
-    description: "A deep dive into React Hooks and how to use them effectively.",
-    image: "/Fitex.png",
-    date: "January 20, 2025",
-  },
-  {
-    id: "1",
-    title: "Understanding React Hooks",
-    description: "A deep dive into React Hooks and how to use them effectively.",
-    image: "/Fitex.png",
-    date: "January 20, 2025",
-  },
-];
+const BlogsPage: React.FC<BlogsPageProps> = ({ blogs = [] }) => {
+  if (blogs.length === 0) {
+    return (
+      <div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
+        <p>No blogs found</p>
+      </div>
+    );
+  }
 
-export default function BlogsPage() {
   return (
-    <HeroHighlight>
-      <div className="text-center mt-[-100px] flex flex-col items-center gap-6">
-        <div className="text-5xl mb-5 font-bold text-black dark:text-white">
-          My <Highlight>Blog</Highlight> Posts
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-          {blogs.map((blog) => (
-            <Link href={`/blogs/${blog.id}`} key={blog.id}>
-              <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-4 transition-transform hover:scale-105">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-full h-40 object-cover rounded-t-lg"
-                  width={150}
-                  height={150}
-                />
-                <h2 className="text-xl font-bold mt-4 text-black dark:text-white">
-                  {blog.title}
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300 mt-2">
-                  {blog.description}
-                </p>
-                <p className="text-blue-500 dark:text-blue-400 mt-2">
-                  {blog.date}
-                </p>
+    <div className="min-h-screen bg-neutral-950 text-white p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-center">
+          My Tech Blog
+        </h1>
+        <div className="grid md:grid-cols-2 gap-6">
+          {blogs.map(blog => (
+            <Link 
+              href={`/blogs/${blog.slug}`} 
+              key={blog.slug} 
+              className="bg-neutral-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform"
+            >
+              {blog.image && (
+                <div className="h-48 w-full relative">
+                  <Image 
+                    src={blog.image} 
+                    alt={blog.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="p-6">
+                <h2 className="text-2xl font-bold mb-2">{blog.title}</h2>
+                <div className="text-neutral-400">
+                  <span>{blog.date}</span>
+                  <div className="flex space-x-2 mt-2">
+                    {blog.tags.map(tag => (
+                      <span 
+                        key={tag} 
+                        className="bg-blue-900 text-blue-300 px-2 py-1 rounded-full text-xs"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </Link>
           ))}
         </div>
       </div>
-    </HeroHighlight>
+    </div>
   );
-}
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const blogsDirectory = path.join(process.cwd(), 'src/content/blogs');
+    const fileNames = fs.readdirSync(blogsDirectory);
+
+    const blogs = fileNames.map(fileName => {
+      const slug = fileName.replace('.md', '');
+      const fullPath = path.join(blogsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      
+      const { data, content } = matter(fileContents);
+
+      return {
+        slug,  // Use the filename as the slug consistently
+        title: data.title || '',
+        content: content || '',
+        date: data.date || '',
+        tags: data.tags || [],
+        image: data.image || '',
+      } as Blog;
+    });
+
+    return {
+      props: {
+        blogs
+      }
+    };
+  } catch (error) {
+    console.error('Error loading blog posts:', error);
+    return {
+      props: {
+        blogs: []
+      }
+    };
+  }
+};
+
+export default BlogsPage;
