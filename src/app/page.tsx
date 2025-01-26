@@ -121,10 +121,11 @@ export default function Home() {
             src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
             // src="/vaibhav.JPG"
             alt="Vaibhav&apos;s Avatar"
-            className="w-40 h-40 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg"
-            width={160}
-            height={160}
+            className="w-48 h-48 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-800"
+            width={192}
+            height={192}
           />
+
           <div className="text-5xl mb-5 font-bold text-black dark:text-white">
             Hi, I&apos;m <Highlight>Vaibhav</Highlight><br />
           </div>
@@ -137,7 +138,7 @@ export default function Home() {
         </div>
       </HeroHighlight>
       <Timeline data={timelineData} />
-      <Skills /> 
+      <Skills />
       <ProjectSection />
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
       <ContactForm />
