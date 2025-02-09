@@ -6,7 +6,7 @@ tags:
   - Hooks
   - JavaScript
   - Web Development
-image: /image.png
+image: /reactblog.png
 ---
 # Mastering React Hooks: A Simple Guide
 

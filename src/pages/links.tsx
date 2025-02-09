@@ -1,7 +1,7 @@
 "use client";
 import "../../styles/globals.css";
 
-import { IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconWorld, IconBrandWikipedia, IconBrandLeetcode, IconBrandDiscord, IconBrandGmail } from "@tabler/icons-react";
+import { IconBrandLinkedin, IconBrandGithub, IconFileCheck, IconBrandTwitter, IconWorld, IconBrandWikipedia, IconBrandLeetcode, IconBrandDiscord, IconBrandGmail } from "@tabler/icons-react";
 
 const links = [
   {
@@ -21,7 +21,7 @@ const links = [
   },
   {
     title: "Twitter",
-    href: "https://twitter.com/vaibhavkothari/",
+    href: "https://twitter.com/vaibhavkotharii/",
     icon: <IconBrandTwitter className="text-blue-400" />,
   },
   {
@@ -30,9 +30,9 @@ const links = [
     icon: <IconBrandWikipedia className="text-blue-400" />,
   },
   {
-    title: "Mail",
-    href: "mailto:contact.vaibhavkothari@gmail.com",
-    icon: <IconBrandGmail className="text-red-500" />,
+    title: "Resume",
+    href: "https://www.vaibhavkothari.me/resume.pdf",
+    icon: <IconFileCheck className="text-red-500" />,
   },
   {
     title: "Mail",
