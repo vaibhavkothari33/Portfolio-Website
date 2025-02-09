@@ -116,26 +116,31 @@ export default function Home() {
   return (
     <div>
       <HeroHighlight>
-        <div className="text-center mt-[-100px] flex flex-col items-center gap-6">
+        <div className="text-center mt-[-10px] flex flex-col items-center gap-6">
           <Image
             src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
-            // src="/vaibhav.JPG"
             alt="Vaibhav&apos;s Avatar"
-            className="w-48 h-48 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-800"
-            width={192}
-            height={192}
+            className="w-44 h-44 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-800"
+            width={160}
+            height={160}
           />
 
-          <div className="text-5xl mb-5 font-bold text-black dark:text-white">
-            Hi, I&apos;m <Highlight>Vaibhav</Highlight><br />
+          <div className="text-5xl mb-4 font-bold text-black dark:text-white">
+            Hi, I&apos;m <Highlight>Vaibhav</Highlight>
           </div>
-          <div className="text-xl md:text-4xl text-gray-700 dark:text-gray-300">
-            A <Highlight>developer</Highlight> who customizes everything with <br />
-            <Highlight>open source technologies.</Highlight> <br />
-            <span className="text-xl">(Yes, even my coffee order).</span><br /><br />
-            <Highlight>I use arch btw</Highlight> <br />
+
+          <div className="text-xl md:text-3xl text-gray-700 mb-6 dark:text-gray-300">
+            A <span className="font-bold"><Highlight>developer</Highlight></span> who customizes everything with <br />
+            <div className="mt-2"></div>
+            <span className="font-bold"> <Highlight>open source technologies.</Highlight></span> <br />
+            <span className="text-xl mt-2">(Yes, even my coffee order).</span><br />
+            <br />
+            <Highlight>I use Arch, btw.</Highlight>
+            <span className="text-2xl font-serif mt-4 block"><Highlight>Open to gigs, part-time roles</Highlight></span> <br />
           </div>
         </div>
+
+
       </HeroHighlight>
       <Timeline data={timelineData} />
       <Skills />

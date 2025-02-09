@@ -34,7 +34,7 @@ const BlogsPage: React.FC<BlogsPageProps> = ({ blogs = [] }) => {
               className="bg-neutral-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform"
             >
               {blog.image && (
-                <div className="h-48 w-full relative">
+                <div className="h-64 w-full relative">
                   <Image 
                     src={blog.image} 
                     alt={blog.title}

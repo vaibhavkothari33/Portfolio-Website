@@ -34,13 +34,13 @@ export const ContactForm = () => {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const result = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, 
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
           from_email: data.email,
           message: data.message,
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! 
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
       if (result.status === 200) {
@@ -134,7 +134,9 @@ export const ContactForm = () => {
         </Link>
         .
         <br />
-        I am always open to new opportunities and collaborations.
+        
+        <span className=" text-sm font-semibold">I am always open to new opportunities and collaborations.</span><br /><br />
+        <Link href="/blogs"><span className=" text-lg font-semibold"> I also share my thoughts through blogs. Check them out!</span></Link>
       </p>
       <Toaster />
     </div>
