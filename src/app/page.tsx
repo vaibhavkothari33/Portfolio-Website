@@ -110,6 +110,10 @@ const achievement = [
     title: "With the OG🔥",
     image: "https://i.ibb.co/1L1DN7d/Whats-App-Image-2024-12-24-at-9-30-24-PM.jpg",
   },
+  {
+    title: "Code Kshetra 2.0",
+    image: "/codekshetra.png",
+  },
 ];
 
 export default function Home() {

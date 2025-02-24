@@ -5,6 +5,14 @@ import Image from "next/image";
 
 const projects = [
   {
+    title: "BlockBinge",
+    image: "/Block.png",
+    technologies: ["React", "EtherJs", "Solidity","Reactive Smart Contract"],
+    description: "BlockBinge is a decentralized, web3 based streaming platform where in we follow pay as you watch model. You only need to pay for the minutes you have watched.",
+    github: "https://github.com/vaibhavkothari33/blockBinge/",
+    preview: "https://blockbinge.vercel.app/",
+  },
+  {
     title: "FiteX",
     image: "/Fitex.png",
     technologies: ["React-Native", "GoogleFit", "FireBase", "Gen AI"],
@@ -24,18 +32,19 @@ const projects = [
     title: "PaiseKaHisab",
     image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
     technologies: ["Firebase", "Chart.js", "JavaScript", "Hacktoberfest"],
-    description: "A comprehensive finance management tool for tracking expenses, visualizing patterns, and receiving financial tips.",
+    description: "A comprehensive open-sourced finance management tool for tracking expenses, visualizing patterns, and receiving financial tips.",
     github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
     preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
   },
-  {
-    title: "SentiTune",
-    image: "https://i.ibb.co/gv493p3/Screenshot-2025-01-03-012106.png",
-    technologies: ["Python", "FastAPI", "Uvicorn", "scikit-learn"],
-    description: "An AI-powered web app that suggests songs tailored to your mood and emotions using the Spotify API.",
-    github: "https://github.com/vaibhavkothari33/SentiTune",
-    preview: "https://vaibhavkothari33.github.io/SentiTune/",
-  },
+  // {
+  //   title: "SentiTune",
+  //   image: "https://i.ibb.co/gv493p3/Screenshot-2025-01-03-012106.png",
+  //   technologies: ["Python", "FastAPI", "Uvicorn", "scikit-learn"],
+  //   description: "An AI-powered web app that suggests songs tailored to your mood and emotions using the Spotify API.",
+  //   github: "https://github.com/vaibhavkothari33/SentiTune",
+  //   preview: "https://vaibhavkothari33.github.io/SentiTune/",
+  // },
+
 ];
 
 export const ProjectSection = () => {
