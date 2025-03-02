@@ -1,182 +1,31 @@
-// "use client";
-// import { Button } from "@/components/ui/button";
-// import Link from "next/link";
-// import { motion } from "framer-motion";
-// import { useState, useEffect } from "react";
-
-// export default function NotFound() {
-//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-//   const [mounted, setMounted] = useState(false);
-
-//   useEffect(() => {
-//     setMounted(true);
-
-//     const handleMouseMove = (e) => {
-//       setMousePosition({ x: e.clientX, y: e.clientY });
-//     };
-
-//     window.addEventListener("mousemove", handleMouseMove);
-//     return () => window.removeEventListener("mousemove", handleMouseMove);
-//   }, []);
-
-//   const glowVariants = {
-//     hidden: { opacity: 0 },
-//     visible: { opacity: 1 }
-//   };
-
-//   const containerVariants = {
-//     hidden: { opacity: 0 },
-//     visible: {
-//       opacity: 1,
-//       transition: {
-//         staggerChildren: 0.1,
-//         delayChildren: 0.2
-//       }
-//     }
-//   };
-
-//   const itemVariants = {
-//     hidden: { y: 20, opacity: 0 },
-//     visible: { 
-//       y: 0, 
-//       opacity: 1,
-//       transition: { type: "spring", stiffness: 100 }
-//     }
-//   };
-
-//   const calculateGlowPosition = (x, y) => {
-//     if (!mounted) return { x: "50%", y: "50%" };
-//     const boundX = Math.max(0, Math.min(100, (x / window.innerWidth) * 100));
-//     const boundY = Math.max(0, Math.min(100, (y / window.innerHeight) * 100));
-//     return { x: `${boundX}%`, y: `${boundY}%` };
-//   };
-
-//   const glowPosition = calculateGlowPosition(mousePosition.x, mousePosition.y);
-
-//   return (
-//     <div className="min-h-screen flex-col items-center justify-center flex relative overflow-hidden bg-black text-white">
-//       {/* Interactive background glow */}
-//       {mounted && (
-//         <motion.div 
-//           className="absolute inset-0 -z-10"
-//           initial="hidden"
-//           animate="visible"
-//           variants={glowVariants}
-//         >
-//           <div 
-//             className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/5 blur-3xl opacity-40 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-//             style={{ 
-//               left: glowPosition.x,
-//               top: glowPosition.y,
-//               transition: "left 0.3s ease-out, top 0.3s ease-out"
-//             }}
-//           />
-//         </motion.div>
-//       )}
-
-//       {/* Grid background pattern */}
-//       <div className="absolute inset-0 -z-20 opacity-10">
-//         <div className="w-full h-full" style={{ 
-//           backgroundImage: 'radial-gradient(circle at 1px 1px, gray 1px, transparent 0)',
-//           backgroundSize: '50px 50px' 
-//         }}/>
-//       </div>
-
-//       <motion.div
-//         initial="hidden"
-//         animate="visible"
-//         variants={containerVariants}
-//         className="text-center space-y-8 max-w-2xl px-4 relative z-10"
-//       >
-//         <motion.div variants={itemVariants} className="space-y-4">
-//           <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-//             404
-//           </h1>
-//           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-//             Page Not Found
-//           </h2>
-//           <motion.p 
-//             variants={itemVariants}
-//             className="text-xl text-gray-400"
-//           >
-//             Oops! Looks like you&apos;ve ventured into unknown territory.
-//           </motion.p>
-//         </motion.div>
-
-//         <motion.div 
-//           variants={itemVariants}
-//           className="bg-gray-900/80 border border-gray-800 p-8 rounded-xl backdrop-blur-xl shadow-inner"
-//         >
-//           <p className="text-base md:text-lg text-gray-300">
-//             The page you&apos;re looking for has vanished into the digital void.
-//             Feel free to explore the home page or try a different path.
-//           </p>
-//         </motion.div>
-
-//         <motion.div
-//           variants={itemVariants}
-//           className="flex flex-col md:flex-row gap-4 justify-center"
-//         >
-//           <Link href="/">
-//             <Button 
-//             variant="outline"
-//               className="w-full md:w-auto px-8 py-6 text-base bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20"
-//               size="lg"
-//             >
-//               <motion.span 
-//                 initial={{ opacity: 0.8 }}
-//                 whileHover={{ opacity: 1 }}
-//                 className="flex items-center gap-2"
-//               >
-//                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                   <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-//                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
-//                 </svg>
-//                 Return Home
-//               </motion.span>
-//             </Button>
-//           </Link>
-//         </motion.div>
-
-//         <motion.div 
-//           variants={itemVariants}
-//           className="text-gray-500 text-sm pt-8"
-//         >
-//           <p>Lost? Try searching for what you need or check the site map.</p>
-//         </motion.div>
-//       </motion.div>
-
-//       {/* Animated particles */}
-//       {mounted && Array.from({ length: 8 }).map((_, i) => (
-//         <motion.div
-//           key={i}
-//           className="absolute rounded-full bg-primary/20 w-2 h-2"
-//           initial={{ 
-//             x: Math.random() * window.innerWidth, 
-//             y: Math.random() * window.innerHeight,
-//             opacity: 0.1 + Math.random() * 0.3
-//           }}
-//           animate={{ 
-//             y: [null, Math.random() * -200, null],
-//             opacity: [null, 0.3, 0.1]
-//           }}
-//           transition={{
-//             duration: 5 + Math.random() * 10,
-//             repeat: Infinity,
-//             repeatType: "reverse",
-//             ease: "easeInOut",
-//             delay: i * 0.5
-//           }}
-//         />
-//       ))}
-//     </div>
-//   );
-// }
 "use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+
+interface Point {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  pulse: number;
+}
+
+interface Connection {
+  id: string;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  opacity: number;
+}
+
+interface ConstellationData {
+  points: Point[];
+  connections: Connection[];
+}
 
 export default function NotFound() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -185,7 +34,7 @@ export default function NotFound() {
   useEffect(() => {
     setMounted(true);
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
@@ -218,7 +67,7 @@ export default function NotFound() {
     }
   };
 
-  const calculateGlowPosition = (x, y) => {
+  const calculateGlowPosition = (x: number, y: number) => {
     if (!mounted) return { x: "50%", y: "50%" };
     const boundX = Math.max(0, Math.min(100, (x / window.innerWidth) * 100));
     const boundY = Math.max(0, Math.min(100, (y / window.innerHeight) * 100));
@@ -227,11 +76,10 @@ export default function NotFound() {
 
   const glowPosition = calculateGlowPosition(mousePosition.x, mousePosition.y);
 
-  // Generate vertices for the constellation effect
-  const generateConstellationPoints = () => {
-    if (!mounted) return [];
+  const generateConstellationPoints = (): ConstellationData => {
+    if (!mounted) return { points: [], connections: [] };
 
-    const points = [];
+    const points: Point[] = [];
     const pointCount = 20;
 
     for (let i = 0; i < pointCount; i++) {
@@ -245,19 +93,16 @@ export default function NotFound() {
       });
     }
 
-    // Generate connections between points that are close to each other
-    const connections = [];
+    const connections: Connection[] = [];
     for (let i = 0; i < points.length; i++) {
       for (let j = i + 1; j < points.length; j++) {
         const p1 = points[i];
         const p2 = points[j];
 
-        // Calculate distance
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Connect if points are close enough
         if (distance < 30) {
           connections.push({
             id: `${i}-${j}`,
@@ -469,8 +314,8 @@ export default function NotFound() {
             opacity: 0.1 + Math.random() * 0.3
           }}
           animate={{
-            y: [null, Math.random() * -200, null],
-            opacity: [null, 0.3, 0.1]
+            y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight - 200],
+            opacity: [0.1, 0.3, 0.1]
           }}
           transition={{
             duration: 5 + Math.random() * 10,
