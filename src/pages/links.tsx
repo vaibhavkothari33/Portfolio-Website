@@ -81,7 +81,7 @@ const links = [
 ];
 
 export default function LinksPage() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 font-sans px-4 py-12 flex flex-col items-center">
