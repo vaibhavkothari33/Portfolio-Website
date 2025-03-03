@@ -13,6 +13,8 @@ export const siteMetadata = {
   },
   keywords: [
     "Vaibhav Kothari",
+    "VaibhavKothari33",
+    "vaibhavKothari33",
     "Full Stack Developer",
     "Software Engineer",
     "Web Developer",
