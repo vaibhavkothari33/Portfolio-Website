@@ -84,7 +84,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-16 pb-40 ">
+    <section className="py-16 pb-40  bg-white dark:bg-neutral-950">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
