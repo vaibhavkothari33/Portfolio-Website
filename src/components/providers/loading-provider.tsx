@@ -64,7 +64,7 @@ export function LoadingProvider({
         stopLoading,
       }}
     >
-      {isLoading && <Loader />}
+      {isLoading && <Loader text={loadingText} />}
       <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"}>
         {children}
       </div>

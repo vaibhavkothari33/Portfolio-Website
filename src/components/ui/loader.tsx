@@ -1,18 +1,22 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
-export function Loader() {
+interface LoaderProps {
+  text?: string;
+}
+
+export function Loader({ text }: LoaderProps) {
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
 
-  const loadingTexts = [
+  const loadingTexts = useMemo(() => [
     "Initializing",
     "Loading Assets",
     "Preparing Data",
     "Almost Ready",
-  ];
+  ], []);
 
   useEffect(() => {
     setMounted(true);
@@ -23,15 +27,16 @@ export function Loader() {
       });
     }, 50);
 
-    const textTimer = setInterval(() => {
+    // Only set up text rotation if no custom text is provided
+    const textTimer = !text ? setInterval(() => {
       setTextIndex(prev => (prev + 1) % loadingTexts.length);
-    }, 2000);
+    }, 2000) : undefined;
 
     return () => {
       clearInterval(progressTimer);
-      clearInterval(textTimer);
+      if (textTimer) clearInterval(textTimer);
     };
-  }, [loadingTexts]);
+  }, [loadingTexts.length, text]);
 
   // DNA Helix points
   const generateDNAPoints = () => {
@@ -154,13 +159,13 @@ export function Loader() {
                   className="text-center space-y-2"
                 >
                   <motion.div
-                    key={textIndex}
+                    key={text || textIndex}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     className="text-xl font-medium text-primary"
                   >
-                    {loadingTexts[textIndex]}
+                    {text || loadingTexts[textIndex]}
                   </motion.div>
                   <div className="text-3xl font-bold text-primary">{progress}%</div>
                 </motion.div>
