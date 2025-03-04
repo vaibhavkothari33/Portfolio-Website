@@ -6,6 +6,14 @@ interface LoaderProps {
   text?: string;
 }
 
+interface DNAPoint {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  opacity: number;
+}
+
 export function Loader({ text }: LoaderProps) {
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -39,24 +47,22 @@ export function Loader({ text }: LoaderProps) {
   }, [loadingTexts.length, text]);
 
   // DNA Helix points
-  const generateDNAPoints = () => {
-    const points = [];
+  const dnaPoints = useMemo(() => {
+    const points: DNAPoint[] = [];
     const steps = 20;
     for (let i = 0; i < steps; i++) {
       const progress = i / steps;
       const angle = progress * Math.PI * 2;
-      points.push({
-        x1: 50 + Math.cos(angle) * 20,
-        y1: progress * 100,
-        x2: 50 + Math.cos(angle + Math.PI) * 20,
-        y2: progress * 100,
-        opacity: Math.sin(progress * Math.PI),
-      });
+      const x1 = Number((50 + Math.cos(angle) * 20).toFixed(3));
+      const y1 = Number((progress * 100).toFixed(3));
+      const x2 = Number((50 + Math.cos(angle + Math.PI) * 20).toFixed(3));
+      const y2 = y1;
+      const opacity = Number(Math.sin(progress * Math.PI).toFixed(3));
+      
+      points.push({ x1, y1, x2, y2, opacity });
     }
     return points;
-  };
-
-  const dnaPoints = generateDNAPoints();
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-md flex items-center justify-center z-50">
