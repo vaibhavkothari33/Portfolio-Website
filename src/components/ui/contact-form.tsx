@@ -11,7 +11,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { Send, Twitter, Linkedin, Mail, Github, Book, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-import { Share } from "next/font/google";
 
 // Enhanced form validation schema
 const formSchema = z.object({
