@@ -37,20 +37,20 @@ interface IFormInput {
 // Sample blog posts data
 const recentBlogPosts = [
   {
-    title: "Building Responsive UIs with React and Tailwind",
-    url: "/blog/building-responsive-uis",
-    date: "Feb 28, 2025"
+    title: "Backend as a Service",
+    url: "/blogs/Backend-as-a-Service",
+    date: "Feb 12, 2025"
   },
   {
-    title: "The Future of Web Development in 2025",
-    url: "/blog/future-web-development-2025",
-    date: "Jan 15, 2025"
+    title: "Code-Kshetra 2.0",
+    url: "/blogs/code-kshetra",
+    date: "Feb 23, 2025"
   },
-  {
-    title: "Optimizing React Performance: Advanced Techniques",
-    url: "/blog/react-performance-optimization",
-    date: "Dec 10, 2024"
-  }
+  // {
+  //   title: "Optimizing React Performance: Advanced Techniques",
+  //   url: "/blog/react-performance-optimization",
+  //   date: "Dec 10, 2024"
+  // }
 ];
 
 // Social media links
@@ -81,7 +81,7 @@ const socialLinks = [
   },
   {
     name: "GitHub",
-    url: "https://vaibhavkothari.vercel.app/links",
+    url: "/links",
     icon: ExternalLink,
     color: "text-blue-700 dark:text-blue-400",
     bgColor: "bg-gray-50 dark:bg-gray-800/20",
