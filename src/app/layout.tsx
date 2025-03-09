@@ -4,7 +4,7 @@ import "../../styles/globals.css";
 import "./globals.css";
 import { ClientLayout } from "@/components/client-layout";
 import { metadata as metadataConfig, jsonLd } from "./metadata.config";
-import { LoadingProvider } from "@/components/providers/loading-provider";
+// import { LoadingProvider } from "@/components/providers/loading-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +24,9 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <LoadingProvider>
+        {/* <LoadingProvider> */}
           <ClientLayout>{children}</ClientLayout>
-        </LoadingProvider>
+        {/* </LoadingProvider> */}
       </body>
     </html>
   );
