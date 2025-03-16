@@ -106,7 +106,7 @@ export const ProjectSection = () => {
         
         <div className="flex justify-center mt-16">
         <a href="/projects"
-          target="_blank"
+          // target="_blank"
           rel="noopener noreferrer">
           <button className="button">
             <span className="button_lg">
