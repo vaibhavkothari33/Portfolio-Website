@@ -16,6 +16,8 @@
     "@next/mdx": "^15.1.6",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.4",
+    "@react-three/drei": "^10.0.4",
+    "@react-three/fiber": "^9.1.0",
     "@tabler/icons-react": "^3.26.0",
     "@tsparticles/engine": "^3.7.1",
     "@tsparticles/react": "^3.0.0",
@@ -48,6 +50,7 @@
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.174.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

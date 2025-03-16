@@ -102,6 +102,18 @@
     transform: skew(-15deg);
     transition: all .2s ease;
   }
+  .button_sl1 {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-color: rgb(21, 21, 244);
+    transform: skew(-15deg);
+    transition: all .2s ease;
+  }
+
 
   .button_text {
     position: relative;
