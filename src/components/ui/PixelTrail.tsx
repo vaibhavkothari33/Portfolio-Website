@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import React, { useMemo } from "react";
 import { Canvas, useThree, CanvasProps, ThreeEvent } from "@react-three/fiber";
 import { shaderMaterial, useTrailTexture } from "@react-three/drei";
@@ -7,13 +6,6 @@ import * as THREE from "three";
 interface GooeyFilterProps {
   id?: string;
   strength?: number;
-}
-
-interface DotMaterialUniforms {
-  resolution: THREE.Vector2;
-  mouseTrail: THREE.Texture | null;
-  gridSize: number;
-  pixelColor: THREE.Color;
 }
 
 interface SceneProps {

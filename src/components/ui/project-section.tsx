@@ -1,9 +1,10 @@
 import React from "react";
 import { FollowerPointerCard } from "./following-pointer";
-import { IconBrandGithub, IconLink, IconArrowRight } from "@tabler/icons-react";
+import { IconBrandGithub, IconLink } from "@tabler/icons-react";
 import Image from "next/image";
-import Link from "next/link";
 import "@/components/ui/button.css";
+import Link from "next/link";
+
 const projects = [
   {
     title: "BlockBinge",
@@ -105,18 +106,16 @@ export const ProjectSection = () => {
         </div>
         
         <div className="flex justify-center mt-16">
-        <a href="/projects"
-          // target="_blank"
-          rel="noopener noreferrer">
-          <button className="button">
-            <span className="button_lg">
-              <span className="button_sl1" />
-              <span className="button_text">
-              View All Projects
+          <Link href="/projects">
+            <button className="button">
+              <span className="button_lg">
+                <span className="button_sl1" />
+                <span className="button_text">
+                  View All Projects
+                </span>
               </span>
-            </span>
-          </button>
-        </a>
+            </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -5,7 +5,6 @@ import { IconBrandGithub, IconLink, IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
 import PixelTrail from "@/components/ui/PixelTrail";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
-// import CustomCursor from "@/components/ui/custom-cursor";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -193,87 +192,6 @@ export default function ProjectsPage() {
             </motion.div>
           ))}
         </div>
-        
-        {/* Detailed Project View Section */}
-        {/* <motion.h2
-          className="text-3xl font-bold text-center mt-32 mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-        >
-          Featured Projects in Detail
-        </motion.h2> */}
-        
-        {/* <div className="space-y-24">
-          {projects.map((project, index) => (
-            <motion.div 
-              key={`detail-${index}`}
-              custom={index}
-              initial="hidden"
-              animate={mounted ? "visible" : "hidden"}
-              variants={fadeIn}
-              className="mb-24"
-            >
-              <FollowerPointerCard
-                title={project.title}
-                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 bg-gray-900/80 backdrop-blur-sm p-8 rounded-xl shadow-2xl transition-all duration-500 hover:shadow-tomato/30`}
-              >
-                <div className="md:w-1/2">
-                  <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-md group">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                </div>
-                
-                <div className="md:w-1/2 flex flex-col justify-between">
-                  <div>
-                    <h2 className="text-3xl font-bold text-blue-400 mb-4">{project.title}</h2>
-                    <p className="text-gray-300 mb-6">{project.longDescription}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-md hover:bg-blue-500 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-md shadow-md hover:bg-gray-700 transition-all"
-                    >
-                      <IconBrandGithub className="w-5 h-5" />
-                      GitHub
-                    </a>
-                    {project.preview && (
-                      <a
-                        href={project.preview}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-500 transition-all"
-                      >
-                        <IconLink className="w-5 h-5" />
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </FollowerPointerCard> */}
-            {/* </motion.div> */}
-          {/* ))} */}
-        {/* </div> */}
       </div>
     </div>
   );
