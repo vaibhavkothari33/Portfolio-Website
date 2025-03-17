@@ -109,7 +109,7 @@ export const ProjectSection = () => {
           <Link href="/projects">
             <button className="button">
               <span className="button_lg">
-                <span className="button_sl1" />
+                <span className="button_sl" />
                 <span className="button_text">
                   View All Projects
                 </span>

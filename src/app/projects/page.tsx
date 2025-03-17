@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { IconBrandGithub, IconLink, IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
-import PixelTrail from "@/components/ui/PixelTrail";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { motion } from "framer-motion";
 
@@ -42,6 +41,25 @@ const projects = [
     preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
   },
   {
+    title: "CodeSketch",
+    image: "https://vaibhavkothari.gallerycdn.vsassets.io/extensions/vaibhavkothari/codesketch/1.4.0/1741893344455/Microsoft.VisualStudio.Services.Icons.Default",
+    technologies: ["Javascript", "Python", "D3.js"],
+    description:
+      "A powerful Visual Studio Code extension that generates interactive diagrams from your JavaScript, Python, and C++ code using D3.js visualization.",
+    longDescription:
+      "CodeSketch is a Visual Studio Code extension that generates interactive diagrams from your JavaScript, Python, and C++ code using D3.js visualization. It allows developers to visualize their code in a more intuitive and interactive way, helping them understand complex code structures and relationships.",
+    github: "https://github.com/vaibhavkothari33/Code-to-Diagram",
+    preview: "https://marketplace.visualstudio.com/items?itemName=VaibhavKothari.codesketch",
+  },
+  {
+    title: "SentiTune",
+    image: "https://i.ibb.co/gv493p3/Screenshot-2025-01-03-012106.png",
+    technologies: ["Python", "FastAPI", "Uvicorn", "scikit-learn"],
+    description: "An AI-powered web app that suggests songs tailored to your mood and emotions using the Spotify API.",
+    github: "https://github.com/vaibhavkothari33/SentiTune",
+    preview: "https://vaibhavkothari33.github.io/SentiTune/",
+  },
+  {
     title: "PaiseKaHisab",
     image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
     technologies: ["Firebase", "Chart.js", "JavaScript", "Hacktoberfest"],
@@ -52,7 +70,28 @@ const projects = [
     github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
     preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
   },
-  
+  {
+    title: "Chatoipa",
+    image: "https://raw.githubusercontent.com/vaibhavkothari33/Chatoipa/refs/heads/main/Chat1.png",
+    technologies: ["Java", "Web Sockets","JSwing"],
+    description:
+      "A real-time chat application built using Java and WebSockets for seamless communication between two users.",
+    longDescription:
+      "The Chatoipa is a Java-based solution designed for real-time communication between two users. Built using Swing for the graphical interface, this application facilitates seamless messaging with features like message timestamps and intuitive user interaction.",
+    github: "https://github.com/vaibhavkothari33/Chatoipa",
+    // preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
+  },
+  {
+    title: "LeetCode Roaster",
+    image: "https://raw.githubusercontent.com/vaibhavkothari33/LeetCode-Roster/refs/heads/main/img/image1.png",
+    technologies: ["JavaScript", "HTML", "CSS"],
+    description:
+      "A fun web application that generates personalized roasts based on a user's performance metrics from their LeetCode profile.",
+    longDescription:
+      "The LeetCode Roaster is a fun web application that generates personalized roasts based on a user's performance metrics from their LeetCode profile. It provides humorous and motivating messages tailored to the number and difficulty of questions solved, acceptance rates, and submission patterns.",
+    github: "https://github.com/vaibhavkothari33/LeetCode-Roster",
+    preview: "https://vaibhavkothari33.github.io/LeetCode-Roster",
+  },
 ];
 
 // Animation variants
@@ -78,19 +117,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white py-20 px-6 sm:px-12 md:px-24 relative overflow-hidden">
-    
-      <div className="fixed inset-0 w-full h-full z-0">
-        <PixelTrail
-          gridSize={50}
-          trailSize={0.15}
-          maxAge={200}
-          interpolate={5}
-          color="#ff6347" // tomato color to match previous theme
-          gooeyFilter={{ id: "pixel-trail-gooey", strength: 6 }}
-          className="w-full h-full"
-          canvasProps={{ style: { width: '100%', height: '100%' } }}
-        />
-      </div>
       
       {/* Gradient overlay for better readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 to-gray-950/90 z-0"></div>
