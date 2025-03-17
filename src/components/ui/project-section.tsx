@@ -33,14 +33,25 @@ const projects = [
     github: "https://github.com/vaibhavkothari33/Hackfest",
     preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
   },
+  // {
+  //   title: "PaiseKaHisab",
+  //   image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
+  //   technologies: ["Firebase", "Chart.js", "JavaScript", "Hacktoberfest"],
+  //   description:
+  //     "A comprehensive open-sourced finance management tool for tracking expenses, visualizing patterns, and receiving financial tips.",
+  //   github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
+  //   preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
+  // },
   {
-    title: "PaiseKaHisab",
-    image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
-    technologies: ["Firebase", "Chart.js", "JavaScript", "Hacktoberfest"],
+    title: "PathShala",
+    image: "https://i.ibb.co/hRhRWKJd/Screenshot-2025-03-17-140613.png",
+    technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
     description:
-      "A comprehensive open-sourced finance management tool for tracking expenses, visualizing patterns, and receiving financial tips.",
-    github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
-    preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
+      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+    longDescription:
+      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+    github: "https://github.com/vaibhavkothari33/PathShala2.0/",
+    preview: "https://pathshala-rho.vercel.app/",
   },
 ];
 

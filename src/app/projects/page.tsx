@@ -30,6 +30,17 @@ const projects = [
     preview: "",
   },
   {
+    title: "PathShala",
+    image: "https://i.ibb.co/hRhRWKJd/Screenshot-2025-03-17-140613.png",
+    technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
+    description:
+      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+    longDescription:
+      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+    github: "https://github.com/vaibhavkothari33/PathShala2.0/",
+    preview: "https://pathshala-rho.vercel.app/",
+  },
+  {
     title: "Sanjeevan",
     image: "https://i.ibb.co/7Jbhsgp/Screenshot-2024-12-25-020904.png",
     technologies: ["Firebase", "Web Sockets", "WebRTC", "Python", "JavaScript"],
