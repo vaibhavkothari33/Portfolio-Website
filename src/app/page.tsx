@@ -114,6 +114,10 @@ const achievement = [
     title: "Code Kshetra 2.0",
     image: "/codekshetra.png",
   },
+  {
+    title: "2x Hackachinno Winner",
+    image: "/hackachinno.jpeg",
+  },
 ];
 
 export default function Home() {

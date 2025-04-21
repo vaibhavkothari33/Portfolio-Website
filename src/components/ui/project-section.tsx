@@ -7,6 +7,18 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Mentora",
+    // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
+    image: "/Mentora.png",
+    technologies: ["Edu Chain","React", "Agent Zero","Fast API", "Gemini"],
+    description:
+      "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
+    longDescription:
+    "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
+    github: "https://github.com/vaibhavkothari33/Mentora",
+    preview: "https://mentora-rust.vercel.app/",
+  },
+  {
     title: "BlockBinge",
     image: "/Block.png",
     technologies: ["React", "EtherJs", "Solidity", "Reactive Smart Contract"],
@@ -42,17 +54,18 @@ const projects = [
   //   github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
   //   preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
   // },
-  {
-    title: "PathShala",
-    image: "https://i.ibb.co/hRhRWKJd/Screenshot-2025-03-17-140613.png",
-    technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
-    description:
-      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
-    longDescription:
-      "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
-    github: "https://github.com/vaibhavkothari33/PathShala2.0/",
-    preview: "https://pathshala-rho.vercel.app/",
-  },
+ 
+  // {
+  //   title: "PathShala",
+  //   image: "https://i.ibb.co/hRhRWKJd/Screenshot-2025-03-17-140613.png",
+  //   technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
+  //   description:
+  //     "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+  //   longDescription:
+  //     "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
+  //   github: "https://github.com/vaibhavkothari33/PathShala2.0/",
+  //   preview: "https://pathshala-rho.vercel.app/",
+  // },
 ];
 
 export const ProjectSection = () => {
