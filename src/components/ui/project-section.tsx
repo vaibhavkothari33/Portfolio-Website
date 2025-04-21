@@ -8,8 +8,8 @@ import Link from "next/link";
 const projects = [
   {
     title: "Mentora",
-    // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
-    image: "/Mentora.png",
+    image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
+    // image: "/Mentora.png",
     technologies: ["Edu Chain","React", "Agent Zero","Fast API", "Gemini"],
     description:
       "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
