@@ -154,8 +154,8 @@ export default function Home() {
       <Timeline data={timelineData} />
       <Skills />
       <ProjectSection />
-      <TweetsSection/>
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
+      <TweetsSection/>
       <ContactForm />
     </div>
   );
