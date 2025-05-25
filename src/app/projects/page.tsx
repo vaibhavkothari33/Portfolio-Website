@@ -8,14 +8,26 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+    title: "Green Whistle",
+    // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
+    image: "/green.png",
+    technologies: ["Monad", "Next js", "Phaser js", "Grid Engine", "Groq"],
+    description:
+      "Dive into a vibrant world of farming, trading, and adventure. Grow your crops, catch fish, and trade with friends in this immersive pixelated universe.",
+    longDescription:
+      "Dive into a vibrant world of farming, trading, and adventure. Grow your crops, catch fish, and trade with friends in this immersive pixelated universe.",
+    github: "https://github.com/vaibhavkothari33/Greenwhistle",
+    preview: "https://greenwhistle.vercel.app/",
+  },
+  {
     title: "Mentora",
     // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
     image: "/mentora.png",
-    technologies: ["Edu Chain","React", "Agent Zero","Fast API", "Gemini"],
+    technologies: ["Edu Chain", "React", "Agent Zero", "Fast API", "Gemini"],
     description:
       "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
     longDescription:
-    "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
+      "Mentora is a revolutionary blockchain-based learning platform that combines decentralized education with verifiable credentials. Our platform enables students to access high-quality courses while earning NFT certificates that prove their achievements.",
     github: "https://github.com/vaibhavkothari33/Mentora",
     preview: "https://mentora-rust.vercel.app/",
   },
@@ -25,7 +37,7 @@ const projects = [
     technologies: ["React", "EtherJs", "Solidity", "Reactive Smart Contract"],
     description:
       "BlockBinge is a decentralized, web3-based streaming platform where we follow a pay-as-you-watch model. You only need to pay for the minutes you have watched.",
-    longDescription: 
+    longDescription:
       "BlockBinge revolutionizes content streaming with blockchain technology. Users connect their MetaMask wallet and only pay for the exact minutes they watch. The platform features a reactive smart contract system that tracks viewing time and processes micropayments automatically. Content creators receive fair compensation directly from viewers without intermediaries taking a cut.",
     github: "https://github.com/vaibhavkothari33/blockBinge/",
     preview: "https://blockbinge.vercel.app/",
@@ -44,7 +56,7 @@ const projects = [
   {
     title: "PathShala",
     image: "/Pathshala.png",
-    technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
+    technologies: ["React", "AppWrite", "OAuth2", "Gen AI"],
     description:
       "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
     longDescription:
@@ -96,7 +108,7 @@ const projects = [
   {
     title: "Chatoipa",
     image: "https://raw.githubusercontent.com/vaibhavkothari33/Chatoipa/refs/heads/main/Chat1.png",
-    technologies: ["Java", "Web Sockets","JSwing"],
+    technologies: ["Java", "Web Sockets", "JSwing"],
     description:
       "A real-time chat application built using Java and WebSockets for seamless communication between two users.",
     longDescription:
@@ -140,12 +152,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white py-20 px-6 sm:px-12 md:px-24 relative overflow-hidden">
-      
+
       {/* Gradient overlay for better readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 to-gray-950/90 z-0"></div>
-      
+
       <div className="container mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           className="flex items-center mb-12"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -156,8 +168,8 @@ export default function ProjectsPage() {
             Back to Home
           </Link>
         </motion.div>
-        
-        <motion.h1 
+
+        <motion.h1
           className="text-5xl font-bold text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -165,21 +177,21 @@ export default function ProjectsPage() {
         >
           My Projects Portfolio
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           className="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          Explore my collection of projects spanning web development, mobile applications, and blockchain technology. 
+          Explore my collection of projects spanning web development, mobile applications, and blockchain technology.
           Each project represents my passion for creating innovative solutions to real-world problems.
         </motion.p>
-        
+
         {/* Grid layout for projects */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               custom={index}
               initial="hidden"
@@ -199,9 +211,9 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
+
                 <h2 className="text-2xl font-bold text-blue-400 mb-3">{project.title}</h2>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, i) => (
                     <span
@@ -212,9 +224,9 @@ export default function ProjectsPage() {
                     </span>
                   ))}
                 </div>
-                
+
                 <p className="text-gray-300 text-sm mb-6 flex-grow">{project.description}</p>
-                
+
                 <div className="flex gap-3 mt-auto">
                   <a
                     href={project.github}

@@ -6,6 +6,7 @@ import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
 import Skills from "@/components/ui/Skills";
 import Image from 'next/image';
+import TweetsSection from "@/components/ui/TweetsSection";
 
 type TimelineEntry = {
   title: React.ReactNode;
@@ -153,6 +154,7 @@ export default function Home() {
       <Timeline data={timelineData} />
       <Skills />
       <ProjectSection />
+      <TweetsSection/>
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
       <ContactForm />
     </div>

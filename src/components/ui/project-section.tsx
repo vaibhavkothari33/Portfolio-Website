@@ -6,6 +6,18 @@ import "@/components/ui/button.css";
 import Link from "next/link";
 
 const projects = [
+    {
+    title: "Green Whistle",
+    // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
+    image: "/green.png",
+    technologies: ["Monad", "Next js", "Solidity","Phaser js", "Grid Engine", "Groq"],
+    description:
+      "Dive into a vibrant world of farming, trading, and adventure. Grow your crops, catch fish, and trade with friends in this immersive pixelated universe.",
+    longDescription:
+      "Dive into a vibrant world of farming, trading, and adventure. Grow your crops, catch fish, and trade with friends in this immersive pixelated universe.",
+    github: "https://github.com/vaibhavkothari33/Greenwhistle",
+    preview: "https://greenwhistle.vercel.app/",
+  },
   {
     title: "Mentora",
     image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
@@ -30,21 +42,21 @@ const projects = [
   {
     title: "FiteX",
     image: "/Fitex.png",
-    technologies: ["React-Native", "GoogleFit", "FireBase", "Gen AI"],
+    technologies: ["React-Native","Expo-Go", "GoogleFit", "FireBase", "Gen AI"],
     description:
       "FiteX is a modern fitness app designed to help users stay active, healthy, and motivated.",
     github: "https://github.com/vaibhavkothari33/FiteX",
     preview: "",
   },
-  {
-    title: "Sanjeevan",
-    image: "https://i.ibb.co/7Jbhsgp/Screenshot-2024-12-25-020904.png",
-    technologies: ["Firebase", "Web Sockets", "WebRTC", "Python", "JavaScript"],
-    description:
-      "An innovative video calling app designed for individuals with speech impairments, providing seamless communication.",
-    github: "https://github.com/vaibhavkothari33/Hackfest",
-    preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
-  },
+  // {
+  //   title: "Sanjeevan",
+  //   image: "https://i.ibb.co/7Jbhsgp/Screenshot-2024-12-25-020904.png",
+  //   technologies: ["Firebase", "Web Sockets", "WebRTC", "Python", "JavaScript"],
+  //   description:
+  //     "An innovative video calling app designed for individuals with speech impairments, providing seamless communication.",
+  //   github: "https://github.com/vaibhavkothari33/Hackfest",
+  //   preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
+  // },
   // {
   //   title: "PaiseKaHisab",
   //   image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
