@@ -10,7 +10,7 @@ const projects = [
   {
     title: "Green Whistle",
     // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
-    image: "/green.png",
+    image: "/Green.png",
     technologies: ["Monad", "Next js", "Phaser js", "Grid Engine", "Groq"],
     description:
       "Dive into a vibrant world of farming, trading, and adventure. Grow your crops, catch fish, and trade with friends in this immersive pixelated universe.",
