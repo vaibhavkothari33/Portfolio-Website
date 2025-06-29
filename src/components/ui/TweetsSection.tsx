@@ -134,15 +134,7 @@ const TweetsSection: React.FC = () => {
     );
 
     return (
-        <section className="relative min-h-screen bg-white dark:bg-neutral-950 py-24 px-6 overflow-hidden">
-            {/* Enhanced background effects */}
-            {/* <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
-                <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-br from-cyan-400/15 to-blue-400/15 rounded-full blur-3xl animate-pulse delay-500" />
-            </div> */}
-
-          
+        <section className="relative min-h-screen py-24 px-6 overflow-hidden">
             <div className="max-w-7xl mx-auto relative z-10" ref={containerRef}>
                 {/* Enhanced Header */}
                 <div className="text-center mb-20">

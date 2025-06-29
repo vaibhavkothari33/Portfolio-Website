@@ -156,9 +156,11 @@ export default function Home() {
       <Skills />
       <ProjectSection />
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
-      <TweetsSection/>
-      <ContactForm />
-      <TitanText />
+      <div className="bg-white dark:bg-neutral-950">
+        <TweetsSection/>
+        <ContactForm />
+        <TitanText />
+      </div>
     </div>
   );
 }
