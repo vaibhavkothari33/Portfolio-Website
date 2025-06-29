@@ -1,6 +1,6 @@
 export const siteMetadata = {
   title: "Vaibhav Kothari - Full Stack Developer & Software Engineer",
-  description: "Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. View my portfolio, projects, and blog posts.",
+  description: "Experienced Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. Browse my portfolio showcasing innovative projects, technical blog posts, and professional experience in web development and software engineering.",
   siteUrl: "https://vaibhavkothari.vercel.app",
   alternateUrls: ["https://vaibhavkothari.me"],
   siteName: "Vaibhav Kothari",
@@ -23,9 +23,21 @@ export const siteMetadata = {
     "TypeScript",
     "JavaScript",
     "Portfolio",
-    "Blog"
+    "Blog",
+    "Frontend Development",
+    "Backend Development",
+    "Node.js",
+    "Web Applications",
+    "UI/UX Design",
+    "RESTful APIs",
+    "Database Design",
+    "Cloud Computing",
+    "Software Architecture",
+    "Modern Web Development"
   ],
   creator: "Vaibhav Kothari",
   ogImage: "https://vaibhavkothari.vercel.app/og-image.png",
   themeColor: "#000000",
+  locale: "en-US",
+  type: "website",
 }; 

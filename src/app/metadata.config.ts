@@ -13,6 +13,13 @@ const jsonLd = {
   ],
   jobTitle: "Full Stack Developer",
   description: siteMetadata.description,
+  image: siteMetadata.ogImage,
+  email: "contact.vaibhavkothari@gmail.com",
+  worksFor: {
+    "@type": "Organization",
+    name: "Vaibhav Kothari"
+  },
+  skills: siteMetadata.keywords.join(", ")
 };
 
 export const metadata: Metadata = {
@@ -23,8 +30,14 @@ export const metadata: Metadata = {
   },
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
-  authors: [{ name: siteMetadata.author.name }],
+  authors: [{ name: siteMetadata.author.name, url: siteMetadata.siteUrl }],
   creator: siteMetadata.creator,
+  publisher: siteMetadata.siteName,
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -38,6 +51,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: siteMetadata.title,
+        type: "image/png",
       },
     ],
   },
@@ -47,10 +61,12 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     images: [siteMetadata.ogImage],
     creator: siteMetadata.twitterHandle,
+    site: siteMetadata.twitterHandle,
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -63,10 +79,26 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        url: "/favicon-32x32.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        url: "/favicon-16x16.png",
+      },
+    ],
   },
   manifest: "/site.webmanifest",
   verification: {
     google: "your-google-site-verification", // Add your Google verification code
+    yandex: "yandex-verification-code", // Optional: Add if you want Yandex verification
+    // bing: "bing-verification-code", // Optional: Add if you want Bing verification
   },
   alternates: {
     canonical: siteMetadata.siteUrl,
@@ -74,6 +106,7 @@ export const metadata: Metadata = {
       siteMetadata.alternateUrls.map(url => ['alternate', { url }])
     ),
   },
+  category: "technology",
 };
 
 export { jsonLd }; 

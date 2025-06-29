@@ -1,6 +1,16 @@
-User-Agent: *
+User-agent: *
 Allow: /
-Disallow: /private/
 
+# Allow all bots to access these directories
+Allow: /blogs/
+Allow: /projects/
+Allow: /contact/
+
+# Sitemaps
 Sitemap: https://vaibhavkothari.vercel.app/sitemap.xml
-Sitemap: https://vaibhavkothari.vercel.app/sitemap.xml.gz
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Host
+Host: https://vaibhavkothari.vercel.app

@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/ui/contact-form";
 import Skills from "@/components/ui/Skills";
 import Image from 'next/image';
 import TweetsSection from "@/components/ui/TweetsSection";
+import TitanText from "@/components/ui/titan-text";
 
 type TimelineEntry = {
   title: React.ReactNode;
@@ -157,6 +158,7 @@ export default function Home() {
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
       <TweetsSection/>
       <ContactForm />
+      <TitanText />
     </div>
   );
 }
