@@ -8,6 +8,7 @@ import Skills from "@/components/ui/Skills";
 import Image from 'next/image';
 import TweetsSection from "@/components/ui/TweetsSection";
 import TitanText from "@/components/ui/titan-text";
+// import ClientReviews from "@/components/ui/ClientReviews";
 
 type TimelineEntry = {
   title: React.ReactNode;
@@ -15,6 +16,36 @@ type TimelineEntry = {
 };
 
 const timelineData: TimelineEntry[] = [
+  {
+    title: (
+      <div className="flex items-center gap-4">
+        <Image
+          src="/titan.png"
+          alt="Titantech investements Logo"
+          className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
+        />
+        <span className="text-2xl font-bold">Full Stack Engineer at Titan Technologies</span>
+      </div>
+    ),
+    content: (
+      <div className="text-black text-2xl dark:text-white">
+        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">July 2025 - September 2025</p>
+        <ul className="list-disc ml-6 mt-2 text-base">
+          <li>Built a responsive web platform for an investment firm catering to clients in <strong>India</strong> and the <strong>UAE</strong>.</li>
+          <li>Developed onboarding flows customized for multiple geographies, ensuring smooth user experiences across regions.</li>
+          <li>Designed and implemented advanced user verification systems, including:
+            <ul className="list-disc ml-6 mt-1">
+              <li><strong>Aadhaar</strong> and <strong>DigiLocker</strong> integration for KYC compliance (India).</li>
+              <li><strong>Emirates ID</strong> verification and passport scanning (UAE).</li>
+              <li>Video KYC system to meet strict regulatory requirements.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    ),
+  },
   {
     title: (
       <div className="flex items-center gap-4">
@@ -157,7 +188,8 @@ export default function Home() {
       <ProjectSection />
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
       <div className="bg-white dark:bg-neutral-950">
-        <TweetsSection/>
+        {/* <ClientReviews /> */}
+        <TweetsSection />
         <ContactForm />
         <TitanText />
       </div>

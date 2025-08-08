@@ -87,7 +87,9 @@ export const Highlight = ({
         // border-radius: "0.25rem",
       }}
       className={cn(
-        `relative inline-block pb-1   px-1 rounded-3xl bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-600 dark:to-purple-700`,
+        `relative inline-block pb-1 px-3 py-1 rounded-3xl bg-gradient-to-r from-blue-300 to-purple-300 dark:from-blue-600 dark:to-purple-800
+`,
+        // `relative inline-block pb-1   px-1 rounded-3xl bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-600 dark:to-purple-700`,
         className
       )}
     >
