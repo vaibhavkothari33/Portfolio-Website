@@ -47,9 +47,9 @@ export default function ClientReviews() {
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <p className="text-neutral-300 text-sm leading-relaxed mb-6">
+            {/* <p className="text-neutral-300 text-sm leading-relaxed mb-6">
               "{review.feedback}"
-            </p>
+            </p> */}
             <div className="text-white font-semibold">{review.name}</div>
             <div className="text-sm text-neutral-400">{review.company}</div>
           </motion.div>
