@@ -31,7 +31,7 @@ const timelineData: TimelineEntry[] = [
     ),
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">July 2025 - September 2025</p>
+        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">June 2025 - September 2025</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Built a responsive web platform for an investment firm catering to clients in <strong>India</strong> and the <strong>UAE</strong>.</li>
           <li>Developed onboarding flows customized for multiple geographies, ensuring smooth user experiences across regions.</li>
