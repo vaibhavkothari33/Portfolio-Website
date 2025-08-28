@@ -159,11 +159,12 @@ export default function Home() {
       <HeroHighlight>
         <div className="text-center mt-[-10px] flex flex-col items-center gap-6">
           <Image
-            src="https://avatars.githubusercontent.com/u/129139486?s=400&u=ab1e36746498ac43c783da0baae0363aaffa8d16&v=4"
-            alt="Vaibhav&apos;s Avatar"
+            src="https://avatars.githubusercontent.com/u/129139486"
+            alt="Vaibhav's Avatar"
             className="w-44 h-44 rounded-full border-4 border-gray-200 dark:border-neutral-800 shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:border-blue-800"
             width={160}
             height={160}
+            unoptimized
           />
 
           <div className="text-5xl mb-4 font-bold text-black dark:text-white">

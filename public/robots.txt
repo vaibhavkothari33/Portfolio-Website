@@ -1,21 +1,4 @@
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://vaibhavkothari.vercel.app/sitemap.xml
-
-# Disallow crawling of error pages
-Disallow: /404
-Disallow: /500
-
-# Allow crawling of static assets
-Allow: /static/
-Allow: /images/
-Allow: /*.js
-Allow: /*.css
-Allow: /*.png
-Allow: /*.jpg
-Allow: /*.gif
-Allow: /*.svg
-Allow: /*.ico 
+Sitemap: https://www.vaibhavkothari.me/sitemap.xml
