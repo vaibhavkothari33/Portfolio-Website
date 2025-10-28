@@ -24,6 +24,17 @@ const nextConfig = {
         hostname: 'raw.githubusercontent.com',
         pathname: '/**',
       }
+      ,
+      {
+        protocol: 'https',
+        hostname: 'appwrite.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'devfolio.co',
+        pathname: '/**',
+      }
     ],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'], // Include MDX extensions
