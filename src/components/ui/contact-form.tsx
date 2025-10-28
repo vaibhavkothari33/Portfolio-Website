@@ -80,7 +80,7 @@ const socialLinks = [
     hoverBgColor: "hover:bg-gray-100 dark:hover:bg-gray-800/40"
   },
   {
-    name: "GitHub",
+    name: "More Links",
     url: "/links",
     icon: ExternalLink,
     color: "text-blue-700 dark:text-blue-400",
