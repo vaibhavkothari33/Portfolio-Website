@@ -8,6 +8,17 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+    title: "Secure Wipe",
+    image: "/SIH.png",
+    technologies: ["Next js","Rust","Electron js","SurePass"],
+    description:
+      "Secure Data Erasure Across the Globe. Secure Wipe is a web application that allows users to securely wipe their data from their devices.",
+    longDescription:
+      "Secure Data Erasure Across the Globe. Secure Wipe is a web application that allows users to securely wipe their data from their devices.",
+    github: "",
+    preview: "https://sih-bu.vercel.app/",
+  },
+  {
     title: "Green Whistle",
     // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
     image: "/Green.png",
@@ -151,10 +162,10 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white py-20 px-6 sm:px-12 md:px-24 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white py-20 px-6 sm:px-12 md:px-24 relative overflow-hidden">
 
       {/* Gradient overlay for better readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 to-gray-950/90 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/90 z-0"></div>
 
       <div className="container mx-auto relative z-10">
         <motion.div
