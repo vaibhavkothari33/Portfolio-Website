@@ -1,24 +1,27 @@
-# Vaibhav Kothari - Portfolio
+# Vaibhav Kothari | Full Stack Developer
 
-> Full-stack web developer specializing in React, TypeScript, and modern web technologies. Showcasing projects in web development, machine learning, and open-source contributions.
+> Personal portfolio of Vaibhav Kothari, a Computer Science student at Bennett University. Features web development projects, AI/ML explorations, open source contributions, and tech thoughts.
 
-## Featured Projects
-- [Portfolio Website](https://vaibhavkothari.vercel.app/): Personal portfolio featuring full-stack projects and technical work.
-- [GitHub Projects](https://github.com/vaibhavkothari33/): Collection of open-source projects and code repositories.
-- [LeetCode Profile](https://leetcode.com/u/vaibhavkothari33/): Competitive programming solutions and algorithm practice.
+## About
+- [Home](https://vaibhavkothari.me): Landing page introducing Vaibhav, his background in full-stack development and active hackathon participation.
 
-## About & Skills
-- [About Me](https://vaibhavkothari.vercel.app/#about): Professional background, education, and career goals.
-- [Skills](https://vaibhavkothari.vercel.app/#skills): Technical expertise in React, TypeScript, Node.js, Python, and web development.
-- [Experience](https://vaibhavkothari.vercel.app/#experience): Work history and professional achievements.
+## Projects
+- [Mentora](https://vaibhavkothari.me#mentora): Blockchain-based learning platform integrating NFTs with course credentials.
+- [BlockBinge](https://vaibhavkothari.me#blockbinge): Decentralized streaming platform with pay-as-you-watch model.
+- [FiteX](https://vaibhavkothari.me#fitex): Fitness app designed for active, healthy lifestyles.
+- *More showcased on homepage and project section.*
 
-## Connect & Social
-- [LinkedIn](https://www.linkedin.com/in/vaibhavkothari33/): Professional networking profile.
-- [GitHub](https://github.com/vaibhavkothari33/): Open-source projects and code.
-- [Twitter](https://twitter.com/vaibhavkotharii/): Tech updates and insights.
-- [Email](mailto:vaibhavkothari50@gmail.com): Direct contact for inquiries.
+## Open Source & Experience
+- [GitHub](https://github.com/vaibhavkothari33): Portfolio of open source and hackathon projects.
+- [LinkedIn](https://in.linkedin.com/in/vaibhavkothari33): Professional profile, club leadership, and technical experience.
+
+## Blog & Updates
+- [Blog](https://vaibhavkothari.me/blogs): Personal tech blogs, learning updates, and technology insights.
+- [X Feed](https://x.com/vaibhavkotharii): Short-form updates and thoughts on tech and programming.
+
+## Contact
+- [Contact Form](https://vaibhavkothari.me#contact): Inquiries for collaboration and networking.
 
 ## Optional
-- [Resume](https://www.vaibhavkothari.me/resume.pdf): Downloadable CV and qualifications.
-- [Publication](https://app.readytensor.ai/publications/EDAdadexbbxs): Technical articles and research.
-- [Discord](https://discordapp.com/users/vaibhavkothari): Community engagement.
+- [Resume](https://vaibhavkothari.vercel.app/resume.pdf): Downloadable CV with skills, education, and achievements.
+
