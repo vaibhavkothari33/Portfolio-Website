@@ -74,7 +74,7 @@ export const InfiniteMovingCards = ({
   }, [addAnimation]);
 
   return (
-    <div className="bg-white dark:bg-neutral-950">
+    <div className="bg-stone-50 dark:bg-neutral-950">
       <h2 className="text-black text-center text-4xl dark:text-white mb-2 py-10">Achievements</h2>
       <h2 className="text-black text-center px-10 sm:px-44 mb-10 text-md dark:text-white ">From participating in hackathons to winning treasure hunts 😉, I thrive on exploring, learning, and pushing boundaries.</h2>
 

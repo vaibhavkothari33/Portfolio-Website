@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const TitanText = () => {
   return (
-    <div className="relative w-full overflow-hidden bg-white dark:bg-neutral-950 hidden md:block md:mt-20 lg:mt-20" 
+    <div className="relative w-full overflow-hidden bg-stone-50 dark:bg-neutral-950 hidden md:block md:mt-20 lg:mt-20" 
       style={{ 
         height: 'clamp(50px, 45vh, 400px)'
       }}

@@ -28,11 +28,12 @@ const TweetsSection: React.FC = () => {
     const [loadingProgress, setLoadingProgress] = useState(0);
 
     const tweetUrls = [
+        "https://x.com/VaibhavKotharii/status/1993783785440301222",
+        "https://x.com/VaibhavKotharii/status/1992941383297167649",
+        "https://x.com/VaibhavKotharii/status/1992303748035776755",
         "https://twitter.com/VaibhavKotharii/status/1924217560813216110",
         "https://twitter.com/VaibhavKotharii/status/1912213578112782357",
         "https://twitter.com/VaibhavKotharii/status/1899923289956639153",
-        "https://twitter.com/VaibhavKotharii/status/1874167204457202127",
-        "https://twitter.com/VaibhavKotharii/status/1907070659353776191",
     ];
 
     const getTweetIdFromUrl = (url: string) => {
@@ -89,7 +90,7 @@ const TweetsSection: React.FC = () => {
 
     const SkeletonTweet = ({ index }: { index: number }) => (
         <div 
-            className="relative overflow-hidden bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:shadow-xl transition-all duration-500 group"
+            className="relative overflow-hidden bg-stone-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:shadow-xl transition-all duration-500 group"
             style={{ animationDelay: `${index * 150}ms` }}
         >
             {/* Shimmer effect */}
@@ -138,20 +139,18 @@ const TweetsSection: React.FC = () => {
             <div className="max-w-7xl mx-auto relative z-10" ref={containerRef}>
                 {/* Enhanced Header */}
                 <div className="text-center mb-20">
-                    <div className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-white/80 dark:bg-neutral-800/80 border border-neutral-300/50 dark:border-neutral-600/50 rounded-full backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-stone-100/80 dark:bg-neutral-800/80 border border-neutral-300/50 dark:border-neutral-600/50 rounded-full backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300">
                         <div className="relative">
                             <Twitter className="w-6 h-6 text-blue-500 dark:text-blue-400" />
                             <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ping" />
                         </div>
                         <span className="text-neutral-700 dark:text-neutral-300 font-medium">Live from X</span>
-                        <Sparkles className="w-5 h-5 text-yellow-500 dark:text-yellow-400 animate-pulse" />
+                        {/* <Sparkles className="w-5 h-5 text-yellow-500 dark:text-yellow-400 animate-pulse" /> */}
                     </div>
 
                     <h2 className="text-5xl md:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
                         Latest{" "}
-                        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                             Posts
-                        </span>
                     </h2>
 
                     <p className="text-neutral-600 dark:text-neutral-400 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -179,7 +178,7 @@ const TweetsSection: React.FC = () => {
                             href="https://x.com/VaibhavKotharii"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-500 hover:via-purple-500 hover:to-blue-500 text-white font-bold text-lg rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 group overflow-hidden"
+                            className="relative inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-bold text-lg rounded-2xl transition-all duration-500 hover:scale-105 shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-black/10 before:to-transparent before:animate-[shimmer_2.5s_infinite]"
                         >
                             <Twitter className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
                             <span className="relative z-10">Follow @VaibhavKotharii</span>

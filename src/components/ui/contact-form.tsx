@@ -140,7 +140,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-16 pb-40 bg-white dark:bg-neutral-950">
+    <section className="py-16 pb-40 bg-stone-50 dark:bg-neutral-950">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
@@ -168,7 +168,7 @@ export const ContactForm = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-7 bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-8"
+              className="lg:col-span-7 bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-8"
             >
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -295,7 +295,7 @@ export const ContactForm = () => {
               className="lg:col-span-5 space-y-6"
             >
               {/* Contact Details */}
-              <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
+              <div className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b border-gray-100 dark:border-neutral-800">
                   Connect With Me
                 </h3>
@@ -339,7 +339,7 @@ export const ContactForm = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6"
+                className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6"
               >
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-neutral-800">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -378,7 +378,7 @@ export const ContactForm = () => {
               </motion.div>
 
               {/* GitHub Sponsors */}
-              <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
+              <div className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   Support My Work
                 </h3>

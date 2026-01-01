@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 bg-white dark:bg-neutral-950 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-stone-50 dark:bg-neutral-950 z-50 flex items-center justify-center">
       <div className="relative">
         {/* Outer circle */}
         <div className="w-16 h-16 border-4 border-blue-200 dark:border-blue-900 rounded-full animate-spin">

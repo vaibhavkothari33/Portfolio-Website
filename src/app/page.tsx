@@ -177,7 +177,7 @@ export default function Home() {
             <span className="font-bold"> <Highlight>open source technologies.</Highlight></span> <br />
             <span className="text-xl mt-2">(Yes, even my coffee order).</span><br />
             <br />
-            <Highlight>I use Arch, btw.</Highlight>
+            <Highlight><span className="font-bold"> I use Arch, btw.</span></Highlight>
             <span className="text-2xl font-serif mt-4 block"><Highlight>Open to gigs, part-time roles</Highlight></span> <br />
           </div>
         </div>
@@ -188,7 +188,7 @@ export default function Home() {
       <Skills />
       <ProjectSection />
       <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
-      <div className="bg-white dark:bg-neutral-950">
+      <div className="bg-stone-50 dark:bg-neutral-950">
         {/* <ClientReviews /> */}
         <TweetsSection />
         <ContactForm />

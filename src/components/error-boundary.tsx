@@ -10,7 +10,7 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-stone-50 dark:bg-neutral-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8 text-center">
         <div className="space-y-4">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
