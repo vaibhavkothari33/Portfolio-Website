@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Twitter, ExternalLink, Sparkles, MessageCircle, Heart, Repeat2 } from "lucide-react";
+import { Twitter, ExternalLink, MessageCircle, Heart, Repeat2 } from "lucide-react";
 
 type TwitterWidgets = {
     widgets: {
