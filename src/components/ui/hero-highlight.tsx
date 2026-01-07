@@ -86,13 +86,9 @@ export const Highlight = ({
         display: "inline",
       }}
       className={cn(
-        `relative inline-block pb-1 px-3 py-1 rounded-3xl overflow-hidden
+        `relative inline-block pb-1 px-3 py-1 rounded-3xl
          bg-zinc-900 text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]
-         dark:bg-white dark:text-black dark:shadow-[0_0_25px_rgba(255,255,255,0.4)]
-         before:absolute before:inset-0 before:-translate-x-full
-         before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
-         dark:before:via-black/15
-         before:animate-[shimmer_2.5s_infinite]`,
+         dark:bg-white dark:text-black dark:shadow-[0_0_25px_rgba(255,255,255,0.4)]`,
         className
       )}
     >
