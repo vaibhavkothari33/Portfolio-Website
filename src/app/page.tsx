@@ -174,6 +174,7 @@ export default function Home() {
           <div className="text-xl md:text-3xl text-gray-700 mb-6 dark:text-gray-300">
             A <span className="font-bold"><Highlight>developer</Highlight></span> who customizes everything with <br />
             <div className="mt-2"></div>
+            <div className="md:mb-5"></div>
             <span className="font-bold"> <Highlight>open source technologies.</Highlight></span> <br />
             <span className="text-xl mt-2">(Yes, even my coffee order).</span><br />
             <br />
