@@ -20,6 +20,29 @@ const timelineData: TimelineEntry[] = [
     title: (
       <div className="flex items-center gap-4">
         <Image
+          src="/sapphire.png"
+          alt="Sapphire Logo"
+          className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
+        />
+        <span className="text-2xl font-bold">Frontend Developer at Sapphire</span>
+      </div>
+    ),
+    content: (
+      <div className="text-black text-2xl dark:text-white">
+        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">Jan 2026 - Present</p>
+        <ul className="list-disc ml-6 mt-2 text-base">
+          <li>Worked on the frontend of the Sapphire platform, building reusable components and improving the user experience.</li>
+          <li>Collaborated with the backend team to integrate the frontend with the backend.</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    title: (
+      <div className="flex items-center gap-4">
+        <Image
           src="/titan.png"
           alt="Titantech investements Logo"
           className="w-16 h-16 rounded-full"
