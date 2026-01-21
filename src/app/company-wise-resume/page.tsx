@@ -2,7 +2,9 @@ import React from 'react'
 import "@/components/ui/button.css";
 function page() {
     return (
-        <div>
+        <div className='bg-neutral-950 text-white'>
+            <h1 className='text-4xl font-bold text-center text-neutral-50'>Company Wise Resume of Vaibhav Kothari</h1>
+            <div className='flex justify-center items-center my-10'>
             <a href="/salescodeai.pdf"
                 target="_blank"
                 className='m-10'
@@ -43,6 +45,7 @@ function page() {
                     </span>
                 </button>
             </a>
+            </div>
         </div>
     )
 }
