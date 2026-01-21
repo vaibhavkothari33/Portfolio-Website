@@ -23,5 +23,5 @@
 - [Contact Form](https://vaibhavkothari.me#contact): Inquiries for collaboration and networking.
 
 ## Optional
-- [Resume](https://vaibhavkothari.vercel.app/resume.pdf): Downloadable CV with skills, education, and achievements.
+- [Resume](https://vaibhavkothari.me/resume.pdf): Downloadable CV with skills, education, and achievements.
 

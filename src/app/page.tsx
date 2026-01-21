@@ -26,15 +26,19 @@ const timelineData: TimelineEntry[] = [
           width={64}
           height={64}
         />
-        <span className="text-2xl font-bold">Frontend Developer at Sapphire</span>
+        <span className="text-2xl font-bold">Front-End Developer at Sapphire</span>
       </div>
     ),
     content: (
       <div className="text-black text-2xl dark:text-white">
         <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">Jan 2026 - Present</p>
         <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Worked on the frontend of the Sapphire platform, building reusable components and improving the user experience.</li>
-          <li>Collaborated with the backend team to integrate the frontend with the backend.</li>
+          <li>Refactored and optimized large-scale front-end codebases by designing reusable, modular components, improving
+            maintainability and development velocity.</li>
+          <li>Improved client–server communication efficiency by restructuring API call patterns, reducing redundant requests and
+            significantly lowering perceived latency.</li>
+          <li>Implemented server-side rendering and data-fetching optimizations in Next.js, along with caching and
+            rate-limiting strategies, to significantly reduce load times, improve SEO, and ensure stable performance under high traffic.</li>
         </ul>
       </div>
     ),
