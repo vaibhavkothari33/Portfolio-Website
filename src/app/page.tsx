@@ -12,10 +12,44 @@ import TitanText from "@/components/ui/titan-text";
 
 type TimelineEntry = {
   title: React.ReactNode;
+  location: string;
   content: React.ReactNode;
 };
 
 const timelineData: TimelineEntry[] = [
+  {
+    title: (
+      <div className="flex items-center gap-4">
+        <Image
+          src="/rovo.png"
+          alt="Rovo Logo"
+          className="w-16 h-16 rounded-full"
+          width={64}
+          height={64}
+        />
+        <span className="text-2xl font-bold">Founding Enginner at Rovo</span>
+      </div>
+    ),
+    location: "Rome, Italy",
+    content: (
+      <div className="text-black text-2xl dark:text-white">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">March 2026 - Present</p>
+          <a href="https://rovo-app.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Rome, Italy</p>
+        <ul className="list-disc ml-6 mt-2 text-base">
+          <li>Founding Engineer at ROVO — building the product from zero as part of the core team, working across full-stack development, design, and deployment.</li>
+          <li>Wearing multiple hats across web, app, infra, and marketing — no fixed boundaries, just whatever the product needs.</li>
+        </ul>
+      </div>
+    ),
+  },
   {
     title: (
       <div className="flex items-center gap-4">
@@ -29,14 +63,23 @@ const timelineData: TimelineEntry[] = [
         <span className="text-2xl font-bold">Front-End Developer at Sapphire</span>
       </div>
     ),
+    location: "Nagpur, India",
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">Jan 2026 - Present</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">January 2026 - March 2026</p>
+          <a href="https://sapphirebroking.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Nagpur, India</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Refactored and optimized large-scale front-end codebases by designing reusable, modular components, improving
             maintainability and development velocity.</li>
-          <li>Improved client–server communication efficiency by restructuring API call patterns, reducing redundant requests and
-            significantly lowering perceived latency.</li>
+          <li>Developed admin portals that unified vendor management and ensured seamless data flow across every integration point in the system.</li>
           <li>Implemented server-side rendering and data-fetching optimizations in Next.js, along with caching and
             rate-limiting strategies, to significantly reduce load times, improve SEO, and ensure stable performance under high traffic.</li>
         </ul>
@@ -56,9 +99,20 @@ const timelineData: TimelineEntry[] = [
         <span className="text-2xl font-bold">Full Stack Engineer at Titan Technologies</span>
       </div>
     ),
+    location: "Dubai, UAE",
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">June 2025 - September 2025</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">June 2025 - September 2025</p>
+          <a href="http://titantechinvestements.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <span className="sr-only">Company link</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Dubai, UAE</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Built a responsive web platform for an investment firm catering to clients in <strong>India</strong> and the <strong>UAE</strong>.</li>
           <li>Developed onboarding flows customized for multiple geographies, ensuring smooth user experiences across regions.</li>
@@ -86,9 +140,20 @@ const timelineData: TimelineEntry[] = [
         <span className="text-2xl font-bold">Web Developer Intern at NexCraft</span>
       </div>
     ),
+    location: "Greater Noida, India",
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">October 2024 - December 2024</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">October 2024 - December 2024</p>
+          <a href="https://thenexcraft.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <span className="sr-only">Company link</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Collaborated with a team of 4 developers to design and deploy robust websites.</li>
           <li>Contributed to the creation of NexCraft&apos;s main website, enhancing usability and performance.</li>
@@ -109,9 +174,20 @@ const timelineData: TimelineEntry[] = [
         <span className="text-2xl font-bold">Technical Lead at Full Stack Club</span>
       </div>
     ),
+    location: "Greater Noida, India",
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2024 - Present</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2024 - Present</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <span className="sr-only">Company link</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Led a team of 4 junior developers to design and develop functional and aesthetic websites for club events.</li>
           <li>Organized and conducted a 2-day workshop, teaching HTML and CSS to over 100 students.</li>
@@ -133,9 +209,20 @@ const timelineData: TimelineEntry[] = [
         <span className="text-2xl font-bold">Technical Team Member at Geeks for Geeks</span>
       </div>
     ),
+    location: "Greater Noida, India",
     content: (
       <div className="text-black text-2xl dark:text-white">
-        <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2023 - April 2024</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2023 - April 2024</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
+            {/* <span className="sr-only">Company link</span> */}
+            <span className="sr-only">Company link</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
+            </svg>
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
         <ul className="list-disc ml-6 mt-2 text-base">
           <li>Contributed as part of the technical team in organizing multiple technical events and workshops.</li>
           <li>Played a key role in managing event logistics and fostering community engagement.</li>

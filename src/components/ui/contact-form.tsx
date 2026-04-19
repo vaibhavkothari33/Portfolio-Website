@@ -284,6 +284,16 @@ export const ContactForm = () => {
                     </>
                   )}
                 </Button>
+
+                <div className="pt-2 flex justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGprYmxrenlhaGt0ZXJwamEwajMwNTJ0ZTVkeWdnbng5MXF5amV6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif"
+                    alt="Typing cat animation"
+                    className="w-full max-w-xs rounded-lg border border-gray-200 dark:border-neutral-700"
+                    loading="lazy"
+                  />
+                </div>
               </form>
             </motion.div>
 

@@ -8,6 +8,17 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+    title: "Learn Loop",
+    image: "/learnloop.png",
+    technologies: ["Next js", "Solidity","Open Router","Appwrite","ERC-721"],
+    description:
+      "Most people watch tutorials and forget everything. LearnLoop fixes that, paste a YouTube video, get a personalized learning path, a real coding challenge, and AI that grades your GitHub repo checkpoint by checkpoint.",
+    longDescription:
+      "Most people watch tutorials and forget everything within 48 hours. LearnLoop closes that gap. Paste any YouTube educational video. The AI reads its transcript, builds a personalised learning path, assigns you a real coding challenge, grades your GitHub repo checkpoint by checkpoint",
+    github: "https://github.com/vaibhavkothari33/LearnLoop",
+    preview: "https://hackacinno.vercel.app/dashboard",
+  },
+  {
     title: "Secure Wipe",
     image: "/SIH.png",
     technologies: ["Next js","Rust","Electron js","SurePass"],

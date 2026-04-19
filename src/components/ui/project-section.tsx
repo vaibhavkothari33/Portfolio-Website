@@ -7,6 +7,17 @@ import Link from "next/link";
 
 const projects = [
     {
+    title: "Learn Loop",
+    image: "/learnloop.png",
+    technologies: ["Next js", "Solidity","Open Router","Appwrite","ERC-721"],
+    description:
+      "Most people watch tutorials and forget everything. LearnLoop fixes that, paste a YouTube video, get a personalized learning path, a real coding challenge, and AI that grades your GitHub repo checkpoint by checkpoint.",
+    longDescription:
+      "Most people watch tutorials and forget everything within 48 hours. LearnLoop closes that gap. Paste any YouTube educational video. The AI reads its transcript, builds a personalised learning path, assigns you a real coding challenge, grades your GitHub repo checkpoint by checkpoint",
+    github: "https://github.com/vaibhavkothari33/LearnLoop",
+    preview: "https://hackacinno.vercel.app/dashboard",
+  },
+    {
     title: "Green Whistle",
     // image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
     image: "/Green.png",
@@ -30,15 +41,15 @@ const projects = [
     github: "https://github.com/vaibhavkothari33/Mentora",
     preview: "https://mentora-rust.vercel.app/",
   },
-  {
-    title: "BlockBinge",
-    image: "/Block.png",
-    technologies: ["React", "EtherJs", "Solidity", "Reactive Smart Contract"],
-    description:
-      "BlockBinge is a decentralized, web3-based streaming platform where we follow a pay-as-you-watch model. You only need to pay for the minutes you have watched.",
-    github: "https://github.com/vaibhavkothari33/blockBinge/",
-    preview: "https://blockbinge.vercel.app/",
-  },
+  // {
+  //   title: "BlockBinge",
+  //   image: "/Block.png",
+  //   technologies: ["React", "EtherJs", "Solidity", "Reactive Smart Contract"],
+  //   description:
+  //     "BlockBinge is a decentralized, web3-based streaming platform where we follow a pay-as-you-watch model. You only need to pay for the minutes you have watched.",
+  //   github: "https://github.com/vaibhavkothari33/blockBinge/",
+  //   preview: "https://blockbinge.vercel.app/",
+  // },
   {
     title: "FiteX",
     image: "/Fitex.png",
@@ -48,36 +59,6 @@ const projects = [
     github: "https://github.com/vaibhavkothari33/FiteX",
     preview: "",
   },
-  // {
-  //   title: "Sanjeevan",
-  //   image: "https://i.ibb.co/7Jbhsgp/Screenshot-2024-12-25-020904.png",
-  //   technologies: ["Firebase", "Web Sockets", "WebRTC", "Python", "JavaScript"],
-  //   description:
-  //     "An innovative video calling app designed for individuals with speech impairments, providing seamless communication.",
-  //   github: "https://github.com/vaibhavkothari33/Hackfest",
-  //   preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
-  // },
-  // {
-  //   title: "PaiseKaHisab",
-  //   image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
-  //   technologies: ["Firebase", "Chart.js", "JavaScript", "Hacktoberfest"],
-  //   description:
-  //     "A comprehensive open-sourced finance management tool for tracking expenses, visualizing patterns, and receiving financial tips.",
-  //   github: "https://github.com/vaibhavkothari33/PaiseKaHisab",
-  //   preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
-  // },
- 
-  // {
-  //   title: "PathShala",
-  //   image: "https://i.ibb.co/hRhRWKJd/Screenshot-2025-03-17-140613.png",
-  //   technologies: ["React", "AppWrite","OAuth2", "Gen AI"],
-  //   description:
-  //     "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
-  //   longDescription:
-  //     "Pathshala is a comprehensive educational platform that connects students with coaching institutes. It provides a seamless interface for both students seeking quality education and coaching centers looking to expand their reach.",
-  //   github: "https://github.com/vaibhavkothari33/PathShala2.0/",
-  //   preview: "https://pathshala-rho.vercel.app/",
-  // },
 ];
 
 export const ProjectSection = () => {
