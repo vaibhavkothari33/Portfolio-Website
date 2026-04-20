@@ -67,7 +67,7 @@ const timelineData: TimelineEntry[] = [
     content: (
       <div className="text-black text-2xl dark:text-white">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">January 2026 - March 2026</p>
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">January 2026 - Present</p>
           <a href="https://sapphirebroking.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
             {/* <span className="sr-only">Company link</span> */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
