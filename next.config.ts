@@ -33,6 +33,16 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'devfolio.co',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.simpleicons.org',
+        pathname: '/**',
       }
     ],
   },
