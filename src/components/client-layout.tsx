@@ -1,5 +1,7 @@
 "use client";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { NoiseOverlay } from "@/components/ui/noise-overlay";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from '@vercel/analytics/next';
@@ -31,7 +33,10 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       <ToastProvider>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+        <NoiseOverlay />
         <Analytics />
         <FloatingDock items={dockItems} />
         <ToastViewport />
