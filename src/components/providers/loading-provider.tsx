@@ -1,6 +1,14 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+
 import { Loader } from "@/components/ui/loader";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -11,49 +19,35 @@ interface LoadingContextType {
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 
-export function LoadingProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const INITIAL_LOAD_MS = 1800;
+
+export function LoadingProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingText, setLoadingText] = useState<string | undefined>(undefined);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [loadingText, setLoadingText] = useState<string | undefined>();
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   useEffect(() => {
-    // Simulate initial loading time (min 2 seconds)
     const timer = setTimeout(() => {
       setIsLoading(false);
-      setInitialLoad(false);
-    }, 2000);
+      setInitialLoadDone(true);
+    }, INITIAL_LOAD_MS);
 
-    // Listen for route changes
-    const handleStart = () => {
-      if (!initialLoad) setIsLoading(true);
-    };
-    const handleComplete = () => setIsLoading(false);
+    return () => clearTimeout(timer);
+  }, []);
 
-    document.addEventListener("routeChangeStart", handleStart);
-    document.addEventListener("routeChangeComplete", handleComplete);
-    document.addEventListener("routeChangeError", handleComplete);
+  const startLoading = useCallback(
+    (text?: string) => {
+      if (!initialLoadDone) return;
+      setLoadingText(text);
+      setIsLoading(true);
+    },
+    [initialLoadDone],
+  );
 
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener("routeChangeStart", handleStart);
-      document.removeEventListener("routeChangeComplete", handleComplete);
-      document.removeEventListener("routeChangeError", handleComplete);
-    };
-  }, [initialLoad]);
-
-  const startLoading = (text?: string) => {
-    setLoadingText(text);
-    setIsLoading(true);
-  };
-
-  const stopLoading = () => {
+  const stopLoading = useCallback(() => {
     setIsLoading(false);
     setLoadingText(undefined);
-  };
+  }, []);
 
   return (
     <LoadingContext.Provider
@@ -64,10 +58,27 @@ export function LoadingProvider({
         stopLoading,
       }}
     >
-      {isLoading && <Loader text={loadingText} />}
-      <div className={isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-500"}>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
+          >
+            <Loader text={loadingText} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.5, delay: isLoading ? 0 : 0.15 }}
+        aria-hidden={isLoading}
+      >
         {children}
-      </div>
+      </motion.div>
     </LoadingContext.Provider>
   );
 }
@@ -78,4 +89,4 @@ export function useLoading() {
     throw new Error("useLoading must be used within a LoadingProvider");
   }
   return context;
-} 
+}
