@@ -9,6 +9,7 @@ export const InfiniteMovingCards = ({
   speed = "normal",
   pauseOnHover = true,
   className,
+  showHeader = true,
 }: {
   items: {
     image: string; // URL for the image
@@ -18,6 +19,7 @@ export const InfiniteMovingCards = ({
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
   className?: string;
+  showHeader?: boolean;
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
@@ -75,9 +77,12 @@ export const InfiniteMovingCards = ({
 
   return (
     <div className="bg-stone-50 dark:bg-neutral-950">
-      <h2 className="text-black text-center text-4xl dark:text-white mb-2 py-10">Achievements</h2>
-      <h2 className="text-black text-center px-10 sm:px-44 mb-10 text-md dark:text-white ">From participating in hackathons to winning treasure hunts 😉, I thrive on exploring, learning, and pushing boundaries.</h2>
-
+      {showHeader && (
+        <>
+          <h2 className="text-black text-center text-4xl dark:text-white mb-2 py-10">Achievements</h2>
+          <h2 className="text-black text-center px-10 sm:px-44 mb-10 text-md dark:text-white ">From participating in hackathons to winning treasure hunts 😉, I thrive on exploring, learning, and pushing boundaries.</h2>
+        </>
+      )}
       <div
         ref={containerRef}
         className={cn(
