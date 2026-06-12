@@ -27,7 +27,7 @@ const gridBlocks: GridBlock[] = [
   {
     id: "001",
     label: "GLOBAL",
-    title: "Building across borders.",
+    title: "Building across countries.",
     description:
       "I've collaborated with founders, clients, and teams across multiple countries, adapting to diverse workflows and product expectations while delivering reliable softwares.",
   },
