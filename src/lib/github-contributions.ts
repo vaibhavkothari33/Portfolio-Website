@@ -1,3 +1,6 @@
+export const GITHUB_CONTRIBUTIONS_LOADING_GIF =
+  "https://github.githubassets.com/assets/mona-loading-dark-7701a7b97370.gif";
+
 export type ContributionDay = {
   date: string;
   count: number;
