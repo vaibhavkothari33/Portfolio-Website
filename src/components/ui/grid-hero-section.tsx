@@ -14,7 +14,8 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
+import { GITHUB_CONTRIBUTIONS_LOADING_GIF } from "@/lib/github-contributions";
 
 type GridBlock = {
   id: string;
@@ -240,6 +241,47 @@ function GridCell({
   );
 }
 
+function MonaBadge() {
+  const [hovered, setHovered] = useState(false);
+  const [pinned, setPinned] = useState(false);
+  const showGreeting = hovered || pinned;
+
+  return (
+    <button
+      type="button"
+      className="absolute -bottom-1 -right-1 z-10 cursor-pointer md:-bottom-2 md:-right-2"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => setPinned((prev) => !prev)}
+      aria-label="Mona says hi"
+      aria-expanded={showGreeting}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={GITHUB_CONTRIBUTIONS_LOADING_GIF}
+        alt=""
+        aria-hidden
+        className="h-10 w-10 rounded-md transition-transform hover:scale-105 md:h-12 md:w-12"
+      />
+      <span
+        role="tooltip"
+        className={cn(
+          "pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-md border border-neutral-700 bg-neutral-900 px-2.5 py-1.5 font-mono text-xs text-neutral-200 shadow-lg transition-all duration-200",
+          showGreeting
+            ? "translate-y-0 scale-100 opacity-100"
+            : "translate-y-1 scale-95 opacity-0",
+        )}
+      >
+        hi i&apos;m Mona
+        <span
+          className="absolute -bottom-1 right-3 h-2 w-2 rotate-45 border-b border-r border-neutral-700 bg-neutral-900"
+          aria-hidden
+        />
+      </span>
+    </button>
+  );
+}
+
 export default function GridHeroSection({
   className,
   avatarSrc = "./kothari_vaibhav.jpeg",
@@ -326,6 +368,7 @@ export default function GridHeroSection({
                   className="relative h-36 w-36 rounded-full border border-neutral-800 object-cover md:h-56 md:w-56"
                   priority
                 />
+                <MonaBadge />
               </div>
               <p className="inline-flex items-center gap-1.5 text-sm text-neutral-400">
                 <IconMapPin className="h-4 w-4 text-red-500" stroke={1.75} />
