@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +31,7 @@
     "clsx": "^2.1.1",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^11.18.2",
+    "gl-matrix": "^3.4.4",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "lucide-react": "^0.469.0",

@@ -1,6 +1,6 @@
 "use client";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import GridHeroSection from "@/components/ui/grid-hero-section";
 import ProjectSection from "@/components/ui/project-section";
 import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
@@ -8,269 +8,21 @@ import Skills from "@/components/ui/Skills";
 import Image from 'next/image';
 import TweetsSection from "@/components/ui/TweetsSection";
 import TitanText from "@/components/ui/titan-text";
+import AchievementsSection from "@/components/ui/achievements-section";
+import ExperienceSection from "@/components/ui/experience-section";
 // import ClientReviews from "@/components/ui/ClientReviews";
-
-type TimelineEntry = {
-  title: React.ReactNode;
-  location: string;
-  content: React.ReactNode;
-};
-
-const timelineData: TimelineEntry[] = [
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="/rovo.png"
-          alt="Rovo Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Founding Enginner at Rovo</span>
-      </div>
-    ),
-    location: "Rome, Italy",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">March 2026 - Present</p>
-          <a href="https://rovo-app.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Rome, Italy</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Founding Engineer at ROVO — building the product from zero as part of the core team, working across full-stack development, design, and deployment.</li>
-          <li>Wearing multiple hats across web, app, infra, and marketing — no fixed boundaries, just whatever the product needs.</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="/sapphire.png"
-          alt="Sapphire Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Front-End Developer at Sapphire</span>
-      </div>
-    ),
-    location: "Nagpur, India",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">January 2026 - Present</p>
-          <a href="https://sapphirebroking.com" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Nagpur, India</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Refactored and optimized large-scale front-end codebases by designing reusable, modular components, improving
-            maintainability and development velocity.</li>
-          <li>Developed admin portals that unified vendor management and ensured seamless data flow across every integration point in the system.</li>
-          <li>Implemented server-side rendering and data-fetching optimizations in Next.js, along with caching and
-            rate-limiting strategies, to significantly reduce load times, improve SEO, and ensure stable performance under high traffic.</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="/titan.png"
-          alt="Titantech investements Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Full Stack Engineer at Titan Technologies</span>
-      </div>
-    ),
-    location: "Dubai, UAE",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">June 2025 - September 2025</p>
-          <a href="http://titantechinvestements.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <span className="sr-only">Company link</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Dubai, UAE</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Built a responsive web platform for an investment firm catering to clients in <strong>India</strong> and the <strong>UAE</strong>.</li>
-          <li>Developed onboarding flows customized for multiple geographies, ensuring smooth user experiences across regions.</li>
-          <li>Designed and implemented advanced user verification systems, including:
-            <ul className="list-disc ml-6 mt-1">
-              <li><strong>Aadhaar</strong> and <strong>DigiLocker</strong> integration for KYC compliance (India).</li>
-              <li><strong>Emirates ID</strong> verification and passport scanning (UAE).</li>
-              <li>Video KYC system to meet strict regulatory requirements.</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="https://i.ibb.co/D8cjVTX/Screenshot-2024-12-24-004030.png"
-          alt="NexCraft Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Web Developer Intern at NexCraft</span>
-      </div>
-    ),
-    location: "Greater Noida, India",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">October 2024 - December 2024</p>
-          <a href="https://thenexcraft.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <span className="sr-only">Company link</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Collaborated with a team of 4 developers to design and deploy robust websites.</li>
-          <li>Contributed to the creation of NexCraft&apos;s main website, enhancing usability and performance.</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="https://i.ibb.co/t3JZbhp/Screenshot-2024-12-24-011803.png"
-          alt="Club Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Technical Lead at Full Stack Club</span>
-      </div>
-    ),
-    location: "Greater Noida, India",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2024 - Present</p>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <span className="sr-only">Company link</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Led a team of 4 junior developers to design and develop functional and aesthetic websites for club events.</li>
-          <li>Organized and conducted a 2-day workshop, teaching HTML and CSS to over 100 students.</li>
-          <li>Mentored team members and ensured timely delivery of high-quality technical solutions.</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    title: (
-      <div className="flex items-center gap-4">
-        <Image
-          src="https://i.ibb.co/mDD48fh/Screenshot-2024-12-24-011922.png"
-          alt="GFG Logo"
-          className="w-16 h-16 rounded-full"
-          width={64}
-          height={64}
-        />
-        <span className="text-2xl font-bold">Technical Team Member at Geeks for Geeks</span>
-      </div>
-    ),
-    location: "Greater Noida, India",
-    content: (
-      <div className="text-black text-2xl dark:text-white">
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-gray-700 dark:text-gray-300 text-lg font-semibold">August 2023 - April 2024</p>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black hover:bg-black hover:text-white hover:border-white border-2 border-black transition-colors">
-            {/* <span className="sr-only">Company link</span> */}
-            <span className="sr-only">Company link</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-5 w-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5M7.5 7.5h3m-6 3v7.125c0 .621.504 1.125 1.125 1.125H13.5c.621 0 1.125-.504 1.125-1.125V13.5" />
-            </svg>
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Location: Greater Noida, India</p>
-        <ul className="list-disc ml-6 mt-2 text-base">
-          <li>Contributed as part of the technical team in organizing multiple technical events and workshops.</li>
-          <li>Played a key role in managing event logistics and fostering community engagement.</li>
-        </ul>
-      </div>
-    ),
-  },
-];
-
-const achievement = [
-  {
-    title: "Treasure Hunt Winner",
-    image: "https://i.ibb.co/vZc6CWD/Screenshot-2024-12-24-211712.png",
-  },
-  {
-    title: "Workshop Speaker",
-    image: "https://i.ibb.co/K6fDF5H/Screenshot-2024-12-24-211849.png",
-  },
-  {
-    title: "Hackfest at GFG HQ",
-    image: "https://i.ibb.co/Jt55ZQ2/Whats-App-Image-2024-12-25-at-7-24-34-PM.jpg",
-  },
-  {
-    title: "me",
-    image: "/vaibhavkothari.JPG",
-  },
-  {
-    title: "Hackathon Winner",
-    image: "https://i.ibb.co/4VsBh60/Screenshot-2024-12-24-212538.png",
-  },
-  {
-    title: "With the OG🔥",
-    image: "https://i.ibb.co/1L1DN7d/Whats-App-Image-2024-12-24-at-9-30-24-PM.jpg",
-  },
-  {
-    title: "Code Kshetra 2.0",
-    image: "/codekshetra.png",
-  },
-  {
-    title: "2x Hackachinno Winner",
-    image: "/hackachinno.jpeg",
-  },
-];
 
 export default function Home() {
   return (
     <div>
-      <HeroHighlight>
+      <GridHeroSection />
+
+      {/* Current hero — swap or remove once you pick a favorite */}
+      <div className="border-b border-neutral-300 dark:border-neutral-800">
+        <p className="bg-stone-100 py-2 text-center text-xs uppercase tracking-[0.2em] text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400">
+          Current hero (for comparison)
+        </p>
+        <HeroHighlight>
         <div className="text-center mt-[-10px] flex flex-col items-center gap-6">
           <Image
             src="https://avatars.githubusercontent.com/u/129139486"
@@ -299,10 +51,14 @@ export default function Home() {
 
 
       </HeroHighlight>
-      <Timeline data={timelineData} />
+      </div>
+
+      <Timeline />
+      <ExperienceSection limit={3} showViewAllButton />
       <Skills />
       <ProjectSection />
-      <InfiniteMovingCards direction="right" speed="normal" pauseOnHover={false} items={achievement} />
+
+      <AchievementsSection />
       <div className="bg-stone-50 dark:bg-neutral-950">
         {/* <ClientReviews /> */}
         <TweetsSection />

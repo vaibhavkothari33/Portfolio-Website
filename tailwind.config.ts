@@ -13,6 +13,7 @@ export default {
     extend: {
       animation: {
         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        grain: "grain 8s steps(10) infinite",
       },
       keyframes: {
         scroll: {
@@ -20,6 +21,13 @@ export default {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+        grain: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(5%)" },
+        },
+      },
+      backgroundImage: {
+        noise: "url('/noise.png')",
       },
       colors: {
         background: 'hsl(var(--background))',
