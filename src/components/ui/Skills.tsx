@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 type Skill = {
@@ -45,22 +46,36 @@ const Skills = () => {
         </p>
 
         <div className="flex flex-wrap gap-3">
-          {skills.map((skill) => (
-            <div
+          {skills.map((skill, index) => (
+            <motion.div
               key={skill.name}
-              className="inline-flex items-center gap-2.5 rounded-full border border-dashed border-neutral-300 bg-neutral-100/80 px-4 py-2.5 text-sm font-medium text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-white"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.35, delay: index * 0.03, ease: "easeOut" }}
+              whileHover={{ y: -4, scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="group inline-flex cursor-default items-center gap-2.5 rounded-full border border-dashed border-neutral-300 bg-neutral-100/80 px-4 py-2.5 text-sm font-medium text-neutral-900 transition-colors duration-300 hover:border-red-500/50 hover:bg-neutral-200/90 hover:shadow-[0_8px_24px_rgba(239,68,68,0.12)] dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-white dark:hover:border-red-500/40 dark:hover:bg-neutral-800 dark:hover:shadow-[0_8px_24px_rgba(239,68,68,0.15)]"
             >
-              <Image
-                src={skill.icon}
-                alt=""
-                width={18}
-                height={18}
-                unoptimized
-                className="h-[18px] w-[18px] shrink-0 object-contain"
-                aria-hidden
-              />
-              <span>{skill.name}</span>
-            </div>
+              <motion.span
+                className="inline-flex shrink-0"
+                whileHover={{ rotate: [-4, 4, -4, 0], scale: 1.2 }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+              >
+                <Image
+                  src={skill.icon}
+                  alt=""
+                  width={18}
+                  height={18}
+                  unoptimized
+                  className="h-[18px] w-[18px] object-contain"
+                  aria-hidden
+                />
+              </motion.span>
+              <span className="transition-colors duration-300 group-hover:text-white">
+                {skill.name}
+              </span>
+            </motion.div>
           ))}
         </div>
       </div>

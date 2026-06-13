@@ -27,11 +27,9 @@ export default function Home() {
         <GitHubActivitySection />
       </Suspense>
 
-      <div className="bg-stone-50 dark:bg-neutral-950">
-        <TweetsSection />
-        <ContactForm />
-        <TitanText />
-      </div>
+      <TweetsSection />
+      <ContactForm />
+      <TitanText />
     </div>
   );
 }

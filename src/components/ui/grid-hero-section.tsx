@@ -284,8 +284,8 @@ function MonaBadge() {
 
 export default function GridHeroSection({
   className,
-  avatarSrc = "./kothari_vaibhav.jpeg",
-  // avatarSrc = "https://avatars.githubusercontent.com/u/129139486",
+  // avatarSrc = "./kothari_vaibhav.jpeg",
+  avatarSrc = "https://avatars.githubusercontent.com/u/129139486",
 }: {
   className?: string;
   avatarSrc?: string;

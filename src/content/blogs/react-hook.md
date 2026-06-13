@@ -1,12 +1,12 @@
 ---
-title: Mastering React Hooks A Complete Developer's Guide
+title: "Mastering React Hooks: A Complete Developer's Guide"
 date: '2024-01-23'
 tags: 
   - React
   - Hooks
   - JavaScript
   - Web Development
-image: /reactblog.png
+image: "/reactblog.png"
 ---
 # Mastering React Hooks: A Simple Guide
 

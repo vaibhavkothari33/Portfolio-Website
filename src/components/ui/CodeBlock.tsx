@@ -73,7 +73,9 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             textAlign: 'right',
           }}
         >
-          {children.trim()}
+          {typeof children === "string"
+            ? children.trim()
+            : String(children ?? "").trim()}
         </SyntaxHighlighter>
       </div>
     </div>

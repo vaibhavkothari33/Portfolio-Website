@@ -110,10 +110,6 @@ export function Loader({ text }: LoaderProps) {
         </motion.div>
 
         <ContributionGridPreview />
-
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-600">
-          github.com
-        </p>
       </div>
     </div>
   );

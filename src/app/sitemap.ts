@@ -1,13 +1,6 @@
 import { MetadataRoute } from 'next'
 import { siteMetadata } from './metadata'
-import fs from 'fs'
-import path from 'path'
-
-async function getBlogSlugs() {
-  const blogsDirectory = path.join(process.cwd(), 'src/content/blogs')
-  const filenames = fs.readdirSync(blogsDirectory)
-  return filenames.map(filename => filename.replace(/\.md$/, ''))
-}
+import { getBlogSlugs } from "@/lib/blogs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Core pages with high priority
@@ -38,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // Dynamic blog posts
-  const blogSlugs = await getBlogSlugs()
+  const blogSlugs = getBlogSlugs()
   const blogRoutes = blogSlugs.map((slug) => ({
     url: `${siteMetadata.siteUrl}/blogs/${slug}`,
     lastModified: new Date().toISOString(),

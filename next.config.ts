@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'assets.devfolio.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'flagcdn.com',
         pathname: '/**',
       },

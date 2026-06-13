@@ -1,139 +1,161 @@
 "use client";
-import "../../styles/globals.css";
-import { useState } from "react";
-import { 
-  IconBrandLinkedin, 
-  IconBrandGithub, 
-  IconFileCheck, 
-  IconBrandTwitter, 
-  IconWorld, 
-  IconBrandWikipedia, 
-  IconBrandLeetcode, 
-  IconBrandDiscord, 
-  IconBrandGmail,
-  IconExternalLink
-} from "@tabler/icons-react";
 
-const links = [
+import "../../styles/globals.css";
+import {
+  IconArrowLeft,
+  IconBrandDiscord,
+  IconBrandGithub,
+  IconBrandGmail,
+  IconBrandLeetcode,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+  IconBrandWikipedia,
+  IconExternalLink,
+  IconFileText,
+  IconWorld,
+} from "@tabler/icons-react";
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+type LinkItem = {
+  title: string;
+  href: string;
+  description: string;
+  icon: ReactNode;
+};
+
+const links: LinkItem[] = [
   {
     title: "Portfolio",
     href: "https://vaibhavkothari.vercel.app/",
-    icon: <IconWorld size={28} />,
-    color: "bg-gradient-to-br from-blue-500 to-blue-700",
-    textColor: "text-blue-500"
+    description: "Main site and project showcase",
+    icon: <IconWorld size={20} stroke={1.5} />,
   },
   {
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/vaibhavkothari33/",
-    icon: <IconBrandLinkedin size={28} />,
-    color: "bg-gradient-to-br from-blue-500 to-blue-700",
-    textColor: "text-blue-600"
+    description: "Professional updates and experience",
+    icon: <IconBrandLinkedin size={20} stroke={1.5} />,
   },
   {
     title: "GitHub",
     href: "https://github.com/vaibhavkothari33/",
-    icon: <IconBrandGithub size={28} />,
-    color: "bg-gradient-to-br from-gray-600 to-gray-800",
-    textColor: "text-gray-300"
+    description: "Open source and code repositories",
+    icon: <IconBrandGithub size={20} stroke={1.5} />,
   },
   {
-    title: "Twitter",
+    title: "X / Twitter",
     href: "https://twitter.com/vaibhavkotharii/",
-    icon: <IconBrandTwitter size={28} />,
-    color: "bg-gradient-to-br from-blue-400 to-blue-600",
-    textColor: "text-blue-400"
+    description: "Thoughts, builds, and updates",
+    icon: <IconBrandTwitter size={20} stroke={1.5} />,
   },
   {
     title: "Publication",
     href: "https://app.readytensor.ai/publications/EDAdadexbbxs",
-    icon: <IconBrandWikipedia size={28} />,
-    color: "bg-gradient-to-br from-blue-400 to-blue-600",
-    textColor: "text-blue-400"
+    description: "Ready Tensor research publication",
+    icon: <IconBrandWikipedia size={20} stroke={1.5} />,
   },
   {
     title: "Resume",
     href: "https://www.vaibhavkothari.me/resume.pdf",
-    icon: <IconFileCheck size={28} />,
-    color: "bg-gradient-to-br from-red-500 to-red-700",
-    textColor: "text-red-500"
+    description: "Download CV and work history",
+    icon: <IconFileText size={20} stroke={1.5} />,
   },
   {
-    title: "Mail",
+    title: "Email",
     href: "mailto:vaibhavkothari50@gmail.com",
-    icon: <IconBrandGmail size={28} />,
-    color: "bg-gradient-to-br from-red-500 to-red-700",
-    textColor: "text-red-500"
+    description: "Reach out for collaborations",
+    icon: <IconBrandGmail size={20} stroke={1.5} />,
   },
   {
     title: "LeetCode",
     href: "https://leetcode.com/u/vaibhavkothari33/",
-    icon: <IconBrandLeetcode size={28} />,
-    color: "bg-gradient-to-br from-yellow-500 to-yellow-700",
-    textColor: "text-yellow-500"
+    description: "Problem solving and DSA practice",
+    icon: <IconBrandLeetcode size={20} stroke={1.5} />,
   },
   {
     title: "Discord",
     href: "https://discordapp.com/users/vaibhavkothari",
-    icon: <IconBrandDiscord size={28} />,
-    color: "bg-gradient-to-br from-purple-500 to-purple-700",
-    textColor: "text-purple-500"
+    description: "Chat and community connect",
+    icon: <IconBrandDiscord size={20} stroke={1.5} />,
   },
 ];
 
 export default function LinksPage() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 to-neutral-900 font-sans px-4 py-12 flex flex-col items-center">
-      <div className="w-full max-w-6xl">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-6xl mb-4 text-white font-bold text-center ">
-            Connect With Me
-          </h1>
-          <p className="text-gray-400 max-w-lg mx-auto text-lg">
-            Find me across the web and reach out through any of these platforms
+    <div className="min-h-screen bg-neutral-950 text-white">
+      <div className="mx-auto max-w-5xl border-x border-neutral-800">
+        <div className="border-b border-neutral-800 px-4 py-8 md:px-8 md:py-10">
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center text-sm text-neutral-400 transition-colors hover:text-white"
+          >
+            <IconArrowLeft className="mr-2 h-4 w-4" stroke={1.75} />
+            Back to Home
+          </Link>
+
+          <br />
+          <p className="mb-3 inline-flex items-center gap-2 border border-red-500/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.22em] text-red-500 md:px-3 md:py-1 md:text-[11px]">
+            <span aria-hidden>✕</span> Links
           </p>
+          <h1 className="text-2xl font-bold leading-tight tracking-tight md:text-3xl">
+            Everywhere I live online
+          </h1>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-400">
+            Portfolio, socials, resume, and contact — one place to find all my
+            profiles across the web.
+          </p>
+
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-dashed border-neutral-700 bg-neutral-900/60 px-4 py-2 text-xs font-medium text-neutral-400">
+            <IconExternalLink className="h-3.5 w-3.5 text-red-500" stroke={1.75} />
+            {links.length} destinations
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+
+        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:gap-5 md:p-8">
           {links.map((link, index) => (
             <a
-              key={index}
+              key={link.title}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl shadow-lg"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              className="group flex items-start gap-4 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 transition-colors hover:border-neutral-600 hover:bg-neutral-900/70 md:p-5"
             >
-              <div className={`absolute inset-0 opacity-20 ${link.color}`}></div>
-              <div className="bg-neutral-800 hover:bg-neutral-700 p-6 h-full flex items-center transition-all duration-300 border border-neutral-700">
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mr-5 ${link.color} text-white`}>
-                  {link.icon}
-                </div>
-                <div className="flex-1">
-                  <h3 className={`text-xl font-medium ${link.textColor}`}>{link.title}</h3>
-                  <div className="flex items-center mt-2 text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Visit</span>
-                    <IconExternalLink size={16} className="ml-1" />
-                  </div>
-                </div>
-                <div className="bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px w-full absolute bottom-0 left-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-dashed border-neutral-700 bg-neutral-950/80 text-red-500 transition-colors group-hover:border-red-500/40 group-hover:text-red-400">
+                {link.icon}
               </div>
-              
-              {/* Animated glow effect on hover */}
-              {hoveredIndex === index && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-white to-transparent opacity-10 blur-lg"></div>
-              )}
+
+              <div className="min-w-0 flex-1">
+                <div className="mb-1.5 flex items-start justify-between gap-3">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+                    Link
+                  </p>
+                  <span className="text-[10px] tabular-nums text-neutral-600">
+                    {String(index + 1).padStart(3, "0")}
+                  </span>
+                </div>
+
+                <h2 className="text-base font-semibold text-white transition-colors group-hover:text-neutral-100 md:text-lg">
+                  {link.title}
+                </h2>
+                <p className="mt-1 text-xs leading-relaxed text-neutral-400 md:text-sm">
+                  {link.description}
+                </p>
+
+                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-neutral-500 transition-colors group-hover:text-white">
+                  Visit
+                  <IconExternalLink className="h-3 w-3" stroke={1.75} />
+                </span>
+              </div>
             </a>
           ))}
         </div>
-        
-        {/* <div className="mt-12 text-center">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Vaibhav Kothari • Built with React
+
+        <div className="border-t border-neutral-800 px-4 py-6 md:px-8">
+          <p className="text-center font-mono text-[11px] text-neutral-600">
+            © {new Date().getFullYear()} Vaibhav Kothari · All links open in a new tab
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );

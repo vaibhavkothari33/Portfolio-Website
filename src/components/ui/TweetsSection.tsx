@@ -1,256 +1,235 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Twitter, ExternalLink, MessageCircle, Heart, Repeat2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight, Heart, MessageCircle, Repeat2 } from "lucide-react";
+import { IconBrandX } from "@tabler/icons-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 type TwitterWidgets = {
-    widgets: {
-        createTweetEmbed: (
-            tweetId: string,
-            element: HTMLElement,
-            options?: {
-                theme?: "dark" | "light";
-                align?: "left" | "right" | "center";
-                width?: number;
-            }
-        ) => Promise<HTMLElement>;
-    };
+  widgets: {
+    createTweetEmbed: (
+      tweetId: string,
+      element: HTMLElement,
+      options?: {
+        theme?: "dark" | "light";
+        align?: "left" | "right" | "center";
+        width?: number;
+      },
+    ) => Promise<HTMLElement>;
+  };
 };
 
 declare global {
-    interface Window {
-        twttr: TwitterWidgets;
-    }
+  interface Window {
+    twttr: TwitterWidgets;
+  }
 }
 
-const TweetsSection: React.FC = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [widgetsLoaded, setWidgetsLoaded] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(true);
-    const [loadingProgress, setLoadingProgress] = useState(0);
+const TWEET_URLS = [
+  "https://x.com/VaibhavKotharii/status/2040847487720955934",
+  "https://x.com/VaibhavKotharii/status/1993783785440301222",
+  "https://x.com/VaibhavKotharii/status/1992941383297167649",
+  "https://x.com/VaibhavKotharii/status/1992303748035776755",
+  "https://twitter.com/VaibhavKotharii/status/1924217560813216110",
+  "https://twitter.com/VaibhavKotharii/status/1912213578112782357",
+] as const;
 
-    const tweetUrls = [
-        "https://x.com/VaibhavKotharii/status/2040847487720955934",
-        "https://x.com/VaibhavKotharii/status/1993783785440301222",
-        "https://x.com/VaibhavKotharii/status/1992941383297167649",
-        "https://x.com/VaibhavKotharii/status/1992303748035776755",
-        "https://twitter.com/VaibhavKotharii/status/1924217560813216110",
-        "https://twitter.com/VaibhavKotharii/status/1912213578112782357",
-        // "https://twitter.com/VaibhavKotharii/status/1899923289956639153",
-    ];
+function getTweetIdFromUrl(url: string) {
+  const parts = url.split("/");
+  return parts[parts.length - 1];
+}
 
-    const getTweetIdFromUrl = (url: string) => {
-        const parts = url.split("/");
-        return parts[parts.length - 1];
+function SkeletonTweet({ index }: { index: number }) {
+  return (
+    <div
+      className="relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/40"
+      style={{ animationDelay: `${index * 120}ms` }}
+    >
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-neutral-700/20 to-transparent" />
+
+      <div className="space-y-4 p-5">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 animate-pulse rounded-full bg-neutral-800" />
+          <div className="flex-1 space-y-2">
+            <div className="h-3.5 w-28 animate-pulse rounded bg-neutral-800" />
+            <div className="h-3 w-20 animate-pulse rounded bg-neutral-800/80" />
+          </div>
+        </div>
+
+        <div className="space-y-2.5">
+          <div className="h-3.5 w-full animate-pulse rounded bg-neutral-800" />
+          <div className="h-3.5 w-4/5 animate-pulse rounded bg-neutral-800" />
+          <div className="h-3.5 w-3/5 animate-pulse rounded bg-neutral-800/80" />
+        </div>
+
+        <div className="h-40 animate-pulse rounded-lg border border-neutral-800 bg-neutral-950/60" />
+
+        <div className="flex justify-between border-t border-neutral-800 pt-4">
+          {[MessageCircle, Repeat2, Heart].map((Icon, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <Icon className="h-4 w-4 text-neutral-700" strokeWidth={1.5} />
+              <div className="h-3 w-6 animate-pulse rounded bg-neutral-800" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function TweetsSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [widgetsLoaded, setWidgetsLoaded] = useState(false);
+
+  useEffect(() => {
+    const renderTweets = async () => {
+      setWidgetsLoaded(false);
+
+      if (!containerRef.current || !window.twttr?.widgets) return;
+
+      const wrappers =
+        containerRef.current.querySelectorAll<HTMLElement>(".tweet-wrapper");
+      if (wrappers.length !== TWEET_URLS.length) return;
+
+      await Promise.all(
+        TWEET_URLS.map((url, index) => {
+          const wrapper = wrappers[index];
+          if (!wrapper) return Promise.resolve();
+
+          return window.twttr.widgets.createTweetEmbed(
+            getTweetIdFromUrl(url),
+            wrapper,
+            {
+              theme: "dark",
+              align: "center",
+              width: 360,
+            },
+          );
+        }),
+      );
+
+      setWidgetsLoaded(true);
     };
 
-    useEffect(() => {
-        const isDark = document.documentElement.classList.contains("dark");
-        setIsDarkMode(isDark);
+    const loadTwitterWidgets = () => {
+      if (typeof window === "undefined") return;
 
-        const loadTwitterWidgets = () => {
-            if (typeof window !== "undefined" && !window.twttr) {
-                const script = document.createElement("script");
-                script.src = "https://platform.twitter.com/widgets.js";
-                script.async = true;
-                script.onload = renderTweets;
-                document.body.appendChild(script);
-            } else {
-                renderTweets();
-            }
-        };
+      if (!window.twttr) {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.async = true;
+        script.onload = renderTweets;
+        document.body.appendChild(script);
+        return;
+      }
 
-        const renderTweets = async () => {
-            setWidgetsLoaded(false);
-            setLoadingProgress(0);
-            
-            if (!containerRef.current || !window.twttr?.widgets) return;
+      renderTweets();
+    };
 
-            const wrappers = containerRef.current.querySelectorAll<HTMLElement>(".tweet-wrapper");
-            if (wrappers.length !== tweetUrls.length) return;
+    loadTwitterWidgets();
+  }, []);
 
-            const renderPromises = tweetUrls.map((url, index) => {
-                const wrapper = wrappers[index];
-                if (!wrapper) return;
+  return (
+    <section
+      id="posts"
+      className="w-full border-t border-neutral-800 bg-neutral-950 px-4 py-16 text-white md:px-10 md:py-20"
+      aria-labelledby="posts-heading"
+    >
+      <div className="mx-auto max-w-6xl" ref={containerRef}>
+        <div className="mb-10 md:mb-12">
+          <p className="mb-4 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
+            <span aria-hidden>✕</span> Posts
+          </p>
 
-                return window.twttr.widgets
-                    .createTweetEmbed(getTweetIdFromUrl(url), wrapper, {
-                        theme: isDarkMode ? "dark" : "light",
-                        align: "center",
-                        width: 400,
-                    })
-                    .then(() => {
-                        setLoadingProgress(prev => prev + (100 / tweetUrls.length));
-                    });
-            });
-
-            await Promise.all(renderPromises);
-            setWidgetsLoaded(true);
-        };
-
-        loadTwitterWidgets();
-    }, [isDarkMode]);
-
-    const SkeletonTweet = ({ index }: { index: number }) => (
-        <div 
-            className="relative overflow-hidden bg-stone-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:shadow-xl transition-all duration-500 group"
-            style={{ animationDelay: `${index * 150}ms` }}
-        >
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-            
-            <div className="p-6 space-y-4">
-                {/* Header */}
-                <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-neutral-300 dark:bg-neutral-700 rounded-full animate-pulse" />
-                    <div className="flex-1 space-y-2">
-                        <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-32" />
-                        <div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-24" />
-                    </div>
-                    <div className="w-6 h-6 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse" />
-                </div>
-
-                {/* Content */}
-                <div className="space-y-3">
-                    <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-full" />
-                    <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-4/5" />
-                    <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-3/5" />
-                </div>
-
-                {/* Image placeholder */}
-                <div className="h-48 bg-neutral-300 dark:bg-neutral-700 rounded-xl animate-pulse" />
-
-                {/* Actions */}
-                <div className="flex justify-between pt-4">
-                    {[MessageCircle, Repeat2, Heart].map((Icon, i) => (
-                        <div key={i} className="flex items-center space-x-2">
-                            <div className="w-5 h-5 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse" />
-                            <div className="h-3 bg-neutral-300 dark:bg-neutral-700 rounded animate-pulse w-8" />
-                        </div>
-                    ))}
-                </div>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <h2
+                id="posts-heading"
+                className="text-2xl font-bold leading-tight tracking-tight md:text-3xl"
+              >
+                Latest from X
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-400 md:text-[15px]">
+                Thoughts on shipping products, engineering, and building in public
+                — pulled straight from my feed.
+              </p>
             </div>
 
-            {/* Loading indicator */}
-            <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000"
-                 style={{ width: `${loadingProgress}%` }} />
+            <div className="inline-flex items-center gap-2 rounded-full border border-dashed border-neutral-700 bg-neutral-900/60 px-4 py-2 text-xs font-medium text-neutral-400">
+              <IconBrandX className="h-3.5 w-3.5 text-red-500" stroke={1.75} />
+              {TWEET_URLS.length} recent posts
+            </div>
+          </div>
         </div>
-    );
 
-    return (
-        <section className="relative min-h-screen py-24 px-6 overflow-hidden">
-            <div className="max-w-7xl mx-auto relative z-10" ref={containerRef}>
-                {/* Enhanced Header */}
-                <div className="text-center mb-20">
-                    <div className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-stone-100/80 dark:bg-neutral-800/80 border border-neutral-300/50 dark:border-neutral-600/50 rounded-full backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div className="relative">
-                            <Twitter className="w-6 h-6 text-blue-500 dark:text-blue-400" />
-                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ping" />
-                        </div>
-                        <span className="text-neutral-700 dark:text-neutral-300 font-medium">Live from X</span>
-                        {/* <Sparkles className="w-5 h-5 text-yellow-500 dark:text-yellow-400 animate-pulse" /> */}
-                    </div>
-
-                    <h2 className="text-5xl md:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
-                        Latest{" "}
-                            Posts
-                    </h2>
-
-                    <p className="text-neutral-600 dark:text-neutral-400 text-xl max-w-3xl mx-auto leading-relaxed">
-                        Thoughts, insights, and updates from my X (Twitter) feed — fresh perspectives on tech, life, and everything in between.
-                    </p>
-                </div>
-
-                {/* Enhanced Tweet Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
-                    {tweetUrls.map((_, index) => (
-                        <div 
-                            key={index} 
-                            className="tweet-wrapper min-h-[520px] w-full opacity-0 animate-fade-in-up"
-                            style={{ animationDelay: `${index * 200}ms` }}
-                        >
-                            {!widgetsLoaded && <SkeletonTweet index={index} />}
-                        </div>
-                    ))}
-                </div>
-
-                {/* Enhanced CTA */}
-                <div className="text-center">
-                    <div className="relative inline-block">
-                        <a
-                            href="https://x.com/VaibhavKotharii"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="relative inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-bold text-lg rounded-2xl transition-all duration-500 hover:scale-105 shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-black/10 before:to-transparent before:animate-[shimmer_2.5s_infinite]"
-                        >
-                            <Twitter className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
-                            <span className="relative z-10">Follow @VaibhavKotharii</span>
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                        </a>
-                        
-                        {/* Floating icons around CTA */}
-                        {/* <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500/20 rounded-full animate-bounce delay-100" />
-                        <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-purple-500/20 rounded-full animate-bounce delay-300" /> */}
-                    </div>
-                </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 md:gap-6">
+          {TWEET_URLS.map((_, index) => (
+            <div
+              key={index}
+              className={cn(
+                "tweet-wrapper min-h-[420px] w-full rounded-xl border border-neutral-800 bg-neutral-900/30 p-2 transition-colors hover:border-neutral-700",
+                widgetsLoaded && "animate-[fade-in-up_0.6s_ease-out_forwards] opacity-0",
+              )}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {!widgetsLoaded && <SkeletonTweet index={index} />}
             </div>
+          ))}
+        </div>
 
-            {/* Enhanced styles for embedded tweets */}
-            <style jsx>{`
-                :global(.twitter-tweet) {
-                    margin: 0 auto !important;
-                    max-width: 400px !important;
-                    width: 100% !important;
-                    border-radius: 20px !important;
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-                    border: 1px solid ${isDarkMode ? 'rgba(64, 64, 64, 0.3)' : 'rgba(229, 231, 235, 0.8)'} !important;
-                    backdrop-filter: blur(10px) !important;
-                    transition: all 0.3s ease !important;
-                }
-                
-                :global(.twitter-tweet:hover) {
-                    transform: translateY(-4px) !important;
-                    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18) !important;
-                }
-                
-                :global(.twitter-tweet iframe) {
-                    border-radius: 20px !important;
-                }
+        <div className="mt-10 flex justify-center md:mt-12">
+          <Link
+            href="https://x.com/VaibhavKotharii"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-5 py-2 text-sm font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-900"
+          >
+            Follow @VaibhavKotharii
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
 
-                @keyframes shimmer {
-                    100% { transform: translateX(100%); }
-                }
-                
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px) rotate(0deg); }
-                    50% { transform: translateY(-20px) rotate(180deg); }
-                }
-                
-                @keyframes fade-in-up {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                .animate-shimmer {
-                    animation: shimmer 2s infinite;
-                }
-                
-                .animate-float {
-                    animation: float 6s ease-in-out infinite;
-                }
-                
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.8s ease-out forwards;
-                }
-            `}</style>
-        </section>
-    );
-};
+      <style jsx global>{`
+        .tweet-wrapper .twitter-tweet {
+          margin: 0 auto !important;
+          max-width: 100% !important;
+          width: 100% !important;
+          border-radius: 0.75rem !important;
+          border: 1px solid rgb(38 38 38 / 0.8) !important;
+          background: rgb(23 23 23 / 0.5) !important;
+          transition:
+            transform 0.25s ease,
+            border-color 0.25s ease !important;
+        }
 
-export default TweetsSection;
+        .tweet-wrapper:hover .twitter-tweet {
+          transform: translateY(-2px) !important;
+          border-color: rgb(64 64 64) !important;
+        }
+
+        .tweet-wrapper .twitter-tweet iframe {
+          border-radius: 0.75rem !important;
+        }
+
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes shimmer {
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
+    </section>
+  );
+}

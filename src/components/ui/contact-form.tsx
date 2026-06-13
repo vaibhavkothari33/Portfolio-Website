@@ -1,28 +1,40 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import Link from "next/link";
-import emailjs from "emailjs-com";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { Send, Twitter, Linkedin, Mail, Github, Book, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+  IconCalendar,
+  IconExternalLink,
+  IconMail,
+  IconSend,
+} from "@tabler/icons-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import emailjs from "emailjs-com";
+import Link from "next/link";
+import { ArrowUpRight, BookOpen } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
 
-// Enhanced form validation schema
 const formSchema = z.object({
-  name: z.string()
+  name: z
+    .string()
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be less than 50 characters")
     .optional(),
-  email: z.string()
+  email: z
+    .string()
     .nonempty("Email is required")
     .email("Invalid email format")
     .max(100, "Email must be less than 100 characters"),
-  message: z.string()
+  message: z
+    .string()
     .nonempty("Message is required")
     .min(10, "Message must be at least 10 characters")
     .max(500, "Message must be less than 500 characters"),
@@ -34,61 +46,82 @@ interface IFormInput {
   message: string;
 }
 
-// Sample blog posts data
 const recentBlogPosts = [
   {
     title: "Backend as a Service",
     url: "/blogs/Backend-as-a-Service",
-    date: "Feb 12, 2025"
+    date: "Feb 12, 2025",
   },
   {
     title: "Code-Kshetra 2.0",
     url: "/blogs/code-kshetra",
-    date: "Feb 23, 2025"
+    date: "Feb 23, 2025",
   },
-  // {
-  //   title: "Optimizing React Performance: Advanced Techniques",
-  //   url: "/blog/react-performance-optimization",
-  //   date: "Dec 10, 2024"
-  // }
 ];
 
-// Social media links
 const socialLinks = [
   {
-    name: "Twitter",
-    url: "https://twitter.com/VaibhavKotharii",
-    icon: Twitter,
-    color: "text-blue-500 dark:text-blue-400",
-    bgColor: "bg-blue-50 dark:bg-blue-900/20",
-    hoverBgColor: "hover:bg-blue-100 dark:hover:bg-blue-900/40"
+    label: "X",
+    href: "https://x.com/VaibhavKotharii",
+    icon: IconBrandTwitter,
   },
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/vaibhavkothari33/",
-    icon: Linkedin,
-    color: "text-blue-700 dark:text-blue-400",
-    bgColor: "bg-blue-50 dark:bg-blue-900/20",
-    hoverBgColor: "hover:bg-blue-100 dark:hover:bg-blue-900/40"
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/vaibhavkothari33/",
+    icon: IconBrandLinkedin,
   },
   {
-    name: "GitHub",
-    url: "https://github.com/vaibhavkothari33",
-    icon: Github,
-    color: "text-blue-700 dark:text-blue-400",
-    bgColor: "bg-gray-50 dark:bg-gray-800/20",
-    hoverBgColor: "hover:bg-gray-100 dark:hover:bg-gray-800/40"
+    label: "GitHub",
+    href: "https://github.com/vaibhavkothari33",
+    icon: IconBrandGithub,
   },
   {
-    name: "More Links",
-    url: "/links",
-    icon: ExternalLink,
-    color: "text-blue-700 dark:text-blue-400",
-    bgColor: "bg-gray-50 dark:bg-gray-800/20",
-    hoverBgColor: "hover:bg-gray-100 dark:hover:bg-gray-800/40"
+    label: "Links",
+    href: "/links",
+    icon: IconExternalLink,
   },
-
 ];
+
+const fieldClassName =
+  "h-9 rounded-md border-neutral-700 bg-neutral-950/60 py-1.5 text-sm text-white placeholder:text-neutral-600 focus-visible:border-red-500/50 focus-visible:ring-1 focus-visible:ring-red-500/30";
+
+function GridPanel({
+  label,
+  id,
+  title,
+  children,
+  className,
+}: {
+  label: string;
+  id: string;
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <article
+      className={cn(
+        "flex flex-col justify-between p-4 md:p-5",
+        className,
+      )}
+    >
+      <div>
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+            {label}
+          </p>
+          <span className="text-[10px] tabular-nums text-neutral-600">{id}</span>
+        </div>
+        {title && (
+          <h3 className="mb-2 text-sm font-semibold leading-snug text-white md:text-base">
+            {title}
+          </h3>
+        )}
+      </div>
+      {children}
+    </article>
+  );
+}
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -112,7 +145,7 @@ export const ContactForm = () => {
           from_email: data.email,
           message: data.message,
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       );
 
       if (result.status === 200) {
@@ -140,272 +173,256 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-16 pb-40 bg-stone-50 dark:bg-neutral-950">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto"
-        >
-          <div className="text-center mb-12">
-            <motion.h2 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4"
-            >
-              Get in Touch
-            </motion.h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Have a project in mind or just want to say hello? I&apos;m all ears and excited to hear from you!
-            </p>
-          </div>
+    <section
+      id="contact"
+      className="w-full border-t border-neutral-800 bg-neutral-950 text-white"
+      aria-labelledby="contact-heading"
+    >
+      <div className="mx-auto max-w-5xl border-x border-neutral-800">
+        <div className="border-b border-neutral-800 px-4 py-6 md:px-6 md:py-7">
+          <p className="mb-2 inline-flex items-center gap-2 border border-red-500/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.22em] text-red-500">
+            <span aria-hidden>✕</span> Contact
+          </p>
+          <h2
+            id="contact-heading"
+            className="max-w-xl text-xl font-bold leading-tight tracking-tight md:text-2xl"
+          >
+            Let&apos;s build something together
+          </h2>
+          <p className="mt-2 max-w-lg text-xs leading-relaxed text-neutral-400 md:text-sm">
+            Freelance, collaborations, or full-time — drop a message and I&apos;ll
+            get back to you soon.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Contact Form */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-7 bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-8"
-            >
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label 
-                      htmlFor="name" 
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                    >
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="Your full name"
-                      {...register("name")}
-                      aria-invalid={errors.name ? "true" : "false"}
-                      className="w-full border-2 border-gray-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-                    />
-                    {errors.name && (
-                      <p 
-                        role="alert" 
-                        className="text-red-500 text-xs mt-1 font-medium"
-                      >
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="space-y-2">
-                    <label 
-                      htmlFor="email" 
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                    >
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your-email@example.com"
-                      {...register("email")}
-                      aria-invalid={errors.email ? "true" : "false"}
-                      className="w-full border-2 border-gray-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-                    />
-                    {errors.email && (
-                      <p 
-                        role="alert" 
-                        className="text-red-500 text-xs mt-1 font-medium"
-                      >
-                        {errors.email.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label 
-                    htmlFor="message" 
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          <div className="border-b border-neutral-800 p-4 md:p-5 lg:col-span-7 lg:border-b-0 lg:border-r lg:p-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
                   >
-                    Message <span className="text-red-500">*</span>
+                    Name
                   </label>
-                  <Textarea
-                    id="message"
-                    rows={6}
-                    placeholder="Share your thoughts, ideas, or project details..."
-                    {...register("message")}
-                    aria-invalid={errors.message ? "true" : "false"}
-                    className="w-full border-2 border-gray-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 resize-none"
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Your full name"
+                    {...register("name")}
+                    aria-invalid={errors.name ? "true" : "false"}
+                    className={fieldClassName}
                   />
-                  {errors.message && (
-                    <p 
-                      role="alert" 
-                      className="text-red-500 text-xs mt-1 font-medium"
-                    >
-                      {errors.message.message}
+                  {errors.name && (
+                    <p role="alert" className="text-xs font-medium text-red-500">
+                      {errors.name.message}
                     </p>
                   )}
                 </div>
 
+                <div className="space-y-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
+                  >
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    {...register("email")}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    className={fieldClassName}
+                  />
+                  {errors.email && (
+                    <p role="alert" className="text-xs font-medium text-red-500">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label
+                  htmlFor="message"
+                  className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
+                >
+                  Message <span className="text-red-500">*</span>
+                </label>
+                <Textarea
+                  id="message"
+                  rows={3}
+                  placeholder="Your message..."
+                  {...register("message")}
+                  aria-invalid={errors.message ? "true" : "false"}
+                  className={cn(fieldClassName, "h-auto min-h-[72px] resize-none py-2")}
+                />
+                {errors.message && (
+                  <p role="alert" className="text-xs font-medium text-red-500">
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5">
                 <Button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white transition-all duration-300 py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-neutral-200 px-4 text-xs font-medium text-neutral-900 transition-colors hover:bg-white disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
-                      <svg 
-                        className="animate-spin h-5 w-5 mr-2" 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        fill="none" 
+                      <svg
+                        className="h-4 w-4 animate-spin"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
                         viewBox="0 0 24 24"
+                        aria-hidden
                       >
-                        <circle 
-                          className="opacity-25" 
-                          cx="12" 
-                          cy="12" 
-                          r="10" 
-                          stroke="currentColor" 
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
                           strokeWidth="4"
-                        ></circle>
-                        <path 
-                          className="opacity-75" 
-                          fill="currentColor" 
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
+                        />
                       </svg>
                       Sending...
                     </>
                   ) : (
                     <>
-                      <Send size={20} />
-                      Send Message
+                      <IconSend className="h-4 w-4" stroke={1.75} />
+                      Send message
                     </>
                   )}
                 </Button>
 
-                <div className="pt-2 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGprYmxrenlhaGt0ZXJwamEwajMwNTJ0ZTVkeWdnbng5MXF5amV6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif"
-                    alt="Typing cat animation"
-                    className="w-full max-w-xs rounded-lg border border-gray-200 dark:border-neutral-700"
-                    loading="lazy"
-                  />
-                </div>
-              </form>
-            </motion.div>
-
-            {/* Contact Details, Social Links & Blog Section */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="lg:col-span-5 space-y-6"
-            >
-              {/* Contact Details */}
-              <div className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b border-gray-100 dark:border-neutral-800">
-                  Connect With Me
-                </h3>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Mail className="text-blue-500" />
-                    <a 
-                      href="mailto:contact.vaibhavkothari@gmail.com" 
-                      className="hover:text-blue-600 transition-colors"
-                    >
-                      contact.vaibhavkothari@gmail.com
-                    </a>
-                  </div>
-
-                  <div className="space-y-3">
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Find me on social networks:
-                    </p>
-
-                    <div className="flex space-x-4">
-                      {socialLinks.map((social) => (
-                        <Link
-                          key={social.name}
-                          href={social.url}
-                          className={`${social.bgColor} ${social.hoverBgColor} p-3 rounded-full transition-all`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={social.name}
-                        >
-                          <social.icon className={social.color} size={20} />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <Link
+                  href="https://cal.com/vaibhavkothari33/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-neutral-700 px-4 text-xs font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-900"
+                >
+                  <IconCalendar className="h-3.5 w-3.5" stroke={1.5} />
+                  Book a call
+                </Link>
               </div>
 
-              {/* Blog Section */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6"
-              >
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-neutral-800">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    Latest Blog Posts
-                  </h3>
-                  <Link 
-                    href="/blog" 
-                    className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium flex items-center gap-1"
-                  >
-                    All posts
-                    <ExternalLink size={14} />
-                  </Link>
-                </div>
+              <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/30">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGprYmxrenlhaGt0ZXJwamEwajMwNTJ0ZTVkeWdnbng5MXF5amV6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif"
+                  alt="Typing cat animation"
+                  className="mx-auto w-full max-w-xs opacity-90"
+                  loading="lazy"
+                />
+              </div>
+            </form>
+          </div>
 
-                <div className="space-y-4">
-                  {recentBlogPosts.map((post, index) => (
-                    <Link 
-                      key={index}
-                      href={post.url}
-                      className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+            <GridPanel
+              label="Connect"
+              id="001"
+              title="Reach me directly"
+              className="border-b border-neutral-800 sm:border-r sm:border-b-0 lg:border-r-0 lg:border-b"
+            >
+              <div className="space-y-3">
+                <a
+                  href="mailto:contact.vaibhavkothari@gmail.com"
+                  className="inline-flex items-center gap-1.5 text-xs text-neutral-300 transition-colors hover:text-white"
+                >
+                  <IconMail className="h-3.5 w-3.5 shrink-0 text-red-500" stroke={1.75} />
+                  contact.vaibhavkothari@gmail.com
+                </a>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {socialLinks.map(({ label, href, icon: Icon }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="inline-flex items-center gap-1 rounded-full border border-dashed border-neutral-700 bg-neutral-900/60 px-2 py-1 text-[10px] font-medium text-neutral-400 transition-colors hover:border-neutral-500 hover:text-white"
                     >
-                      <div className="flex items-start gap-3">
-                        <Book className="text-blue-500 mt-1 flex-shrink-0" size={18} />
-                        <div>
-                          <h4 className="font-medium text-gray-900 dark:text-white">
-                            {post.title}
-                          </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                            {post.date}
-                          </p>
-                        </div>
-                      </div>
+                      <Icon className="h-3 w-3" stroke={1.5} />
+                      {label}
                     </Link>
                   ))}
                 </div>
-              </motion.div>
-
-              {/* GitHub Sponsors */}
-              <div className="bg-stone-100 dark:bg-neutral-900 rounded-2xl shadow-2xl dark:shadow-neutral-800/50 p-6">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  Support My Work
-                </h3>
-                <div className="overflow-hidden rounded-lg">
-                  <iframe
-                    src="https://github.com/sponsors/vaibhavkothari33/button"
-                    title="Sponsor vaibhavkothari33"
-                    height="40"
-                    width="100%"
-                    style={{ border: 0 }}
-                  />
-                </div>
               </div>
-            </motion.div>
+            </GridPanel>
+
+            <GridPanel
+              label="Writing"
+              id="002"
+              title="Latest posts"
+              className="border-b border-neutral-800 sm:border-b-0 lg:border-b"
+            >
+              <div className="space-y-1">
+                {recentBlogPosts.map((post) => (
+                  <Link
+                    key={post.url}
+                    href={post.url}
+                    className="group flex items-center gap-2 rounded-md px-1 py-1.5 transition-colors hover:bg-neutral-900/40"
+                  >
+                    <BookOpen
+                      className="h-3.5 w-3.5 shrink-0 text-red-500"
+                      strokeWidth={1.75}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <h4 className="truncate text-xs font-medium text-white">
+                        {post.title}
+                      </h4>
+                      <p className="font-mono text-[10px] text-neutral-500">
+                        {post.date}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+
+                <Link
+                  href="/blogs"
+                  className="inline-flex items-center gap-1 pt-0.5 text-[10px] font-medium text-neutral-400 transition-colors hover:text-white"
+                >
+                  All posts
+                  <ArrowUpRight className="h-3 w-3" />
+                </Link>
+              </div>
+            </GridPanel>
+
+            <GridPanel
+              label="Support"
+              id="003"
+              title="Sponsor my work"
+              className="sm:col-span-2 lg:col-span-1"
+            >
+              <p className="mb-2 text-xs leading-relaxed text-neutral-400">
+                Support open source and future projects.
+              </p>
+              <div className="overflow-hidden rounded-lg border border-neutral-800 bg-neutral-950/60">
+                <iframe
+                  src="https://github.com/sponsors/vaibhavkothari33/button"
+                  title="Sponsor vaibhavkothari33"
+                  height="40"
+                  width="100%"
+                  style={{ border: 0 }}
+                />
+              </div>
+            </GridPanel>
           </div>
-        </motion.div>
+        </div>
       </div>
+
       <Toaster />
     </section>
   );
