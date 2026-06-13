@@ -33,7 +33,12 @@ export default function ProjectSection({
       aria-labelledby="projects-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 md:mb-12">
+        <div
+          className={cn(
+            !showTag && !description ? "mb-5 md:mb-6" : "mb-8 md:mb-10",
+            showTag && description && "mb-10 md:mb-12",
+          )}
+        >
           {showTag && (
             <p className="mb-4 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
               <span aria-hidden>✕</span> PROJECTS

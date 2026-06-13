@@ -9,9 +9,9 @@ import { allProjects } from "@/data/projects";
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
-      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-10 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 pt-16 sm:px-10 md:pt-20">
         <motion.div
-          className="mb-10"
+          className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -26,7 +26,7 @@ export default function ProjectsPage() {
         </motion.div>
 
         <motion.p
-          className="mb-16 max-w-2xl text-neutral-400"
+          className="max-w-2xl text-neutral-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
@@ -42,7 +42,7 @@ export default function ProjectsPage() {
         description=""
         showTag={false}
         showViewAllButton={false}
-        className="py-0 pb-20 pt-0"
+        className="pb-20 pt-4"
       />
     </div>
   );
