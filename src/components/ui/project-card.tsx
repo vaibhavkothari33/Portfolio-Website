@@ -5,14 +5,14 @@ import type { Project } from "@/data/projects";
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="flex h-full w-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-3.5 md:p-4">
-      <div className="flex h-44 w-full items-center justify-center overflow-hidden rounded-lg border border-neutral-800/80 bg-neutral-950/60 md:h-52">
+      <div className="flex h-36 w-full items-center justify-center overflow-hidden rounded-lg border border-neutral-800/80 bg-neutral-950/60 md:h-40">
         <Image
           src={project.image}
           alt={project.title}
           width={640}
           height={400}
           className="h-full w-full object-contain p-2"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
 
@@ -24,7 +24,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="text-[11px] tabular-nums text-neutral-600">{project.id}</span>
         </div>
 
-        <h3 className="mb-2 text-base font-semibold leading-snug text-white md:text-lg">
+        <h3 className="mb-2 text-sm font-semibold leading-snug text-white md:text-base">
           {project.title}
         </h3>
 

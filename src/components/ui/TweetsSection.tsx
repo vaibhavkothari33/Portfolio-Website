@@ -30,8 +30,9 @@ const TWEET_URLS = [
   "https://x.com/VaibhavKotharii/status/2040847487720955934",
   "https://x.com/VaibhavKotharii/status/1993783785440301222",
   "https://x.com/VaibhavKotharii/status/1992941383297167649",
-  "https://x.com/VaibhavKotharii/status/1992303748035776755",
   "https://twitter.com/VaibhavKotharii/status/1924217560813216110",
+  "https://x.com/VaibhavKotharii/status/1992303748035776755",
+  // "https://x.com/VaibhavKotharii/status/2055558214608134562",
   "https://twitter.com/VaibhavKotharii/status/1912213578112782357",
 ] as const;
 

@@ -48,7 +48,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.simpleicons.org',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'pbs.twimg.com',
+        pathname: '/**',
+      },
     ],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'], // Include MDX extensions

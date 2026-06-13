@@ -1,22 +1,55 @@
+"use client";
+
+import {
+  Toast,
+  ToastClose,
+  ToastDescription,
+  ToastTitle,
+  ToastViewport,
+} from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { Toast, ToastClose, ToastDescription, ToastViewport } from "@/components/ui/toast";
+import { cn } from "@/lib/utils";
+import { IconAlertTriangle, IconCircleCheck } from "@tabler/icons-react";
 
 export function Toaster() {
   const { toasts } = useToast();
+
   return (
     <>
-      {toasts.map(({ id, description, ...props }) => (
-        <Toast 
-          key={id}
-          {...props}
-          className="border border-black dark:border-white
-            rounded-2xl w-[320px]"
-        >
-          <ToastDescription className="text-black dark:text-white">{description}</ToastDescription>
-          <ToastClose className="text-black dark:text-white" />
-        </Toast>
-      ))}
-      <ToastViewport className="sm:bottom-10 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]" />
+      {toasts.map(({ id, title, description, variant, ...props }) => {
+        const isDestructive = variant === "destructive";
+
+        return (
+          <Toast key={id} variant={variant} {...props}>
+            <div
+              className={cn(
+                "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border",
+                isDestructive
+                  ? "border-red-500/30 bg-red-500/10 text-red-500"
+                  : "border-emerald-500/30 bg-emerald-500/10 text-emerald-500",
+              )}
+            >
+              {isDestructive ? (
+                <IconAlertTriangle className="h-4 w-4" stroke={1.75} />
+              ) : (
+                <IconCircleCheck className="h-4 w-4" stroke={1.75} />
+              )}
+            </div>
+
+            <div className="min-w-0 flex-1 pl-1">
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && (
+                <ToastDescription className={cn(!title && "mt-0 text-sm text-neutral-300")}>
+                  {description}
+                </ToastDescription>
+              )}
+            </div>
+
+            <ToastClose />
+          </Toast>
+        );
+      })}
+      <ToastViewport />
     </>
   );
 }

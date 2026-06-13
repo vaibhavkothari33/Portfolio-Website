@@ -32,7 +32,7 @@ export default function ProjectSection({
       )}
       aria-labelledby="projects-heading"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="mb-10 md:mb-12">
           {showTag && (
             <p className="mb-4 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
@@ -52,7 +52,7 @@ export default function ProjectSection({
           )}
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

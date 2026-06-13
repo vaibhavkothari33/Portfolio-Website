@@ -12,20 +12,19 @@ export type Project = {
 export const allProjects: Project[] = [
   {
     id: "001",
-    label: "AI · EDTECH",
-    title: "Learn Loop",
-    image: "/learnloop.png",
-    technologies: ["Next.js", "Solidity", "Open Router", "Appwrite", "ERC-721"],
+    label: "MOBILE · AI",
+    title: "FiteX",
+    image: "/projects/Fitex.png",
+    technologies: ["React Native", "Expo", "Google Fit", "Firebase", "Gen AI"],
     description:
-      "Paste a YouTube video, get a personalized learning path, a real coding challenge, and AI that grades your GitHub repo checkpoint by checkpoint.",
-    github: "https://github.com/vaibhavkothari33/LearnLoop",
-    preview: "https://hackacinno.vercel.app/dashboard",
+      "A modern fitness app that helps users stay active and motivated with AI-powered workouts and real-time health tracking.",
+    github: "https://github.com/vaibhavkothari33/FiteX",
   },
   {
     id: "002",
     label: "SECURITY",
     title: "Secure Wipe",
-    image: "/SIH.png",
+    image: "/projects/SIH.png",
     technologies: ["Next.js", "Rust", "Electron.js", "SurePass"],
     description:
       "Secure data erasure across the globe — a web application that lets users securely wipe data from their devices.",
@@ -36,7 +35,7 @@ export const allProjects: Project[] = [
     id: "003",
     label: "WEB3 · GAME",
     title: "Green Whistle",
-    image: "/Green.png",
+    image: "/projects/Green.png",
     technologies: ["Monad", "Next.js", "Phaser.js", "Grid Engine", "Groq"],
     description:
       "A vibrant pixelated universe for farming, trading, and adventure — grow crops, catch fish, and trade with friends on-chain.",
@@ -47,7 +46,7 @@ export const allProjects: Project[] = [
     id: "004",
     label: "AI · BLOCKCHAIN",
     title: "Mentora",
-    image: "https://i.ibb.co/8gYkjCKM/Screenshot-2025-04-21-153918.png",
+    image: "/projects/mentora.png",
     technologies: ["Edu Chain", "React", "Agent Zero", "FastAPI", "Gemini"],
     description:
       "Blockchain-based learning with verifiable credentials — students access courses and earn NFT certificates that prove their achievements.",
@@ -56,9 +55,31 @@ export const allProjects: Project[] = [
   },
   {
     id: "005",
+    label: "AI · AGENTIC",
+    title: "Codex",
+    image: "https://pbs.twimg.com/media/G6tXKSFbIAAAIJ4?format=png&name=large",
+    technologies: ["React", "Next.js", "Gemini", "GitHub API"],
+    description:
+      "An intelligent AI-powered code review system that analyzes GitHub repositories using vector embeddings and AI models.",
+    github: "https://github.com/vaibhavkothari33/Codex-Agent",
+    preview: "https://codex-nu-wine.vercel.app/",
+  },
+  { 
+    id: "006",
+    label: "AI · EDTECH",
+    title: "AI Code Reviewer",
+    image: "/projects/aicode.png",
+    technologies: ["React", "Next.js", "Gemini", "GitHub API"],
+    description:
+      "An intelligent AI-powered code review system that analyzes GitHub repositories using vector embeddings and AI models.",
+    github: "https://github.com/vaibhavkothari33/AI-CodeReviewer",
+    preview: "",
+  },
+  {
+    id: "007",
     label: "WEB3 · STREAMING",
     title: "BlockBinge",
-    image: "/Block.png",
+    image: "/projects/Block.png",
     technologies: ["React", "Ethers.js", "Solidity", "Reactive Smart Contract"],
     description:
       "A decentralized streaming platform with pay-as-you-watch — only pay for the minutes you actually watch.",
@@ -66,20 +87,43 @@ export const allProjects: Project[] = [
     preview: "https://blockbinge.vercel.app/",
   },
   {
-    id: "006",
-    label: "MOBILE · AI",
-    title: "FiteX",
-    image: "/Fitex.png",
-    technologies: ["React Native", "Expo", "Google Fit", "Firebase", "Gen AI"],
+    id: "008",
+    label: "AI · EDTECH",
+    title: "Learn Loop",
+    image: "/projects/learnloop.png",
+    technologies: ["Next.js", "Solidity", "Open Router", "Appwrite", "ERC-721"],
     description:
-      "A modern fitness app that helps users stay active and motivated with AI-powered workouts and real-time health tracking.",
-    github: "https://github.com/vaibhavkothari33/FiteX",
+      "Paste a YouTube video, get a personalized learning path, a real coding challenge, and AI that grades your GitHub repo checkpoint by checkpoint.",
+    github: "https://github.com/vaibhavkothari33/LearnLoop",
+    preview: "https://hackacinno.vercel.app/dashboard",
   },
   {
-    id: "007",
+    id: "009",
+    label: "RSPV",
+    title: "GitConnect",
+    image: "/projects/gitcon.png",
+    technologies: ["React", "Next.js", "Supabase", "Azure ", "Gen AI"],
+    description:
+      " RSVP registration for the Git & GitHub Workshop organized by FOSS United at Bennett University.",
+    github: "https://github.com/vaibhavkothari33/Foss-GitCon",
+    preview: "https://foss-git-con.vercel.app/",
+  },
+  {
+    id: "010",
+    label: "Contract",
+    title: "Trident Loans",
+    image: "/projects/trident.png",
+    technologies: ["React", "Python", "FastAPI"],
+    description:
+      "A web application for managing loan applications and approvals.",
+    github: "https://github.com/vaibhavkothari33/Trident-Loans",
+    preview: "https://tridentloans.vercel.app/",
+  },
+  {
+    id: "011",
     label: "EDTECH",
     title: "PathShala",
-    image: "/Pathshala.png",
+    image: "/projects/Pathshala.png",
     technologies: ["React", "Appwrite", "OAuth2", "Gen AI"],
     description:
       "An educational platform connecting students with coaching institutes through a seamless discovery and enrollment experience.",
@@ -87,7 +131,7 @@ export const allProjects: Project[] = [
     preview: "https://pathshala-rho.vercel.app/",
   },
   {
-    id: "008",
+    id: "012",
     label: "ACCESSIBILITY",
     title: "Sanjeevan",
     image: "https://i.ibb.co/7Jbhsgp/Screenshot-2024-12-25-020904.png",
@@ -98,20 +142,20 @@ export const allProjects: Project[] = [
     preview: "https://vaibhavkothari33.github.io/Hackfest/index.html",
   },
   {
-    id: "009",
+    id: "013",
     label: "DEV TOOLS",
     title: "CodeSketch",
     image:
       "https://vaibhavkothari.gallerycdn.vsassets.io/extensions/vaibhavkothari/codesketch/1.4.0/1741893344455/Microsoft.VisualStudio.Services.Icons.Default",
     technologies: ["JavaScript", "Python", "D3.js"],
     description:
-      "A VS Code extension that generates interactive diagrams from JavaScript, Python, and C++ code using D3.js.",
+      "A VS Code extension with over 1000+ downloads, CodeSketch empowers developers by generating interactive diagrams from JavaScript, Python, and C++ code using D3.js. Trusted by the community, it streamlines code visualization for improved understanding and productivity.",
     github: "https://github.com/vaibhavkothari33/Code-to-Diagram",
     preview:
-      "https://marketplace.visualstudio.com/items?itemName=VaibhavKothari.codesketch",
+      "https://marketplace.visualstudio.com/publishers/VaibhavKothari",
   },
   {
-    id: "010",
+    id: "014",
     label: "AI · MUSIC",
     title: "SentiTune",
     image: "https://i.ibb.co/gv493p3/Screenshot-2025-01-03-012106.png",
@@ -122,7 +166,7 @@ export const allProjects: Project[] = [
     preview: "https://vaibhavkothari33.github.io/SentiTune/",
   },
   {
-    id: "011",
+    id: "015",
     label: "FINTECH · OSS",
     title: "PaiseKaHisab",
     image: "https://i.ibb.co/28VpFr0/Screenshot-2025-01-03-011815.png",
@@ -133,7 +177,7 @@ export const allProjects: Project[] = [
     preview: "https://vaibhavkothari33.github.io/PaiseKaHisab/",
   },
   {
-    id: "012",
+    id: "016",
     label: "REALTIME",
     title: "Chatoipa",
     image:
@@ -144,7 +188,7 @@ export const allProjects: Project[] = [
     github: "https://github.com/vaibhavkothari33/Chatoipa",
   },
   {
-    id: "013",
+    id: "017",
     label: "FUN · WEB",
     title: "LeetCode Roaster",
     image:

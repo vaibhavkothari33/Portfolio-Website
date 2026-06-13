@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import {
   IconBrandGithub,
@@ -153,6 +152,7 @@ export const ContactForm = () => {
           title: "Message Sent",
           description: "Your message has been sent successfully!",
           variant: "default",
+          duration: 5000,
         });
         reset();
       } else {
@@ -160,6 +160,7 @@ export const ContactForm = () => {
           title: "Send Failed",
           description: "Failed to send message. Please try again.",
           variant: "destructive",
+          duration: 5000,
         });
       }
     } catch (error) {
@@ -168,6 +169,7 @@ export const ContactForm = () => {
         title: "Error",
         description: "Failed to send message. Please try again later.",
         variant: "destructive",
+        duration: 5000,
       });
     }
   };
@@ -422,8 +424,6 @@ export const ContactForm = () => {
           </div>
         </div>
       </div>
-
-      <Toaster />
     </section>
   );
 };

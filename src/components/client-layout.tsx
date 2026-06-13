@@ -5,7 +5,8 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provi
 import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from '@vercel/analytics/next';
-import { ToastProvider, ToastViewport } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
+import { ToastProvider } from "@/components/ui/toast";
 
 // =============================================================================
 // LIGHT MODE TOGGLE - Set to true to enable light mode / theme switching
@@ -39,7 +40,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
         <NoiseOverlay />
         <Analytics />
         <FloatingDock items={dockItems} />
-        <ToastViewport />
+        <Toaster />
       </ToastProvider>
     </ThemeProvider>
   );
