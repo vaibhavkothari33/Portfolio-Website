@@ -33,7 +33,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </p>
 
         <div className="mb-3 flex flex-wrap gap-1.5">
-          {project.technologies.slice(0, 5).map((tech) => (
+          {project.technologies.slice(0, 7).map((tech) => (
             <span
               key={tech}
               className="inline-flex rounded-full border border-dashed border-neutral-700 bg-neutral-900/80 px-2 py-0.5 text-[10px] font-medium text-neutral-400 md:text-[11px]"
@@ -41,9 +41,9 @@ export function ProjectCard({ project }: { project: Project }) {
               {tech}
             </span>
           ))}
-          {project.technologies.length > 5 && (
+          {project.technologies.length > 7 && (
             <span className="inline-flex px-1 py-0.5 text-[10px] text-neutral-500">
-              +{project.technologies.length - 5}
+              +{project.technologies.length - 7}
             </span>
           )}
         </div>

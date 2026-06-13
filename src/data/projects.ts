@@ -201,4 +201,4 @@ export const allProjects: Project[] = [
   },
 ];
 
-export const featuredProjects = allProjects.slice(0, 4);
+export const featuredProjects = allProjects.slice(0, 6);
