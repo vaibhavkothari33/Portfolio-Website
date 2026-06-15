@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactLenis } from "lenis/react";
+import { ReactLenis, useLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import "lenis/dist/lenis.css";
 
@@ -8,10 +9,46 @@ type SmoothScrollProviderProps = {
   children: React.ReactNode;
 };
 
+function scrollToTop(lenis?: ReturnType<typeof useLenis>) {
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: true });
+    return;
+  }
+
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+function ScrollToTopWithLenis() {
+  const pathname = usePathname();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    scrollToTop(lenis);
+  }, [pathname, lenis]);
+
+  return null;
+}
+
+function ScrollToTopPlain() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
+
+  return null;
+}
+
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updatePreference = () => setReduceMotion(mediaQuery.matches);
 
@@ -22,7 +59,12 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   }, []);
 
   if (reduceMotion) {
-    return <>{children}</>;
+    return (
+      <>
+        <ScrollToTopPlain />
+        {children}
+      </>
+    );
   }
 
   return (
@@ -38,6 +80,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         touchMultiplier: 1.5,
       }}
     >
+      <ScrollToTopWithLenis />
       {children}
     </ReactLenis>
   );
