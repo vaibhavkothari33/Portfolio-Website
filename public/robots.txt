@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.vaibhavkothari.me/sitemap.xml
+Sitemap: https://vaibhavkothari.me/sitemap.xml

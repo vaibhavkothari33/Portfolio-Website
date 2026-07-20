@@ -1,8 +1,13 @@
+import { SITE_URL } from "./metadata.config";
+
 export const siteMetadata = {
   title: "Vaibhav Kothari - Full Stack Developer & Software Engineer",
   description: "Experienced Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. Explore my portfolio featuring innovative projects, technical blog posts, open-source contributions, and professional experience in web development, software engineering, and UI/UX design.",
-  siteUrl: "https://vaibhavkothari.vercel.app",
-  alternateUrls: ["https://vaibhavkothari.me"],
+  // Was https://vaibhavkothari.vercel.app, which meant sitemap.xml published
+  // Vercel URLs while the site is served from the CNAME domain — two hosts
+  // competing for the same content.
+  siteUrl: SITE_URL,
+  alternateUrls: ["https://vaibhavkothari.vercel.app"],
   siteName: "Vaibhav Kothari",
   twitterHandle: "@VaibhavKotharii",
   author: {
@@ -41,7 +46,7 @@ export const siteMetadata = {
     "Technical Leadership"
   ],
   creator: "Vaibhav Kothari",
-  ogImage: "https://vaibhavkothari.vercel.app/og-image.png",
+  ogImage: `${SITE_URL}/og-image.png`,
   themeColor: "#000000",
   category: "Technology",
   locale: "en-US",

@@ -19,10 +19,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Secondary pages
+  // Secondary pages. `/contact` was listed here but no such route exists —
+  // contact is a section on the home page, so the sitemap was advertising a
+  // 404 to crawlers.
   const secondaryRoutes = [
     '/blogs',
-    '/contact',
+    '/experience',
   ].map((route) => ({
     url: `${siteMetadata.siteUrl}${route}`,
     lastModified: new Date().toISOString(),

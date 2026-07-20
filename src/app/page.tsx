@@ -12,6 +12,13 @@ import GitHubActivitySection from "@/components/ui/github-activity-section";
 import { GitHubActivityLoading } from "@/components/ui/github-activity-loading";
 import ExperienceSection from "@/components/ui/experience-section";
 // import ClientReviews from "@/components/ui/ClientReviews";
+import type { Metadata } from "next";
+
+// Set explicitly rather than on the root layout: metadata is inherited, so a
+// canonical there would make every route claim to be the home page.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

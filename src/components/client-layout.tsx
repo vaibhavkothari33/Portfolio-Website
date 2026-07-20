@@ -8,6 +8,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "@/components/ui/toaster";
 import { ToastProvider } from "@/components/ui/toast";
 import { DEFAULT_THEME, THEME_IDS } from "@/lib/themes";
+import { ViewTransitionsProvider } from "@/components/providers/view-transitions-provider";
+import { CommandPalette } from "@/components/ui/command-palette";
 
 const dockItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -32,13 +34,16 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       <ToastProvider>
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
-        <NoiseOverlay />
-        <Analytics />
-        <FloatingDock items={dockItems} />
-        <Toaster />
+        <ViewTransitionsProvider>
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
+          <NoiseOverlay />
+          <Analytics />
+          <FloatingDock items={dockItems} />
+          <CommandPalette />
+          <Toaster />
+        </ViewTransitionsProvider>
       </ToastProvider>
     </ThemeProvider>
   );

@@ -189,26 +189,56 @@
   }
 }
 
-::view-transition-group(root) {
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/*
+  Default for any view transition — route navigation. Short and quiet: a
+  page change should feel instant, so this only takes the edge off rather
+  than announcing itself.
+*/
+::view-transition-old(root) {
+  animation: vt-fade-out 160ms ease both;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 240ms ease both;
+}
+
+/*
+  Theme swap — overrides the fade above (class selector wins on
+  specificity). The outgoing theme holds still while the new one wipes in
+  from the top-right, so the two palettes never blend into mud.
+*/
+:root.theme-swapping::view-transition-group(root) {
   animation-duration: var(--theme-sweep);
   animation-timing-function: var(--theme-sweep-ease);
 }
 
-/* The outgoing theme holds still; only the incoming one is animated,
-   which avoids the default cross-fade blending the two palettes. */
-::view-transition-old(root) {
+:root.theme-swapping::view-transition-old(root) {
   animation: none;
   z-index: 0;
 }
 
-::view-transition-new(root) {
+:root.theme-swapping::view-transition-new(root) {
   animation: theme-sweep-in var(--theme-sweep) var(--theme-sweep-ease) forwards;
   z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-new(root),
+  :root.theme-swapping::view-transition-old(root),
+  :root.theme-swapping::view-transition-new(root) {
     animation: none;
   }
 }

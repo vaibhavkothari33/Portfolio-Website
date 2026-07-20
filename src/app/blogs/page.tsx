@@ -7,6 +7,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blog | Vaibhav Kothari",
   description: "Technical writing on web development, backend, React, and hackathons.",
+  alternates: { canonical: "/blogs" },
+  openGraph: {
+    title: "Blog | Vaibhav Kothari",
+    description: "Technical writing on web development, backend, React, and hackathons.",
+    url: "/blogs",
+  },
 };
 
 export default function BlogsPage() {

@@ -350,7 +350,16 @@ export default function GridHeroSection({
                   I build scalable web platforms, cross-platform mobile applications,
                   and agentic AI systems that solve real-world problems. From idea to
                   deployment, I enjoy turning ambitious concepts into products people
-                  actually use.
+                  actually use. Currently building{" "}
+                  <a
+                    href="https://sythra.ai"
+                    target="_blank"
+                    rel="noopener"
+                    className="font-medium text-brand underline-offset-4 transition-colors hover:text-brand-hover hover:underline"
+                  >
+                    Sythra
+                  </a>
+                  .
                 </p>
               </div>
               <HeroActions />

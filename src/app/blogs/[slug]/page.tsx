@@ -19,9 +19,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const blog = getBlogBySlug(slug);
   if (!blog) return { title: "Post not found" };
 
+  const description = blog.content.slice(0, 160).replace(/\s+/g, " ").trim();
+
   return {
     title: `${blog.title} | Vaibhav Kothari`,
-    description: blog.content.slice(0, 160).replace(/\s+/g, " ").trim(),
+    description,
+    alternates: { canonical: `/blogs/${slug}` },
+    openGraph: {
+      type: "article",
+      title: blog.title,
+      description,
+      url: `/blogs/${slug}`,
+    },
   };
 }
 
@@ -32,12 +41,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!blog) notFound();
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
-      <div className="mx-auto max-w-3xl border-x border-neutral-800">
-        <div className="border-b border-neutral-800 px-4 py-6 md:px-8 md:py-8">
+    <div className="min-h-screen bg-canvas text-strong">
+      <div className="mx-auto max-w-3xl border-x border-line">
+        <div className="border-b border-line px-4 py-6 md:px-8 md:py-8">
           <Link
             href="/blogs"
-            className="mb-6 inline-flex items-center text-sm text-neutral-400 transition-colors hover:text-white"
+            className="mb-6 inline-flex items-center text-sm text-dim transition-colors hover:text-strong"
           >
             <IconArrowLeft className="mr-2 h-4 w-4" stroke={1.75} />
             All posts
@@ -51,7 +60,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {blog.title}
           </h1>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[11px] text-neutral-500 md:text-xs">
+          <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[11px] text-subtle md:text-xs">
             <span>{blog.date}</span>
             <span aria-hidden>·</span>
             <span>{getReadingTime(blog.content)}</span>
@@ -62,7 +71,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {blog.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex rounded-full border border-dashed border-neutral-700 bg-neutral-900/80 px-2 py-0.5 text-[10px] font-medium text-neutral-400"
+                  className="inline-flex rounded-full border border-dashed border-line-strong bg-surface/80 px-2 py-0.5 text-[10px] font-medium text-dim"
                 >
                   {tag}
                 </span>
@@ -72,7 +81,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {blog.image && (
-          <div className="relative mx-4 mt-6 h-52 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950/60 md:mx-8 md:h-72">
+          <div className="relative mx-4 mt-6 h-52 overflow-hidden rounded-xl border border-line bg-well md:mx-8 md:h-72">
             <Image
               src={blog.image}
               alt={blog.title}

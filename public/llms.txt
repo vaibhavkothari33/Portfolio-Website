@@ -1,27 +1,33 @@
-# Vaibhav Kothari | Full Stack Developer
+# Vaibhav Kothari | Full Stack Engineer
 
-> Personal portfolio of Vaibhav Kothari, a Computer Science student at Bennett University. Features web development projects, AI/ML explorations, open source contributions, and tech thoughts.
+> Personal portfolio of Vaibhav Kothari — Full Stack Engineer, Mobile Developer, and AI Builder. Currently building Sythra (https://sythra.ai). Also takes on freelance engineering work, including for Aistad (https://aistad.com). Features web platforms, cross-platform mobile applications, agentic AI systems, open source contributions, and technical writing.
 
 ## About
-- [Home](https://vaibhavkothari.me): Landing page introducing Vaibhav, his background in full-stack development and active hackathon participation.
+- [Home](https://vaibhavkothari.me): Landing page introducing Vaibhav, his work across full-stack web, mobile, and agentic AI systems.
+- [Experience](https://vaibhavkothari.me/experience): Roles, professional experience, and engineering work.
+
+## Current work
+- [Sythra](https://sythra.ai): Currently building Sythra.
+- [Aistad](https://aistad.com): Freelance engineering work.
 
 ## Projects
-- [Mentora](https://vaibhavkothari.me#mentora): Blockchain-based learning platform integrating NFTs with course credentials.
-- [BlockBinge](https://vaibhavkothari.me#blockbinge): Decentralized streaming platform with pay-as-you-watch model.
-- [FiteX](https://vaibhavkothari.me#fitex): Fitness app designed for active, healthy lifestyles.
-- *More showcased on homepage and project section.*
+- [Projects](https://vaibhavkothari.me/projects): Full project index.
+- [Mentora](https://vaibhavkothari.me/projects): Blockchain-based learning platform integrating NFTs with course credentials.
+- [BlockBinge](https://vaibhavkothari.me/projects): Decentralized streaming platform with pay-as-you-watch model.
+- [FiteX](https://vaibhavkothari.me/projects): Fitness app designed for active, healthy lifestyles.
 
 ## Open Source & Experience
 - [GitHub](https://github.com/vaibhavkothari33): Portfolio of open source and hackathon projects.
-- [LinkedIn](https://in.linkedin.com/in/vaibhavkothari33): Professional profile, club leadership, and technical experience.
+- [LinkedIn](https://www.linkedin.com/in/vaibhavkothari33/): Professional profile, club leadership, and technical experience.
 
 ## Blog & Updates
-- [Blog](https://vaibhavkothari.me/blogs): Personal tech blogs, learning updates, and technology insights.
-- [X Feed](https://x.com/vaibhavkotharii): Short-form updates and thoughts on tech and programming.
+- [Blog](https://vaibhavkothari.me/blogs): Technical writing on web development, backend, React, and hackathons.
+- [X Feed](https://x.com/VaibhavKotharii): Short-form updates and thoughts on tech and programming.
 
 ## Contact
-- [Contact Form](https://vaibhavkothari.me#contact): Inquiries for collaboration and networking.
+- [Contact Form](https://vaibhavkothari.me/#contact): Inquiries for collaboration and networking.
+- [Book a call](https://cal.com/vaibhavkothari33/30min): 30-minute intro call.
 
 ## Optional
 - [Resume](https://vaibhavkothari.me/resume.pdf): Downloadable CV with skills, education, and achievements.
-
+- [All links](https://vaibhavkothari.me/links): Consolidated link index.
