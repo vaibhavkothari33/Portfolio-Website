@@ -2,35 +2,33 @@
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconColorPicker } from "@tabler/icons-react";
+import { IconHome, IconBrandLinkedin, IconBrandGithub, IconBrandTwitter } from "@tabler/icons-react";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "@/components/ui/toaster";
 import { ToastProvider } from "@/components/ui/toast";
-
-// =============================================================================
-// LIGHT MODE TOGGLE - Set to true to enable light mode / theme switching
-// =============================================================================
-const ENABLE_LIGHT_MODE = false;
-// =============================================================================
+import { DEFAULT_THEME, THEME_IDS } from "@/lib/themes";
 
 const dockItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
   { title: "Linked-in", icon: <IconBrandLinkedin />, href: "https://www.linkedin.com/in/vaibhavkothari33/" },
   { title: "GitHub", icon: <IconBrandGithub />, href: "https://github.com/vaibhavkothari33/" },
   { title: "X", icon: <IconBrandTwitter />, href: "https://x.com/VaibhavKotharii" },
-  // Theme switcher - only shown when ENABLE_LIGHT_MODE is true
-  ...(ENABLE_LIGHT_MODE ? [{ title: "Theme", icon: <IconColorPicker />, href: "#", id: "theme-switcher" }] : []),
+  // The dock swaps in a sun/moon icon and the target theme's name for this
+  // entry, so the icon and title here are only placeholders.
+  { title: "Theme", icon: null, href: "#", id: "theme-switcher" },
 ];
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
-      // When ENABLE_LIGHT_MODE is false, forcedTheme locks the site to dark mode
-      forcedTheme={ENABLE_LIGHT_MODE ? undefined : "dark"}
-      enableSystem={ENABLE_LIGHT_MODE}
+      defaultTheme={DEFAULT_THEME}
+      themes={THEME_IDS}
+      // Every theme is a deliberate design; none of them should be
+      // overridden by the OS preference.
+      enableSystem={false}
+      // The picker runs its own scoped cross-fade instead.
       disableTransitionOnChange
     >
       <ToastProvider>

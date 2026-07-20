@@ -8,7 +8,7 @@ import { allProjects } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-canvas text-strong">
       <div className="mx-auto max-w-6xl px-6 pt-16 sm:px-10 md:pt-20">
         <motion.div
           className="mb-8"
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
         >
           <Link
             href="/"
-            className="inline-flex items-center text-neutral-400 transition-colors hover:text-white"
+            className="inline-flex items-center text-dim transition-colors hover:text-strong"
           >
             <IconArrowLeft className="mr-2 h-5 w-5" />
             Back to Home
@@ -26,7 +26,7 @@ export default function ProjectsPage() {
         </motion.div>
 
         <motion.p
-          className="max-w-2xl text-neutral-400"
+          className="max-w-2xl text-dim"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}

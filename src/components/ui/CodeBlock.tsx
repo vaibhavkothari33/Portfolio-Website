@@ -35,23 +35,25 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
   return (
     <div className="relative group my-6">
-      <button 
+      {/* neutral-700 has no dedicated surface token; using a stronger
+          `elevated` opacity to keep the hover step visible. */}
+      <button
         onClick={handleCopy}
-        className="absolute top-3 right-3 z-20 p-2 
-        bg-neutral-800/50 hover:bg-neutral-700/50 
-        rounded-md transition-all opacity-0 
+        className="absolute top-3 right-3 z-20 p-2
+        bg-elevated/50 hover:bg-elevated/80
+        rounded-md transition-all opacity-0
         group-hover:opacity-100"
         aria-label={copied ? 'Copied!' : 'Copy code'}
       >
         {copied ? (
           <CheckCheck className="w-4 h-4 text-green-400" />
         ) : (
-          <Copy className="w-4 h-4 text-neutral-400 hover:text-white" />
+          <Copy className="w-4 h-4 text-dim hover:text-strong" />
         )}
       </button>
       <div className="relative">
         <div className="absolute top-0 right-0 px-3 py-2 rounded-tr-md 
-          text-xs text-neutral-400 bg-neutral-800/50">
+          text-xs text-dim bg-elevated/50">
           {language}
         </div>
         <SyntaxHighlighter 
@@ -63,13 +65,13 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
             margin: 0,
             borderRadius: '0.5rem',
             padding: '2.5rem 1rem 1rem',
-            backgroundColor: '#1a1b26',
+            backgroundColor: 'hsl(var(--code-bg))',
             fontSize: '0.875rem',
           }}
           lineNumberStyle={{
             minWidth: '2.5em',
             paddingRight: '1em',
-            color: '#4b5563',
+            color: 'hsl(var(--text-faint))',
             textAlign: 'right',
           }}
         >

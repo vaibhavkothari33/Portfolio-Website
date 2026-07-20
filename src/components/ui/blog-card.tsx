@@ -8,9 +8,9 @@ export function BlogCard({ blog, index }: { blog: Blog; index: number }) {
   return (
     <Link
       href={`/blogs/${blog.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/40 transition-colors hover:border-neutral-700"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface/40 transition-colors hover:border-line-strong"
     >
-      <div className="relative h-40 w-full overflow-hidden border-b border-neutral-800 bg-neutral-950/60 md:h-44">
+      <div className="relative h-40 w-full overflow-hidden border-b border-line bg-well md:h-44">
         {blog.image ? (
           <Image
             src={blog.image}
@@ -20,28 +20,28 @@ export function BlogCard({ blog, index }: { blog: Blog; index: number }) {
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         ) : (
-          <div className="flex h-full items-center justify-center font-mono text-xs text-neutral-600">
+          <div className="flex h-full items-center justify-center font-mono text-xs text-faint">
             No cover image
           </div>
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-canvas/80 via-transparent to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col p-4 md:p-5">
         <div className="mb-2 flex items-start justify-between gap-3">
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-brand">
             Article
           </p>
-          <span className="text-[11px] tabular-nums text-neutral-600">
+          <span className="text-[11px] tabular-nums text-faint">
             {String(index + 1).padStart(3, "0")}
           </span>
         </div>
 
-        <h2 className="mb-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-neutral-200 md:text-lg">
+        <h2 className="mb-2 text-base font-semibold leading-snug text-strong transition-colors group-hover:text-body md:text-lg">
           {blog.title}
         </h2>
 
-        <div className="mb-3 flex items-center gap-2 font-mono text-[10px] text-neutral-500 md:text-[11px]">
+        <div className="mb-3 flex items-center gap-2 font-mono text-[10px] text-subtle md:text-[11px]">
           <span>{blog.date}</span>
           <span aria-hidden>·</span>
           <span>{getReadingTime(blog.content)}</span>
@@ -52,7 +52,7 @@ export function BlogCard({ blog, index }: { blog: Blog; index: number }) {
             {blog.tags.slice(0, 4).map((tag) => (
               <span
                 key={tag}
-                className="inline-flex rounded-full border border-dashed border-neutral-700 bg-neutral-900/80 px-2 py-0.5 text-[10px] font-medium text-neutral-400"
+                className="inline-flex rounded-full border border-dashed border-line-strong bg-surface/80 px-2 py-0.5 text-[10px] font-medium text-dim"
               >
                 {tag}
               </span>
@@ -60,7 +60,7 @@ export function BlogCard({ blog, index }: { blog: Blog; index: number }) {
           </div>
         )}
 
-        <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-neutral-400 transition-colors group-hover:text-white">
+        <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-dim transition-colors group-hover:text-strong">
           Read post
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>

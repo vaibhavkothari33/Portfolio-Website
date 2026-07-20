@@ -30,6 +30,37 @@ export default {
         noise: "url('/noise.png')",
       },
       colors: {
+        // --- semantic theme roles (see src/app/globals.css) -------------
+        canvas: {
+          DEFAULT: 'hsl(var(--canvas))',
+          2: 'hsl(var(--canvas-2))'
+        },
+        surface: 'hsl(var(--surface))',
+        well: 'hsl(var(--well))',
+        elevated: 'hsl(var(--elevated))',
+        line: {
+          DEFAULT: 'hsl(var(--line))',
+          strong: 'hsl(var(--line-strong))',
+          hover: 'hsl(var(--line-hover))'
+        },
+        strong: 'hsl(var(--text-strong))',
+        body: 'hsl(var(--text-body))',
+        // named `dim` because shadcn already owns the `muted` colour name
+        dim: 'hsl(var(--text-muted))',
+        subtle: 'hsl(var(--text-subtle))',
+        faint: 'hsl(var(--text-faint))',
+        brand: {
+          DEFAULT: 'hsl(var(--brand))',
+          fg: 'hsl(var(--brand-fg))',
+          hover: 'hsl(var(--brand-hover))',
+          soft: 'hsl(var(--brand-soft))'
+        },
+        invert: {
+          DEFAULT: 'hsl(var(--invert))',
+          fg: 'hsl(var(--invert-fg))',
+          hover: 'hsl(var(--invert-hover))'
+        },
+        // --- shadcn aliases ---------------------------------------------
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -71,6 +102,11 @@ export default {
           '5': 'hsl(var(--chart-5))'
         }
       },
+      boxShadow: {
+        glow: '0 0 16px hsl(var(--brand) / 0.85)',
+        'glow-sm': '0 0 10px hsl(var(--brand) / 0.6)',
+        'glow-lg': '0 0 32px hsl(var(--brand) / 0.45)'
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -79,7 +115,11 @@ export default {
     }
   },
   plugins: [
-    addVariablesForColors,
+    // NOTE: the old `addVariablesForColors` plugin was removed. It re-emitted
+    // every colour as a `:root` custom property, which for token colours like
+    // `canvas` produced the self-referential `--canvas: hsl(var(--canvas))`
+    // and fought the theme blocks on the same element. Nothing consumed those
+    // variables.
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {
@@ -94,15 +134,3 @@ export default {
     },
   ],
 } satisfies Config;
-
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-}

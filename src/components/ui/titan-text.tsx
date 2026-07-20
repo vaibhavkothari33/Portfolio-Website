@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export const TitanText = () => {
   return (
     <div
-      className="relative hidden w-full overflow-hidden border-t border-neutral-800 bg-neutral-950 md:block"
+      className="relative hidden w-full overflow-hidden border-t border-line bg-canvas md:block"
       style={{
         height: "clamp(50px, 45vh, 400px)",
       }}
@@ -14,7 +14,7 @@ export const TitanText = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute w-full select-none whitespace-nowrap text-center text-[28vw] font-bold tracking-tighter text-white lg:text-[25vw] xl:text-[22vw] 2xl:text-[20vw]"
+        className="absolute w-full select-none whitespace-nowrap text-center text-[28vw] font-bold tracking-tighter text-strong lg:text-[25vw] xl:text-[22vw] 2xl:text-[20vw]"
         style={{
           top: "5%",
           transform: "translateY(-50%)",
@@ -23,7 +23,7 @@ export const TitanText = () => {
         VAIBHAV
       </motion.div>
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-950 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-canvas via-canvas to-transparent"
         style={{
           maskImage: "linear-gradient(to bottom, transparent, black)",
           WebkitMaskImage: "linear-gradient(to bottom, transparent, black)",

@@ -5,6 +5,9 @@ import { ArrowUpRight, Heart, MessageCircle, Repeat2 } from "lucide-react";
 import { IconBrandX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
+
+import { getScheme } from "@/lib/themes";
 
 type TwitterWidgets = {
   widgets: {
@@ -44,33 +47,33 @@ function getTweetIdFromUrl(url: string) {
 function SkeletonTweet({ index }: { index: number }) {
   return (
     <div
-      className="relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/40"
+      className="relative overflow-hidden rounded-xl border border-line bg-surface/40"
       style={{ animationDelay: `${index * 120}ms` }}
     >
-      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-neutral-700/20 to-transparent" />
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-line-strong/20 to-transparent" />
 
       <div className="space-y-4 p-5">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 animate-pulse rounded-full bg-neutral-800" />
+          <div className="h-10 w-10 animate-pulse rounded-full bg-elevated" />
           <div className="flex-1 space-y-2">
-            <div className="h-3.5 w-28 animate-pulse rounded bg-neutral-800" />
-            <div className="h-3 w-20 animate-pulse rounded bg-neutral-800/80" />
+            <div className="h-3.5 w-28 animate-pulse rounded bg-elevated" />
+            <div className="h-3 w-20 animate-pulse rounded bg-elevated/80" />
           </div>
         </div>
 
         <div className="space-y-2.5">
-          <div className="h-3.5 w-full animate-pulse rounded bg-neutral-800" />
-          <div className="h-3.5 w-4/5 animate-pulse rounded bg-neutral-800" />
-          <div className="h-3.5 w-3/5 animate-pulse rounded bg-neutral-800/80" />
+          <div className="h-3.5 w-full animate-pulse rounded bg-elevated" />
+          <div className="h-3.5 w-4/5 animate-pulse rounded bg-elevated" />
+          <div className="h-3.5 w-3/5 animate-pulse rounded bg-elevated/80" />
         </div>
 
-        <div className="h-40 animate-pulse rounded-lg border border-neutral-800 bg-neutral-950/60" />
+        <div className="h-40 animate-pulse rounded-lg border border-line bg-well" />
 
-        <div className="flex justify-between border-t border-neutral-800 pt-4">
+        <div className="flex justify-between border-t border-line pt-4">
           {[MessageCircle, Repeat2, Heart].map((Icon, i) => (
             <div key={i} className="flex items-center gap-2">
-              <Icon className="h-4 w-4 text-neutral-700" strokeWidth={1.5} />
-              <div className="h-3 w-6 animate-pulse rounded bg-neutral-800" />
+              <Icon className="h-4 w-4 text-line-strong" strokeWidth={1.5} />
+              <div className="h-3 w-6 animate-pulse rounded bg-elevated" />
             </div>
           ))}
         </div>
@@ -82,6 +85,11 @@ function SkeletonTweet({ index }: { index: number }) {
 export default function TweetsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [widgetsLoaded, setWidgetsLoaded] = useState(false);
+  const { theme } = useTheme();
+
+  // The embed iframe can't read our CSS variables, so it only gets the
+  // coarse light/dark reading of the active theme.
+  const scheme = getScheme(theme);
 
   useEffect(() => {
     const renderTweets = async () => {
@@ -98,11 +106,15 @@ export default function TweetsSection() {
           const wrapper = wrappers[index];
           if (!wrapper) return Promise.resolve();
 
+          // Drop the previously embedded iframe, otherwise a theme change
+          // would append a second copy of every tweet.
+          wrapper.querySelectorAll(".twitter-tweet, iframe").forEach((el) => el.remove());
+
           return window.twttr.widgets.createTweetEmbed(
             getTweetIdFromUrl(url),
             wrapper,
             {
-              theme: "dark",
+              theme: scheme,
               align: "center",
               width: 360,
             },
@@ -129,17 +141,17 @@ export default function TweetsSection() {
     };
 
     loadTwitterWidgets();
-  }, []);
+  }, [scheme]);
 
   return (
     <section
       id="posts"
-      className="w-full border-t border-neutral-800 bg-neutral-950 px-4 py-16 text-white md:px-10 md:py-20"
+      className="w-full border-t border-line bg-canvas px-4 py-16 text-strong md:px-10 md:py-20"
       aria-labelledby="posts-heading"
     >
       <div className="mx-auto max-w-6xl" ref={containerRef}>
         <div className="mb-10 md:mb-12">
-          <p className="mb-4 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
+          <p className="mb-4 inline-flex items-center gap-2 border border-brand/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-brand">
             <span aria-hidden>✕</span> Posts
           </p>
 
@@ -151,14 +163,14 @@ export default function TweetsSection() {
               >
                 Latest from X
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-400 md:text-[15px]">
+              <p className="mt-3 text-sm leading-relaxed text-dim md:text-[15px]">
                 Thoughts on shipping products, engineering, and building in public
                 — pulled straight from my feed.
               </p>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-dashed border-neutral-700 bg-neutral-900/60 px-4 py-2 text-xs font-medium text-neutral-400">
-              <IconBrandX className="h-3.5 w-3.5 text-red-500" stroke={1.75} />
+            <div className="inline-flex items-center gap-2 rounded-full border border-dashed border-line-strong bg-surface/60 px-4 py-2 text-xs font-medium text-dim">
+              <IconBrandX className="h-3.5 w-3.5 text-brand" stroke={1.75} />
               {TWEET_URLS.length} recent posts
             </div>
           </div>
@@ -169,7 +181,7 @@ export default function TweetsSection() {
             <div
               key={index}
               className={cn(
-                "tweet-wrapper min-h-[420px] w-full rounded-xl border border-neutral-800 bg-neutral-900/30 p-2 transition-colors hover:border-neutral-700",
+                "tweet-wrapper min-h-[420px] w-full rounded-xl border border-line bg-surface/30 p-2 transition-colors hover:border-line-strong",
                 widgetsLoaded && "animate-[fade-in-up_0.6s_ease-out_forwards] opacity-0",
               )}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -184,7 +196,7 @@ export default function TweetsSection() {
             href="https://x.com/VaibhavKotharii"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-5 py-2 text-sm font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-900"
+            className="inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-surface"
           >
             Follow @VaibhavKotharii
             <ArrowUpRight className="h-4 w-4" />
@@ -198,8 +210,8 @@ export default function TweetsSection() {
           max-width: 100% !important;
           width: 100% !important;
           border-radius: 0.75rem !important;
-          border: 1px solid rgb(38 38 38 / 0.8) !important;
-          background: rgb(23 23 23 / 0.5) !important;
+          border: 1px solid hsl(var(--line) / 0.8) !important;
+          background: hsl(var(--surface) / 0.5) !important;
           transition:
             transform 0.25s ease,
             border-color 0.25s ease !important;
@@ -207,7 +219,7 @@ export default function TweetsSection() {
 
         .tweet-wrapper:hover .twitter-tweet {
           transform: translateY(-2px) !important;
-          border-color: rgb(64 64 64) !important;
+          border-color: hsl(var(--line-strong)) !important;
         }
 
         .tweet-wrapper .twitter-tweet iframe {

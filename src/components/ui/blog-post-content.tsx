@@ -41,17 +41,17 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
   return (
     <>
       {toc.length > 0 && (
-        <div className="mb-8 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 md:p-5">
+        <div className="mb-8 rounded-xl border border-line bg-surface/40 p-4 md:p-5">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-brand">
               On this page
             </p>
-            <span className="font-mono text-[10px] text-neutral-600">TOC</span>
+            <span className="font-mono text-[10px] text-faint">TOC</span>
           </div>
-          <ul className="space-y-1.5 text-sm text-neutral-400">
+          <ul className="space-y-1.5 text-sm text-dim">
             {toc.map((item) => (
               <li key={item.id} className={item.level === 3 ? "pl-3" : ""}>
-                <a href={`#${item.id}`} className="transition-colors hover:text-white">
+                <a href={`#${item.id}`} className="transition-colors hover:text-strong">
                   {item.text}
                 </a>
               </li>
@@ -60,7 +60,7 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
         </div>
       )}
 
-      <div className="prose prose-invert max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:tracking-tight prose-h2:text-2xl prose-h3:text-xl prose-p:text-neutral-300 prose-p:leading-relaxed prose-a:text-red-400 prose-a:no-underline hover:prose-a:text-red-300 prose-strong:text-white prose-li:text-neutral-300 prose-code:rounded prose-code:bg-neutral-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-red-300 prose-pre:bg-transparent prose-pre:p-0">
+      <div className="prose max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:tracking-tight prose-h2:text-2xl prose-h3:text-xl prose-p:text-body prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline hover:prose-a:text-brand-hover prose-strong:text-strong prose-li:text-body prose-code:rounded prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:text-brand prose-pre:bg-transparent prose-pre:p-0">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
@@ -68,7 +68,7 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
               const textStr = getNodeText(children);
               const id = slugifyHeading(textStr);
               return (
-                <h2 id={id} className="group border-t border-neutral-800 pt-8">
+                <h2 id={id} className="group border-t border-line pt-8">
                   <a href={`#${id}`} className="no-underline">
                     {children}
                   </a>
@@ -105,7 +105,7 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
             img({ src, alt, title }) {
               if (!src || typeof src !== "string") return null;
               return (
-                <figure className="my-6 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950/60">
+                <figure className="my-6 overflow-hidden rounded-xl border border-line bg-well">
                   <Image
                     src={src}
                     alt={alt || ""}
@@ -114,7 +114,7 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
                     className="h-auto w-full object-cover"
                   />
                   {title && (
-                    <figcaption className="border-t border-neutral-800 px-4 py-2 text-center text-xs text-neutral-500">
+                    <figcaption className="border-t border-line px-4 py-2 text-center text-xs text-subtle">
                       {title}
                     </figcaption>
                   )}
@@ -123,14 +123,14 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
             },
             table({ children }) {
               return (
-                <div className="my-6 overflow-x-auto rounded-xl border border-neutral-800">
+                <div className="my-6 overflow-x-auto rounded-xl border border-line">
                   <table className="w-full text-sm">{children}</table>
                 </div>
               );
             },
             blockquote({ children }) {
               return (
-                <blockquote className="rounded-r-lg border-l-2 border-red-500/50 bg-neutral-900/40 py-1 pl-4 italic text-neutral-300">
+                <blockquote className="rounded-r-lg border-l-2 border-brand/50 bg-surface/40 py-1 pl-4 italic text-body">
                   {children}
                 </blockquote>
               );
@@ -141,7 +141,7 @@ export function BlogPostContent({ content }: BlogPostContentProps) {
         </ReactMarkdown>
       </div>
 
-      <p className="mt-10 border-t border-neutral-800 pt-5 font-mono text-[11px] text-neutral-600">
+      <p className="mt-10 border-t border-line pt-5 font-mono text-[11px] text-faint">
         {getReadingTime(safeContent)} · Thanks for reading
       </p>
     </>

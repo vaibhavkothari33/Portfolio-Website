@@ -36,10 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="canonical" href="https://www.yourwebsite.com" />
-        <meta name="theme-color" content="#ffffff" />
+        {/* Kept in sync with the active theme's canvas by the theme picker. */}
+        <meta name="theme-color" content="#0a0a0a" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/pikachu.jpeg" type="image/jpeg" />
         <script

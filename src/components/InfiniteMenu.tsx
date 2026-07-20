@@ -882,8 +882,16 @@ class InfiniteGridMenu {
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    const isDark = document.documentElement.classList.contains('dark');
-    const cellFill = isDark ? '#171717' : '#f5f5f4';
+    // This fill goes into a canvas-generated WebGL texture, which can't use a
+    // CSS variable directly — so read the active theme's surface token and
+    // resolve it here. Checking for a `dark` class would have been wrong: the
+    // ocean and cyber themes are dark but carry their own class.
+    // Note the atlas is built once, so a theme switch needs a remount to
+    // repaint these cells.
+    const surface = getComputedStyle(document.documentElement)
+      .getPropertyValue('--surface')
+      .trim();
+    const cellFill = surface ? `hsl(${surface})` : '#171717';
 
     Promise.all(
       this.items.map(
@@ -1185,8 +1193,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({
           select-none
           absolute
           font-black
-          text-black
-          dark:text-white
+          text-strong
           [font-size:clamp(2rem,6vw,3.5rem)]
           left-[1.2em]
           top-1/2
@@ -1211,8 +1218,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({
           absolute
           max-w-[14ch]
           text-[clamp(1rem,2.5vw,1.25rem)]
-          text-neutral-700
-          dark:text-neutral-300
+          text-body
           top-1/2
           right-[1%]
           transition-all

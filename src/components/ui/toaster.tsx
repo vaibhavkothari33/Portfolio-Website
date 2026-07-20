@@ -39,7 +39,7 @@ export function Toaster() {
             <div className="min-w-0 flex-1 pl-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
-                <ToastDescription className={cn(!title && "mt-0 text-sm text-neutral-300")}>
+                <ToastDescription className={cn(!title && "mt-0 text-sm text-body")}>
                   {description}
                 </ToastDescription>
               )}

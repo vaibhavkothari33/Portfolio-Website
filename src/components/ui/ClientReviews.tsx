@@ -27,9 +27,11 @@ const reviews = [
 
 export default function ClientReviews() {
   return (
-    <section className="bg-neutral-800 py-16 px-4 md:px-10">
-      <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-        Client <span className="text-teal-400">Testimonials</span>
+    <section className="bg-canvas-2 py-16 px-4 md:px-10">
+      {/* teal was this section's local accent; the site now has a single themed
+          accent role, so it folds into `brand` */}
+      <h2 className="text-3xl md:text-4xl font-bold text-strong text-center mb-12">
+        Client <span className="text-brand">Testimonials</span>
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
@@ -40,7 +42,9 @@ export default function ClientReviews() {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
             viewport={{ once: true }}
-            className="bg-neutral-700 rounded-2xl p-6 shadow-xl hover:shadow-teal-500/20 transition-all duration-300 border border-neutral-600"
+            /* neutral-700 has no token of its own; `elevated` is the closest
+               surface role for a raised card, and the border keeps it readable */
+            className="bg-surface rounded-2xl p-6 shadow-xl hover:shadow-glow-sm transition-all duration-300 border border-line"
           >
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
@@ -50,8 +54,8 @@ export default function ClientReviews() {
             {/* <p className="text-neutral-300 text-sm leading-relaxed mb-6">
               "{review.feedback}"
             </p> */}
-            <div className="text-white font-semibold">{review.name}</div>
-            <div className="text-sm text-neutral-400">{review.company}</div>
+            <div className="text-strong font-semibold">{review.name}</div>
+            <div className="text-sm text-dim">{review.company}</div>
           </motion.div>
         ))}
       </div>

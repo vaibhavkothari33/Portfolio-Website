@@ -69,8 +69,8 @@ export const InfiniteMovingCards = ({
     <div className={cn("relative", className)}>
       {showHeader && (
         <>
-          <h2 className="mb-2 py-10 text-center text-4xl text-white">Achievements</h2>
-          <p className="mb-10 px-10 text-center text-md text-neutral-400 sm:px-44">
+          <h2 className="mb-2 py-10 text-center text-4xl text-strong">Achievements</h2>
+          <p className="mb-10 px-10 text-center text-md text-dim sm:px-44">
             From participating in hackathons to winning treasure hunts, I thrive on
             exploring, learning, and pushing boundaries.
           </p>
@@ -79,8 +79,8 @@ export const InfiniteMovingCards = ({
 
       {showEdgeFade && (
         <>
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-12 bg-gradient-to-r from-neutral-950 via-neutral-950/80 to-transparent md:w-24" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-12 bg-gradient-to-l from-neutral-950 via-neutral-950/80 to-transparent md:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-30 w-12 bg-gradient-to-r from-canvas via-canvas/80 to-transparent md:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-12 bg-gradient-to-l from-canvas via-canvas/80 to-transparent md:w-24" />
         </>
       )}
 
@@ -101,8 +101,8 @@ export const InfiniteMovingCards = ({
               key={`${item.title}-${idx}`}
               className="w-[260px] max-w-full flex-shrink-0 md:w-[300px]"
             >
-              <article className="flex h-full flex-col overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/40 transition-colors hover:border-neutral-700">
-                <div className="relative h-40 w-full overflow-hidden border-b border-neutral-800 bg-neutral-950/60 md:h-44">
+              <article className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface/40 transition-colors hover:border-line-strong">
+                <div className="relative h-40 w-full overflow-hidden border-b border-line bg-well md:h-44">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -111,25 +111,25 @@ export const InfiniteMovingCards = ({
                     className="object-cover transition-transform duration-500 hover:scale-[1.03]"
                     sizes="300px"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/10 to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-canvas/70 via-canvas/10 to-transparent" />
                 </div>
 
                 <div className="flex flex-1 flex-col p-4">
                   <div className="mb-2 flex items-start justify-between gap-3">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-brand">
                       Highlight
                     </p>
-                    <span className="text-[11px] tabular-nums text-neutral-600">
+                    <span className="text-[11px] tabular-nums text-faint">
                       {String(idx + 1).padStart(3, "0")}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-semibold leading-snug text-white md:text-lg">
+                  <h3 className="text-base font-semibold leading-snug text-strong md:text-lg">
                     {item.title}
                   </h3>
 
                   {item.description && (
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-neutral-400 md:text-sm">
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-dim md:text-sm">
                       {item.description}
                     </p>
                   )}

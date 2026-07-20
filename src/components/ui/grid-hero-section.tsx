@@ -88,10 +88,10 @@ const countryFlags = [
 
 function HeroTrustBar() {
   return (
-    <div className="flex flex-col gap-4 border-t border-neutral-800 px-6 py-5 md:flex-row md:items-center md:justify-between md:px-10 md:py-6">
+    <div className="flex flex-col gap-4 border-t border-line px-6 py-5 md:flex-row md:items-center md:justify-between md:px-10 md:py-6">
       <div className="flex items-start gap-3 md:items-center">
-        <IconWorld className="mt-0.5 h-5 w-5 shrink-0 text-red-500 md:mt-0" stroke={1.5} />
-        <p className="text-sm leading-relaxed text-neutral-400 md:text-[15px]">
+        <IconWorld className="mt-0.5 h-5 w-5 shrink-0 text-brand md:mt-0" stroke={1.5} />
+        <p className="text-sm leading-relaxed text-dim md:text-[15px]">
           Trusted by clients and collaborators across the globe. Open to new
           challenges. Building the future, one product at a time.
         </p>
@@ -101,7 +101,7 @@ function HeroTrustBar() {
         {countryFlags.map(({ code, label }) => (
           <div
             key={code}
-            className="relative h-7 w-7 overflow-hidden rounded-full border border-neutral-700 bg-neutral-900"
+            className="relative h-7 w-7 overflow-hidden rounded-full border border-line-strong bg-surface"
             title={label}
           >
             <Image
@@ -126,7 +126,7 @@ function HeroActions() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-900/80 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-800"
+          className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface/80 px-5 py-2.5 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-elevated"
         >
           <IconFileText className="h-4 w-4" stroke={1.5} />
           Resume / CV
@@ -135,7 +135,7 @@ function HeroActions() {
           href="https://cal.com/vaibhavkothari33/30min"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-neutral-200 px-5 py-2.5 text-sm font-medium text-neutral-900 transition-colors hover:bg-white"
+          className="inline-flex items-center gap-2 rounded-lg bg-invert px-5 py-2.5 text-sm font-medium text-invert-fg transition-colors hover:bg-invert-hover"
         >
           <IconSend className="h-4 w-4" stroke={1.5} />
           Get in touch
@@ -150,7 +150,7 @@ function HeroActions() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="text-neutral-500 transition-colors hover:text-white"
+            className="text-subtle transition-colors hover:text-strong"
           >
             <Icon className="h-5 w-5" stroke={1.5} />
           </Link>
@@ -165,7 +165,7 @@ function EyeDiagram({ dotX, dotY }: { dotX: MotionValue<number>; dotY: MotionVal
     <div className="relative flex h-full min-h-[280px] w-full items-center justify-center md:min-h-[360px]">
       <svg
         viewBox="0 0 320 320"
-        className="h-[min(70vw,320px)] w-[min(70vw,320px)] text-neutral-700"
+        className="h-[min(70vw,320px)] w-[min(70vw,320px)] text-line-strong"
         aria-hidden
       >
         <circle cx="160" cy="160" r="150" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -195,7 +195,7 @@ function EyeDiagram({ dotX, dotY }: { dotX: MotionValue<number>; dotY: MotionVal
       </svg>
 
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 shadow-[0_0_16px_rgba(239,68,68,0.9)]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand shadow-glow"
         style={{ x: dotX, y: dotY }}
         animate={{ opacity: [1, 1, 0.15, 1, 1] }}
         transition={{
@@ -224,16 +224,16 @@ function GridCell({
       )}
     >
       <div className="mb-6 flex items-start justify-between gap-4">
-        <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-red-500">
+        <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-brand">
           {block.label}
         </p>
-        <span className="text-xs tabular-nums text-neutral-600">{block.id}</span>
+        <span className="text-xs tabular-nums text-faint">{block.id}</span>
       </div>
       <div>
-        <h3 className="mb-3 text-xl font-semibold leading-snug text-white md:text-2xl">
+        <h3 className="mb-3 text-xl font-semibold leading-snug text-strong md:text-2xl">
           {block.title}
         </h3>
-        <p className="max-w-md text-sm leading-relaxed text-neutral-400 md:text-[15px]">
+        <p className="max-w-md text-sm leading-relaxed text-dim md:text-[15px]">
           {block.description}
         </p>
       </div>
@@ -266,7 +266,7 @@ function MonaBadge() {
       <span
         role="tooltip"
         className={cn(
-          "pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-md border border-neutral-700 bg-neutral-900 px-2.5 py-1.5 font-mono text-xs text-neutral-200 shadow-lg transition-all duration-200",
+          "pointer-events-none absolute bottom-full right-0 mb-2 whitespace-nowrap rounded-md border border-line-strong bg-surface px-2.5 py-1.5 font-mono text-xs text-body shadow-lg transition-all duration-200",
           showGreeting
             ? "translate-y-0 scale-100 opacity-100"
             : "translate-y-1 scale-95 opacity-0",
@@ -274,7 +274,7 @@ function MonaBadge() {
       >
         hi i&apos;m Mona
         <span
-          className="absolute -bottom-1 right-3 h-2 w-2 rotate-45 border-b border-r border-neutral-700 bg-neutral-900"
+          className="absolute -bottom-1 right-3 h-2 w-2 rotate-45 border-b border-r border-line-strong bg-surface"
           aria-hidden
         />
       </span>
@@ -325,16 +325,16 @@ export default function GridHeroSection({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative w-full border-b border-neutral-800 bg-neutral-950 text-white",
+        "relative w-full border-b border-line bg-canvas text-strong",
         className,
       )}
       aria-label="Hero"
     >
-      <div className="mx-auto max-w-7xl border-x border-neutral-800">
-        <div className="border-b border-neutral-800 px-6 py-14 md:px-10 md:py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl border-x border-line">
+        <div className="border-b border-line px-6 py-14 md:px-10 md:py-20 lg:py-24">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="flex-1 text-center md:text-left">
-              <p className="mb-6 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
+              <p className="mb-6 inline-flex items-center gap-2 border border-brand/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-brand">
                 <span aria-hidden>✕</span> THE INTRO
               </p>
               <h1 className="text-2xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
@@ -342,8 +342,8 @@ export default function GridHeroSection({
                 <br />
                 Shipping products that matter
               </h1>
-              <div className="mt-6 max-w-2xl space-y-3 text-sm leading-relaxed text-neutral-400 md:text-base">
-                <p className="font-medium text-neutral-300">
+              <div className="mt-6 max-w-2xl space-y-3 text-sm leading-relaxed text-dim md:text-base">
+                <p className="font-medium text-body">
                   Full Stack Engineer, Mobile Developer, and AI Builder.
                 </p>
                 <p>
@@ -358,20 +358,20 @@ export default function GridHeroSection({
 
             <div className="flex shrink-0 flex-col items-center gap-3">
               <div className="relative">
-                <div className="absolute -inset-1 rounded-full border border-neutral-700" aria-hidden />
+                <div className="absolute -inset-1 rounded-full border border-line-strong" aria-hidden />
                 <Image
                   src={avatarSrc}
                   alt="Vaibhav Kothari"
                   width={176}
                   height={176}
                   unoptimized
-                  className="relative h-36 w-36 rounded-full border border-neutral-800 object-cover md:h-56 md:w-56"
+                  className="relative h-36 w-36 rounded-full border border-line object-cover md:h-56 md:w-56"
                   priority
                 />
                 <MonaBadge />
               </div>
-              <p className="inline-flex items-center gap-1.5 text-sm text-neutral-400">
-                <IconMapPin className="h-4 w-4 text-red-500" stroke={1.75} />
+              <p className="inline-flex items-center gap-1.5 text-sm text-dim">
+                <IconMapPin className="h-4 w-4 text-brand" stroke={1.75} />
                 Earth
               </p>
             </div>
@@ -381,20 +381,20 @@ export default function GridHeroSection({
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2">
           <div
             ref={eyeCenterRef}
-            className="border-b border-neutral-800 md:row-span-2 md:border-b-0 md:border-r"
+            className="border-b border-line md:row-span-2 md:border-b-0 md:border-r"
           >
             <EyeDiagram dotX={dotX} dotY={dotY} />
           </div>
 
           <GridCell
             block={gridBlocks[0]}
-            className="border-b border-neutral-800 md:border-r"
+            className="border-b border-line md:border-r"
           />
-          <GridCell block={gridBlocks[1]} className="border-b border-neutral-800" />
+          <GridCell block={gridBlocks[1]} className="border-b border-line" />
 
           <GridCell
             block={gridBlocks[2]}
-            className="border-b border-neutral-800 md:border-r md:border-b-0"
+            className="border-b border-line md:border-r md:border-b-0"
           />
           <GridCell block={gridBlocks[3]} />
         </div>

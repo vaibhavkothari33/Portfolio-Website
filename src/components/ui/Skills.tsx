@@ -31,17 +31,17 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="bg-stone-50 px-4 py-20 font-sans dark:bg-neutral-950 md:px-10"
+      className="bg-canvas px-4 py-20 font-sans md:px-10"
       aria-labelledby="skills-heading"
     >
       <div className="mx-auto max-w-5xl">
         <h2
           id="skills-heading"
-          className="mb-3 text-3xl font-bold tracking-tight text-black dark:text-white md:text-4xl"
+          className="mb-3 text-3xl font-bold tracking-tight text-strong md:text-4xl"
         >
           Skills
         </h2>
-        <p className="mb-10 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-base">
+        <p className="mb-10 max-w-2xl text-sm leading-relaxed text-dim md:text-base">
           Technologies are tools, not identities.
         </p>
 
@@ -55,7 +55,7 @@ const Skills = () => {
               transition={{ duration: 0.35, delay: index * 0.03, ease: "easeOut" }}
               whileHover={{ y: -4, scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex cursor-default items-center gap-2.5 rounded-full border border-dashed border-neutral-300 bg-neutral-100/80 px-4 py-2.5 text-sm font-medium text-neutral-900 transition-colors duration-300 hover:border-red-500/50 hover:bg-neutral-200/90 hover:shadow-[0_8px_24px_rgba(239,68,68,0.12)] dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-white dark:hover:border-red-500/40 dark:hover:bg-neutral-800 dark:hover:shadow-[0_8px_24px_rgba(239,68,68,0.15)]"
+              className="group inline-flex cursor-default items-center gap-2.5 rounded-full border border-dashed border-line-strong bg-surface/80 px-4 py-2.5 text-sm font-medium text-strong transition-colors duration-300 hover:border-brand/40 hover:bg-elevated hover:shadow-[0_8px_24px_hsl(var(--brand)/0.15)]"
             >
               <motion.span
                 className="inline-flex shrink-0"
@@ -72,7 +72,7 @@ const Skills = () => {
                   aria-hidden
                 />
               </motion.span>
-              <span className="transition-colors duration-300 group-hover:text-white">
+              <span className="transition-colors duration-300 group-hover:text-strong">
                 {skill.name}
               </span>
             </motion.div>

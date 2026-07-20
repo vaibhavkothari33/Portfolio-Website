@@ -51,7 +51,7 @@ export const FollowerPointerCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       ref={ref}
-      className={cn("relative overflow-hidden rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4 transition-all hover:shadow-xl", className)}
+      className={cn("relative overflow-hidden rounded-lg shadow-lg border border-line-strong bg-gradient-to-br from-surface to-elevated p-4 transition-all hover:shadow-xl", className)}
       style={{
         cursor: "none",
       }}
@@ -129,7 +129,7 @@ export const FollowPointer = ({
           scale: 0.5,
           opacity: 0,
         }}
-        className="px-2 py-1 bg-neutral-200 text-black dark:text-white whitespace-nowrap min-w-max text-xs rounded-full shadow-md"
+        className="px-2 py-1 bg-invert text-invert-fg whitespace-nowrap min-w-max text-xs rounded-full shadow-md"
       >
         {title || `Hovering...`} {/* Fallback text */}
       </motion.div>

@@ -2,63 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+/*
+  =========================================================================
+  THEME TOKENS
+  =========================================================================
+  Every theme defines the same token contract. Components must never
+  reference a raw palette colour (neutral-800, white, red-500, ...) —
+  they reference a role instead, and the active theme decides the colour.
+
+  Surfaces      canvas < canvas-2 < surface < elevated   (well = recessed)
+  Rules         line < line-strong < line-hover
+  Text          text-strong > text-body > text-muted > text-subtle > text-faint
+  Brand         brand / brand-fg / brand-hover / brand-soft
+  Invert        the high-contrast CTA pair, flips with the theme
+
+  Adding a theme = one block here + one entry in src/lib/themes.ts.
+  =========================================================================
+*/
 
 @layer base {
-  :root {
-    --background: 40 20% 96%;
-    --foreground: 240 10% 3.9%;
-    --card: 40 15% 97%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 40 15% 97%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
+  /* ------------------------------------------------------ MIDNIGHT (dark) */
+  /* Default, and also the :root fallback — so if an unknown theme class
+     ever lands on <html> (e.g. a stale value in localStorage), the page
+     still renders with a complete set of tokens instead of unstyled. */
+  :root,
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --canvas: 0 0% 3.9%;
+    --canvas-2: 0 0% 7%;
+    --surface: 0 0% 9%;
+    --well: 0 0% 5%;
+    --elevated: 0 0% 15%;
+
+    --line: 0 0% 15%;
+    --line-strong: 0 0% 25%;
+    --line-hover: 0 0% 45%;
+
+    --text-strong: 0 0% 100%;
+    --text-body: 0 0% 83%;
+    --text-muted: 0 0% 64%;
+    --text-subtle: 0 0% 45%;
+    --text-faint: 0 0% 32%;
+
+    --brand: 0 84% 60%;
+    --brand-fg: 0 0% 100%;
+    --brand-hover: 0 90% 71%;
+    --brand-soft: 0 70% 12%;
+
+    --invert: 0 0% 90%;
+    --invert-fg: 0 0% 9%;
+    --invert-hover: 0 0% 100%;
+
+    --noise-opacity: 0.035;
+    --code-bg: 0 0% 12%;
+    --scheme: dark;
+  }
+
+  /* -------------------------------------------------------- SUNSET PEACH */
+  /* Not an inversion of the dark theme — warm blush canvas, ink-brown
+     text, coral accent. The brand is deliberately darker than the swatch
+     suggests so it stays legible on 11px uppercase labels. */
+  .peach {
+    --canvas: 24 78% 96%;
+    --canvas-2: 22 82% 97.5%;
+    --surface: 26 90% 98%;
+    --well: 22 55% 92%;
+    --elevated: 20 50% 89%;
+
+    --line: 20 44% 87%;
+    --line-strong: 18 38% 74%;
+    --line-hover: 14 50% 55%;
+
+    --text-strong: 14 34% 15%;
+    --text-body: 14 24% 26%;
+    --text-muted: 15 18% 42%;
+    --text-subtle: 16 20% 54%;
+    --text-faint: 18 26% 68%;
+
+    --brand: 12 84% 44%;
+    --brand-fg: 0 0% 100%;
+    /* light themes darken on hover instead of brightening */
+    --brand-hover: 12 88% 34%;
+    --brand-soft: 18 90% 92%;
+
+    --invert: 14 34% 17%;
+    --invert-fg: 26 90% 97%;
+    --invert-hover: 14 34% 10%;
+
+    --noise-opacity: 0.05;
+    --code-bg: 22 55% 91%;
+    --scheme: light;
+  }
+}
+
+/*
+  shadcn compatibility layer. Declared once on :root — each alias resolves
+  through a role token, and since the theme class also lands on <html>,
+  these pick up the active theme's values on the same element.
+*/
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    --background: var(--canvas);
+    --foreground: var(--text-body);
+    --card: var(--surface);
+    --card-foreground: var(--text-body);
+    --popover: var(--surface);
+    --popover-foreground: var(--text-body);
+    --primary: var(--invert);
+    --primary-foreground: var(--invert-fg);
+    --secondary: var(--elevated);
+    --secondary-foreground: var(--text-strong);
+    --muted: var(--elevated);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--elevated);
+    --accent-foreground: var(--text-strong);
+    --destructive: var(--brand);
+    --destructive-foreground: var(--brand-fg);
+    --border: var(--line);
+    --input: var(--line-strong);
+    --ring: var(--brand);
   }
 }
 
@@ -66,8 +129,87 @@ body {
   * {
     @apply border-border;
   }
+  html {
+    color-scheme: var(--scheme);
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-canvas text-body;
+  }
+  ::selection {
+    background-color: hsl(var(--brand) / 0.28);
+    color: hsl(var(--text-strong));
+  }
+}
+
+/*
+  =========================================================================
+  THEME SWEEP
+  =========================================================================
+  The theme swap is animated with the View Transitions API rather than CSS
+  transitions on the elements themselves.
+
+  The earlier approach put a transition on every node in the page, so a
+  single swap animated background-color, colour, border, box-shadow, fill
+  and opacity across hundreds of elements at once — each frame forcing a
+  full-page repaint. That is what made switching lag.
+
+  A view transition instead snapshots the page into two images and
+  animates only those, on the compositor. The cost is fixed and tiny no
+  matter how complex the page, so this stays smooth as the site grows.
+
+  The new theme is revealed by a circle expanding from the top-right
+  corner, while the old one sits still underneath.
+  =========================================================================
+*/
+:root {
+  --theme-sweep: 900ms;
+  /* slow out, gentle settle — no abrupt start or stop */
+  --theme-sweep-ease: cubic-bezier(0.32, 0, 0.2, 1);
+}
+
+/*
+  While the sweep runs, the live DOM underneath has already switched theme.
+  Components carrying their own `transition-colors` would animate down there
+  and still be mid-flight when the sweep lifts, leaving a visible tail — so
+  transitions are switched off for the duration. Unlike the previous
+  approach this *removes* animation work rather than adding it.
+*/
+.theme-swapping * {
+  transition: none !important;
+}
+
+@keyframes theme-sweep-in {
+  from {
+    /* radius is relative to the viewport diagonal, so 0 -> 150% covers
+       every corner from the top-right origin */
+    clip-path: circle(0% at 100% 0%);
+  }
+  to {
+    clip-path: circle(150% at 100% 0%);
+  }
+}
+
+::view-transition-group(root) {
+  animation-duration: var(--theme-sweep);
+  animation-timing-function: var(--theme-sweep-ease);
+}
+
+/* The outgoing theme holds still; only the incoming one is animated,
+   which avoids the default cross-fade blending the two palettes. */
+::view-transition-old(root) {
+  animation: none;
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  animation: theme-sweep-in var(--theme-sweep) var(--theme-sweep-ease) forwards;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }
 

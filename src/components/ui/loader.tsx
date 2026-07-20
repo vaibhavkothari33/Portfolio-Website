@@ -16,8 +16,10 @@ const DEFAULT_MESSAGES = [
   "Almost there...",
 ];
 
+// the emerald steps are GitHub's own contribution scale and stay hardcoded;
+// only the level-0 "no contributions" cell is site chrome
 const GRID_LEVELS = [
-  "bg-neutral-800",
+  "bg-elevated",
   "bg-emerald-900/80",
   "bg-emerald-700/80",
   "bg-emerald-600/80",
@@ -37,7 +39,7 @@ function ContributionGridPreview() {
 
   return (
     <div
-      className="mt-8 grid grid-cols-12 gap-[3px] rounded-md border border-neutral-800 bg-neutral-950 p-3"
+      className="mt-8 grid grid-cols-12 gap-[3px] rounded-md border border-line bg-canvas p-3"
       aria-hidden
     >
       {cells.map(({ id, level, delay }) => (
@@ -74,7 +76,7 @@ export function Loader({ text }: LoaderProps) {
   const statusText = text ?? DEFAULT_MESSAGES[messageIndex];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-canvas">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.06)_0%,_transparent_70%)]" />
 
       <div className="relative flex w-full max-w-sm flex-col items-center px-6">
@@ -101,7 +103,7 @@ export function Loader({ text }: LoaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.25 }}
-                className="font-mono text-sm text-neutral-400"
+                className="font-mono text-sm text-dim"
               >
                 {statusText}
               </motion.p>

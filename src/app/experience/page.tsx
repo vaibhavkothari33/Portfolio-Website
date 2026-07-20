@@ -7,7 +7,7 @@ import ExperienceSection from "@/components/ui/experience-section";
 
 export default function ExperiencePage() {
   return (
-    <div className="min-h-screen bg-stone-50 text-black dark:bg-neutral-950 dark:text-white">
+    <div className="min-h-screen bg-canvas text-strong">
       <div className="mx-auto max-w-5xl px-6 py-16 sm:px-10 md:py-20">
         <motion.div
           className="mb-10"
@@ -17,7 +17,7 @@ export default function ExperiencePage() {
         >
           <Link
             href="/"
-            className="inline-flex items-center text-neutral-600 transition-colors hover:text-black dark:text-neutral-400 dark:hover:text-white"
+            className="inline-flex items-center text-dim transition-colors hover:text-strong"
           >
             <IconArrowLeft className="mr-2 h-5 w-5" />
             Back to Home
@@ -25,7 +25,7 @@ export default function ExperiencePage() {
         </motion.div>
 
         <motion.p
-          className="mb-16 max-w-2xl text-neutral-600 dark:text-neutral-400"
+          className="mb-16 max-w-2xl text-dim"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}

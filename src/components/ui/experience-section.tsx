@@ -15,7 +15,7 @@ function HighlightItem({ highlight }: { highlight: ExperienceHighlight }) {
     <li>
       {highlight.text}
       {highlight.subItems && highlight.subItems.length > 0 && (
-        <ul className="mt-1.5 list-[square] space-y-1 pl-5 marker:text-neutral-500 dark:marker:text-neutral-500">
+        <ul className="mt-1.5 list-[square] space-y-1 pl-5 marker:text-subtle">
           {highlight.subItems.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -27,10 +27,10 @@ function HighlightItem({ highlight }: { highlight: ExperienceHighlight }) {
 
 function ExperienceCard({ experience }: { experience: Experience }) {
   return (
-    <article className="border-b border-neutral-200/70 pb-10 last:border-b-0 last:pb-0 dark:border-neutral-800/80">
+    <article className="border-b border-line/80 pb-10 last:border-b-0 last:pb-0">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-line bg-surface">
             <Image
               src={experience.logo}
               alt={`${experience.company} logo`}
@@ -40,7 +40,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
             />
           </div>
           <div className="flex min-w-0 items-center gap-2">
-            <h3 className="truncate text-2xl font-semibold text-black dark:text-white">
+            <h3 className="truncate text-2xl font-semibold text-strong">
               {experience.company}
             </h3>
             {experience.website && (
@@ -49,26 +49,26 @@ function ExperienceCard({ experience }: { experience: Experience }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${experience.company} website`}
-                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-black dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
+                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-dim transition-colors hover:bg-elevated hover:text-strong"
               >
                 <Globe className="h-4 w-4" />
               </a>
             )}
           </div>
         </div>
-        <p className="shrink-0 text-base text-neutral-500 dark:text-neutral-400 sm:text-right">
+        <p className="shrink-0 text-base text-dim sm:text-right">
           {experience.dateRange}
         </p>
       </div>
 
       <div className="mt-2 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-        <p className="text-base font-medium text-black dark:text-white">{experience.role}</p>
-        <p className="text-base text-neutral-500 dark:text-neutral-400 sm:text-right">
+        <p className="text-base font-medium text-strong">{experience.role}</p>
+        <p className="text-base text-dim sm:text-right">
           {experience.location}
         </p>
       </div>
 
-      <ul className="mt-4 list-[square] space-y-2 pl-5 text-md leading-relaxed text-neutral-600 marker:text-neutral-500 dark:text-neutral-400 dark:marker:text-neutral-500">
+      <ul className="mt-4 list-[square] space-y-2 pl-5 text-md leading-relaxed text-dim marker:text-subtle">
         {experience.highlights.map((highlight, index) => (
           <HighlightItem
             key={typeof highlight === "string" ? highlight : `${highlight.text}-${index}`}
@@ -105,18 +105,18 @@ export default function ExperienceSection({
     <section
       id="experience"
       className={cn(
-        "w-full bg-stone-50 px-4 py-20 font-sans dark:bg-neutral-950 md:px-10",
+        "w-full bg-canvas px-4 py-20 font-sans md:px-10",
         className,
       )}
       aria-labelledby="experience-heading"
     >
       <div className="mx-auto max-w-3xl">
         {showFeaturedLabel && (
-          <p className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">Featured</p>
+          <p className="mb-2 text-sm text-dim">Featured</p>
         )}
         <h2
           id="experience-heading"
-          className="mb-12 text-3xl font-bold tracking-tight text-black dark:text-white md:text-4xl"
+          className="mb-12 text-3xl font-bold tracking-tight text-strong md:text-4xl"
         >
           {heading}
         </h2>
@@ -131,7 +131,7 @@ export default function ExperienceSection({
           <div className="mt-12 flex justify-center">
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-transparent px-6 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-900"
+              className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-transparent px-6 py-2.5 text-sm font-medium text-strong transition-colors hover:bg-surface"
             >
               Show all work experience
               <ArrowUpRight className="h-4 w-4" />

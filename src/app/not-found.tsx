@@ -122,7 +122,7 @@ export default function NotFound() {
   const constellation = mounted ? generateConstellationPoints() : { points: [], connections: [] };
 
   return (
-    <div className="min-h-screen flex-col items-center justify-center flex relative overflow-hidden bg-black text-white">
+    <div className="min-h-screen flex-col items-center justify-center flex relative overflow-hidden bg-canvas text-strong">
       {/* Interactive background glow */}
       {mounted && (
         <motion.div
@@ -153,7 +153,7 @@ export default function NotFound() {
               y1={`${connection.y1}%`}
               x2={`${connection.x2}%`}
               y2={`${connection.y2}%`}
-              stroke="white"
+              stroke="hsl(var(--text-strong))"
               strokeWidth="0.5"
               initial={{ opacity: 0 }}
               animate={{ opacity: connection.opacity }}
@@ -166,7 +166,7 @@ export default function NotFound() {
         {constellation.points.map((point) => (
           <motion.div
             key={point.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full bg-strong"
             style={{
               left: `${point.x}%`,
               top: `${point.y}%`,
@@ -187,9 +187,9 @@ export default function NotFound() {
       </div>
 
       {/* Animated glitch text in background */}
-      <div className="absolute text-white inset-0 -z-15 flex items-center justify-center overflow-hidden opacity-5">
+      <div className="absolute text-strong inset-0 -z-15 flex items-center justify-center overflow-hidden opacity-5">
         <motion.div
-          className="text-[30vw] font-black text-white leading-none"
+          className="text-[30vw] font-black text-strong leading-none"
           animate={{
             x: [0, 2, -2, 1, -1, 0],
             opacity: [0.05, 0.06, 0.05],
@@ -215,7 +215,8 @@ export default function NotFound() {
       {/* Grid background pattern */}
       <div className="absolute inset-0 -z-30 opacity-5">
         <div className="w-full h-full" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, gray 1px, transparent 0)',
+          // decorative grid dots: no exact role, closest is the hairline colour
+          backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--line)) 1px, transparent 0)',
           backgroundSize: '50px 50px'
         }} />
       </div>
@@ -226,8 +227,8 @@ export default function NotFound() {
         variants={containerVariants}
         className="text-center space-y-8 max-w-2xl px-4 relative z-10"
       >
-        <motion.div variants={itemVariants} className="space-y-4 text-white">
-          <h1 className="text-6xl md:text-8xl text-white font-extrabold tracking-tighter ">
+        <motion.div variants={itemVariants} className="space-y-4 text-strong">
+          <h1 className="text-6xl md:text-8xl text-strong font-extrabold tracking-tighter ">
             404
           </h1>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -235,7 +236,7 @@ export default function NotFound() {
           </h2>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400"
+            className="text-xl text-dim"
           >
             Oops! Looks like you&apos;ve ventured into unknown territory.
           </motion.p>
@@ -243,9 +244,9 @@ export default function NotFound() {
 
         <motion.div
           variants={itemVariants}
-          className="bg-gray-900/80 border border-gray-800 p-8 rounded-xl backdrop-blur-xl shadow-inner"
+          className="bg-surface/80 border border-line p-8 rounded-xl backdrop-blur-xl shadow-inner"
         >
-          <p className="text-base md:text-lg text-gray-300">
+          <p className="text-base md:text-lg text-body">
             The page you&apos;re looking for has vanished into the digital void.
             Feel free to explore the home page or try a different path.
           </p>
@@ -297,7 +298,7 @@ export default function NotFound() {
 
         <motion.div
           variants={itemVariants}
-          className="text-gray-500 text-sm pt-8"
+          className="text-subtle text-sm pt-8"
         >
           <p>Lost? Try searching for what you need or check the site map.</p>
         </motion.div>

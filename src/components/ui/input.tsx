@@ -9,7 +9,8 @@ export const Input = React.forwardRef<
     <input
       ref={ref}
       className={cn(
-        "block w-full rounded-md border border-gray-300 dark:border-neutral-700 bg-stone-50 dark:bg-neutral-900 px-3 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
+        // indigo focus ring has no token equivalent; mapped to the brand accent role
+        "block w-full rounded-md border border-line-strong bg-surface px-3 py-2 text-strong placeholder:text-subtle focus:border-brand focus:outline-none focus:ring-brand sm:text-sm",
         className
       )}
       {...props}

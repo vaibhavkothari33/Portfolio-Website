@@ -8,14 +8,29 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { IconMoonStars, IconSun } from "@tabler/icons-react";
+import {
+  DEFAULT_THEME,
+  THEMES,
+  THEME_IDS,
+  switchTheme,
+  type ThemeId,
+} from "@/lib/themes";
+
+type DockItem = {
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+  id?: string;
+};
 
 export const FloatingDock = ({
   items,
   desktopClassName,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string; id?: string }[];
+  items: DockItem[];
   desktopClassName?: string;
 }) => {
   return (
@@ -25,43 +40,132 @@ export const FloatingDock = ({
   );
 };
 
+/**
+ * Cycles to the next registered theme. With two themes this is a plain
+ * toggle; it keeps working unchanged if more are added to THEMES.
+ */
+function useThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // A theme removed from the registry can still be sitting in localStorage
+  // from an earlier visit. next-themes would put that stale class on
+  // <html>, where no token block matches it — so fall back.
+  useEffect(() => {
+    if (!mounted || !theme) return;
+    if (!THEME_IDS.includes(theme as ThemeId)) setTheme(DEFAULT_THEME);
+  }, [mounted, theme, setTheme]);
+
+  const current = (mounted ? theme : DEFAULT_THEME) as ThemeId;
+  const index = THEMES.findIndex((t) => t.id === current);
+  const next = THEMES[(index + 1) % THEMES.length] ?? THEMES[0];
+
+  const toggle = () => {
+    switchTheme(next.id, setTheme);
+
+    // Keep the browser chrome (mobile address bar) matching the canvas.
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", next.swatch.canvas);
+  };
+
+  return { next, toggle, mounted };
+}
+
 const FloatingDockDesktop = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string; id?: string }[];
+  items: DockItem[];
   className?: string;
 }) => {
   const mouseX = useMotionValue(Infinity);
-  const { theme, setTheme } = useTheme();
-
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const { next, toggle, mounted } = useThemeToggle();
 
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 flex h-[75px] gap-4 items-end rounded-3xl bg-stone-100 dark:bg-black dark:text-white shadow-lg",
-        "bg-gray-50 bg-opacity-70 backdrop-blur-md",
-        "dark:bg-neutral-900 dark:bg-opacity-70 dark:backdrop-blur-md",
-        "px-4 pb-3 shadow-lg",
+        "fixed bottom-5 left-1/2 z-50 flex h-[75px] -translate-x-1/2 items-end gap-4 rounded-3xl",
+        "border border-line bg-surface/70 px-4 pb-3 shadow-lg backdrop-blur-md",
         className
       )}
     >
-      {items.map((item) => (
-        <IconContainer
-          mouseX={mouseX}
-          key={item.title}
-          {...item}
-          onClick={item.id === "theme-switcher" ? handleThemeSwitch : undefined}
-        />
-      ))}
+      {items.map((item) => {
+        const isThemeSwitch = item.id === "theme-switcher";
+
+        return (
+          <IconContainer
+            mouseX={mouseX}
+            key={item.title}
+            {...item}
+            // The icon and label name where the click lands, not where you are.
+            // Before mount the theme is unknown, so keep the neutral label.
+            title={isThemeSwitch && mounted ? next.label : item.title}
+            ariaLabel={
+              isThemeSwitch
+                ? mounted
+                  ? `Switch to ${next.label} theme`
+                  : "Switch theme"
+                : item.title
+            }
+            icon={
+              isThemeSwitch
+                ? next.scheme === "dark"
+                  ? <IconMoonStars />
+                  : <IconSun />
+                : item.icon
+            }
+            onClick={isThemeSwitch ? toggle : undefined}
+          />
+        );
+      })}
     </motion.div>
   );
 };
+
+/**
+ * The magnification springs are identical for every dock item; only the
+ * rendered element (button vs anchor) differs.
+ */
+function useMagnify(mouseX: MotionValue, ref: React.RefObject<HTMLElement | null>) {
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const spring = { mass: 0.1, stiffness: 150, damping: 12 };
+
+  return {
+    width: useSpring(useTransform(distance, [-150, 0, 150], [50, 90, 50]), spring),
+    height: useSpring(useTransform(distance, [-150, 0, 150], [40, 80, 40]), spring),
+    widthIcon: useSpring(useTransform(distance, [-150, 0, 150], [40, 60, 40]), spring),
+    heightIcon: useSpring(useTransform(distance, [-150, 0, 150], [20, 40, 20]), spring),
+  };
+}
+
+function Tooltip({ title, visible }: { title: string; visible: boolean }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 10, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          exit={{ opacity: 0, y: 2, x: "-50%" }}
+          className="absolute -top-8 left-1/2 w-fit -translate-x-1/2 whitespace-pre rounded-md border border-line bg-elevated px-2 py-0.5 text-xs text-body"
+        >
+          {title}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+const ITEM_CLASS =
+  "aspect-square rounded-full bg-elevated text-body transition-colors hover:text-strong flex items-center justify-center relative";
 
 function IconContainer({
   mouseX,
@@ -69,69 +173,62 @@ function IconContainer({
   icon,
   href,
   onClick,
-}: {
+  ariaLabel,
+}: DockItem & {
   mouseX: MotionValue;
-  title: string;
-  icon: React.ReactNode;
-  href: string;
   onClick?: () => void;
+  ariaLabel?: string;
 }) {
   if (onClick) {
     return (
-      <IconContainerDiv
+      <IconContainerButton
         mouseX={mouseX}
         title={title}
         icon={icon}
         onClick={onClick}
+        ariaLabel={ariaLabel ?? title}
       />
     );
-  } else {
-    return <IconContainerAnchor mouseX={mouseX} title={title} icon={icon} href={href} />;
   }
+  return (
+    <IconContainerAnchor
+      mouseX={mouseX}
+      title={title}
+      icon={icon}
+      href={href}
+      ariaLabel={ariaLabel ?? title}
+    />
+  );
 }
 
-function IconContainerDiv({
+function IconContainerButton({
   mouseX,
   title,
   icon,
   onClick,
+  ariaLabel,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   onClick: () => void;
+  ariaLabel: string;
 }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const distance = useTransform(mouseX, (val) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
-
-  const widthTransform = useTransform(distance, [-150, 0, 150], [50, 90, 50]);
-  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
-  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-
-  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-  const heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-
+  const ref = useRef<HTMLButtonElement | null>(null);
+  const { width, height, widthIcon, heightIcon } = useMagnify(mouseX, ref);
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <button
       ref={ref}
+      type="button"
       onClick={onClick}
+      aria-label={ariaLabel}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+      className={ITEM_CLASS}
     >
-      <motion.div
-        style={{ width, height }}
-        className="flex items-center justify-center"
-      >
+      <motion.div style={{ width, height }} className="flex items-center justify-center">
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
           className="flex items-center justify-center"
@@ -139,19 +236,8 @@ function IconContainerDiv({
           {icon}
         </motion.div>
       </motion.div>
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 2, x: "-50%" }}
-            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
-          >
-            {title}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      <Tooltip title={title} visible={hovered} />
+    </button>
   );
 }
 
@@ -160,29 +246,16 @@ function IconContainerAnchor({
   title,
   icon,
   href,
+  ariaLabel,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   href: string;
+  ariaLabel: string;
 }) {
   const ref = useRef<HTMLAnchorElement | null>(null);
-
-  const distance = useTransform(mouseX, (val) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
-
-  const widthTransform = useTransform(distance, [-150, 0, 150], [50, 90, 50]);
-  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [40, 60, 40]);
-  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-
-  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  const widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-  const heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-
+  const { width, height, widthIcon, heightIcon } = useMagnify(mouseX, ref);
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -191,14 +264,12 @@ function IconContainerAnchor({
       href={href}
       target={href?.startsWith("http") ? "_blank" : undefined} // Open external links in a new tab.
       rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+      aria-label={ariaLabel}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+      className={ITEM_CLASS}
     >
-      <motion.div
-        style={{ width, height }}
-        className="flex items-center justify-center"
-      >
+      <motion.div style={{ width, height }} className="flex items-center justify-center">
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
           className="flex items-center justify-center"
@@ -206,18 +277,7 @@ function IconContainerAnchor({
           {icon}
         </motion.div>
       </motion.div>
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 2, x: "-50%" }}
-            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
-          >
-            {title}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Tooltip title={title} visible={hovered} />
     </a>
   );
 }

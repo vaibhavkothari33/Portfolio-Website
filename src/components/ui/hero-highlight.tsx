@@ -29,14 +29,17 @@ export const HeroHighlight = ({
   return (
     <div
       className={cn(
-        "relative h-[45rem] flex items-center bg-stone-50 dark:bg-black justify-center w-full group",
+        "relative h-[45rem] flex items-center bg-canvas justify-center w-full group",
         containerClassName
       )}
       onMouseMove={handleMouseMove}
     >
-      <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none" />
+      {/* the dot pattern is generated per-colour by the bg-dot-thick plugin, so
+          it takes a concrete palette colour rather than a token; kept at the
+          former dark-mode value since dark is the reference design */}
+      <div className="absolute inset-0 bg-dot-thick-neutral-800  pointer-events-none" />
       <motion.div
-        className="pointer-events-none bg-dot-thick-white dark:bg-dot-thick-white-500 absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none bg-dot-thick-white-500 absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           WebkitMaskImage: useMotionTemplate`
             radial-gradient(
@@ -86,9 +89,10 @@ export const Highlight = ({
         display: "inline",
       }}
       className={cn(
+        // the highlight pill is an inverted chip, so it takes the invert role
+        // rather than a surface token
         `relative inline-block pb-1 px-3 py-1 rounded-3xl
-         bg-zinc-900 text-white shadow-[0_0_15px_rgba(0,0,0,0.3)]
-         dark:bg-white dark:text-black dark:shadow-[0_0_25px_rgba(255,255,255,0.4)]`,
+         bg-invert text-invert-fg shadow-[0_0_25px_hsl(var(--invert)/0.4)]`,
         className
       )}
     >

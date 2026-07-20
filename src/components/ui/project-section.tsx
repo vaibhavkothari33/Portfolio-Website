@@ -27,7 +27,7 @@ export default function ProjectSection({
     <section
       id="projects"
       className={cn(
-        "w-full bg-neutral-950 px-4 py-16 text-white md:px-10 md:py-20",
+        "w-full bg-canvas px-4 py-16 text-strong md:px-10 md:py-20",
         className,
       )}
       aria-labelledby="projects-heading"
@@ -40,7 +40,7 @@ export default function ProjectSection({
           )}
         >
           {showTag && (
-            <p className="mb-4 inline-flex items-center gap-2 border border-red-500/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-red-500">
+            <p className="mb-4 inline-flex items-center gap-2 border border-brand/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-brand">
               <span aria-hidden>✕</span> PROJECTS
             </p>
           )}
@@ -51,7 +51,7 @@ export default function ProjectSection({
             {heading}
           </h2>
           {description && (
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-400">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-dim">
               {description}
             </p>
           )}
@@ -67,7 +67,7 @@ export default function ProjectSection({
           <div className="mt-10 flex justify-center md:mt-12">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-5 py-2 text-sm font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-900"
+              className="inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-surface"
             >
               View all projects
               <ArrowUpRight className="h-4 w-4" />

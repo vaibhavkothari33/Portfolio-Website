@@ -82,7 +82,7 @@ const socialLinks = [
 ];
 
 const fieldClassName =
-  "h-9 rounded-md border-neutral-700 bg-neutral-950/60 py-1.5 text-sm text-white placeholder:text-neutral-600 focus-visible:border-red-500/50 focus-visible:ring-1 focus-visible:ring-red-500/30";
+  "h-9 rounded-md border-line-strong bg-well py-1.5 text-sm text-strong placeholder:text-faint focus-visible:border-brand/50 focus-visible:ring-1 focus-visible:ring-brand/30";
 
 function GridPanel({
   label,
@@ -106,13 +106,13 @@ function GridPanel({
     >
       <div>
         <div className="mb-2 flex items-start justify-between gap-3">
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-red-500">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-brand">
             {label}
           </p>
-          <span className="text-[10px] tabular-nums text-neutral-600">{id}</span>
+          <span className="text-[10px] tabular-nums text-faint">{id}</span>
         </div>
         {title && (
-          <h3 className="mb-2 text-sm font-semibold leading-snug text-white md:text-base">
+          <h3 className="mb-2 text-sm font-semibold leading-snug text-strong md:text-base">
             {title}
           </h3>
         )}
@@ -177,12 +177,12 @@ export const ContactForm = () => {
   return (
     <section
       id="contact"
-      className="w-full border-t border-neutral-800 bg-neutral-950 text-white"
+      className="w-full border-t border-line bg-canvas text-strong"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto max-w-5xl border-x border-neutral-800">
-        <div className="border-b border-neutral-800 px-4 py-6 md:px-6 md:py-7">
-          <p className="mb-2 inline-flex items-center gap-2 border border-red-500/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.22em] text-red-500">
+      <div className="mx-auto max-w-5xl border-x border-line">
+        <div className="border-b border-line px-4 py-6 md:px-6 md:py-7">
+          <p className="mb-2 inline-flex items-center gap-2 border border-brand/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.22em] text-brand">
             <span aria-hidden>✕</span> Contact
           </p>
           <h2
@@ -191,20 +191,20 @@ export const ContactForm = () => {
           >
             Let&apos;s build something together
           </h2>
-          <p className="mt-2 max-w-lg text-xs leading-relaxed text-neutral-400 md:text-sm">
+          <p className="mt-2 max-w-lg text-xs leading-relaxed text-dim md:text-sm">
             Freelance, collaborations, or full-time — drop a message and I&apos;ll
             get back to you soon.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="border-b border-neutral-800 p-4 md:p-5 lg:col-span-7 lg:border-b-0 lg:border-r lg:p-6">
+          <div className="border-b border-line p-4 md:p-5 lg:col-span-7 lg:border-b-0 lg:border-r lg:p-6">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 <div className="space-y-1">
                   <label
                     htmlFor="name"
-                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
+                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-subtle"
                   >
                     Name
                   </label>
@@ -217,7 +217,7 @@ export const ContactForm = () => {
                     className={fieldClassName}
                   />
                   {errors.name && (
-                    <p role="alert" className="text-xs font-medium text-red-500">
+                    <p role="alert" className="text-xs font-medium text-brand">
                       {errors.name.message}
                     </p>
                   )}
@@ -226,9 +226,9 @@ export const ContactForm = () => {
                 <div className="space-y-1">
                   <label
                     htmlFor="email"
-                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
+                    className="block text-[10px] font-medium uppercase tracking-[0.14em] text-subtle"
                   >
-                    Email <span className="text-red-500">*</span>
+                    Email <span className="text-brand">*</span>
                   </label>
                   <Input
                     id="email"
@@ -239,7 +239,7 @@ export const ContactForm = () => {
                     className={fieldClassName}
                   />
                   {errors.email && (
-                    <p role="alert" className="text-xs font-medium text-red-500">
+                    <p role="alert" className="text-xs font-medium text-brand">
                       {errors.email.message}
                     </p>
                   )}
@@ -249,9 +249,9 @@ export const ContactForm = () => {
               <div className="space-y-1">
                 <label
                   htmlFor="message"
-                  className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-500"
+                  className="block text-[10px] font-medium uppercase tracking-[0.14em] text-subtle"
                 >
-                  Message <span className="text-red-500">*</span>
+                  Message <span className="text-brand">*</span>
                 </label>
                 <Textarea
                   id="message"
@@ -262,7 +262,7 @@ export const ContactForm = () => {
                   className={cn(fieldClassName, "h-auto min-h-[72px] resize-none py-2")}
                 />
                 {errors.message && (
-                  <p role="alert" className="text-xs font-medium text-red-500">
+                  <p role="alert" className="text-xs font-medium text-brand">
                     {errors.message.message}
                   </p>
                 )}
@@ -272,7 +272,7 @@ export const ContactForm = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-neutral-200 px-4 text-xs font-medium text-neutral-900 transition-colors hover:bg-white disabled:opacity-50"
+                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-invert px-4 text-xs font-medium text-invert-fg transition-colors hover:bg-invert-hover disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
@@ -311,14 +311,14 @@ export const ContactForm = () => {
                   href="https://cal.com/vaibhavkothari33/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-neutral-700 px-4 text-xs font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-900"
+                  className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-line-strong px-4 text-xs font-medium text-strong transition-colors hover:border-line-hover hover:bg-surface"
                 >
                   <IconCalendar className="h-3.5 w-3.5" stroke={1.5} />
                   Book a call
                 </Link>
               </div>
 
-              <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/30">
+              <div className="overflow-hidden rounded-xl border border-line bg-surface/30">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGprYmxrenlhaGt0ZXJwamEwajMwNTJ0ZTVkeWdnbng5MXF5amV6ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif"
@@ -335,14 +335,14 @@ export const ContactForm = () => {
               label="Connect"
               id="001"
               title="Reach me directly"
-              className="border-b border-neutral-800 sm:border-r sm:border-b-0 lg:border-r-0 lg:border-b"
+              className="border-b border-line sm:border-r sm:border-b-0 lg:border-r-0 lg:border-b"
             >
               <div className="space-y-3">
                 <a
                   href="mailto:contact.vaibhavkothari@gmail.com"
-                  className="inline-flex items-center gap-1.5 text-xs text-neutral-300 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 text-xs text-body transition-colors hover:text-strong"
                 >
-                  <IconMail className="h-3.5 w-3.5 shrink-0 text-red-500" stroke={1.75} />
+                  <IconMail className="h-3.5 w-3.5 shrink-0 text-brand" stroke={1.75} />
                   contact.vaibhavkothari@gmail.com
                 </a>
 
@@ -354,7 +354,7 @@ export const ContactForm = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="inline-flex items-center gap-1 rounded-full border border-dashed border-neutral-700 bg-neutral-900/60 px-2 py-1 text-[10px] font-medium text-neutral-400 transition-colors hover:border-neutral-500 hover:text-white"
+                      className="inline-flex items-center gap-1 rounded-full border border-dashed border-line-strong bg-surface/60 px-2 py-1 text-[10px] font-medium text-dim transition-colors hover:border-line-hover hover:text-strong"
                     >
                       <Icon className="h-3 w-3" stroke={1.5} />
                       {label}
@@ -368,24 +368,24 @@ export const ContactForm = () => {
               label="Writing"
               id="002"
               title="Latest posts"
-              className="border-b border-neutral-800 sm:border-b-0 lg:border-b"
+              className="border-b border-line sm:border-b-0 lg:border-b"
             >
               <div className="space-y-1">
                 {recentBlogPosts.map((post) => (
                   <Link
                     key={post.url}
                     href={post.url}
-                    className="group flex items-center gap-2 rounded-md px-1 py-1.5 transition-colors hover:bg-neutral-900/40"
+                    className="group flex items-center gap-2 rounded-md px-1 py-1.5 transition-colors hover:bg-surface/40"
                   >
                     <BookOpen
-                      className="h-3.5 w-3.5 shrink-0 text-red-500"
+                      className="h-3.5 w-3.5 shrink-0 text-brand"
                       strokeWidth={1.75}
                     />
                     <div className="min-w-0 flex-1">
-                      <h4 className="truncate text-xs font-medium text-white">
+                      <h4 className="truncate text-xs font-medium text-strong">
                         {post.title}
                       </h4>
-                      <p className="font-mono text-[10px] text-neutral-500">
+                      <p className="font-mono text-[10px] text-subtle">
                         {post.date}
                       </p>
                     </div>
@@ -394,7 +394,7 @@ export const ContactForm = () => {
 
                 <Link
                   href="/blogs"
-                  className="inline-flex items-center gap-1 pt-0.5 text-[10px] font-medium text-neutral-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 pt-0.5 text-[10px] font-medium text-dim transition-colors hover:text-strong"
                 >
                   All posts
                   <ArrowUpRight className="h-3 w-3" />
@@ -408,10 +408,10 @@ export const ContactForm = () => {
               title="Sponsor my work"
               className="sm:col-span-2 lg:col-span-1"
             >
-              <p className="mb-2 text-xs leading-relaxed text-neutral-400">
+              <p className="mb-2 text-xs leading-relaxed text-dim">
                 Support open source and future projects.
               </p>
-              <div className="overflow-hidden rounded-lg border border-neutral-800 bg-neutral-950/60">
+              <div className="overflow-hidden rounded-lg border border-line bg-well">
                 <iframe
                   src="https://github.com/sponsors/vaibhavkothari33/button"
                   title="Sponsor vaibhavkothari33"
