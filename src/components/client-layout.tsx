@@ -10,6 +10,7 @@ import { ToastProvider } from "@/components/ui/toast";
 import { DEFAULT_THEME, THEME_IDS } from "@/lib/themes";
 import { ViewTransitionsProvider } from "@/components/providers/view-transitions-provider";
 import { CommandPalette } from "@/components/ui/command-palette";
+import { TetrisLauncher } from "@/components/ui/tetris-launcher";
 
 const dockItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
@@ -37,6 +38,9 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
         <ViewTransitionsProvider>
           <SmoothScrollProvider>
             {children}
+            {/* Inside the provider so the game can pause Lenis while it has
+                the keyboard — otherwise arrow keys scroll the page behind. */}
+            <TetrisLauncher />
           </SmoothScrollProvider>
           <NoiseOverlay />
           <Analytics />

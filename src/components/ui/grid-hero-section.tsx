@@ -6,12 +6,14 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandTwitter,
+  IconDeviceGamepad2,
   IconFileText,
   IconMail,
   IconMapPin,
   IconSend,
   IconWorld,
 } from "@tabler/icons-react";
+import { openTetris } from "@/lib/tetris-open";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
@@ -155,6 +157,24 @@ function HeroActions() {
             <Icon className="h-5 w-5" stroke={1.5} />
           </Link>
         ))}
+
+        {/* Separated from the social links: this one goes nowhere, it opens
+            the Tetris break. */}
+        <span className="h-4 w-px bg-line-strong" aria-hidden />
+
+        <button
+          type="button"
+          onClick={openTetris}
+          aria-label="Play Tetris"
+          title="Play Tetris"
+          className="group relative text-subtle transition-colors hover:text-brand"
+        >
+          <IconDeviceGamepad2 className="h-5 w-5" stroke={1.5} />
+          <span className="absolute -right-0.5 -top-0.5 flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+          </span>
+        </button>
       </div>
     </div>
   );

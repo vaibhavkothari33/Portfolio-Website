@@ -10,10 +10,12 @@ import {
   IconBrandLinkedin,
   IconBrandTwitter,
   IconCalendar,
+  IconDeviceGamepad2,
   IconExternalLink,
   IconMail,
   IconSend,
 } from "@tabler/icons-react";
+import { openTetris } from "@/lib/tetris-open";
 import { zodResolver } from "@hookform/resolvers/zod";
 import emailjs from "emailjs-com";
 import Link from "next/link";
@@ -316,6 +318,23 @@ export const ContactForm = () => {
                   <IconCalendar className="h-3.5 w-3.5" stroke={1.5} />
                   Book a call
                 </Link>
+
+                {/* Waiting on a reply is dead time — offer something to do. */}
+                <button
+                  type="button"
+                  onClick={openTetris}
+                  className="group inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-line-strong px-4 text-xs font-medium text-dim transition-colors hover:border-brand/60 hover:text-strong"
+                >
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+                  </span>
+                  Click me
+                  <IconDeviceGamepad2
+                    className="h-3.5 w-3.5 text-subtle transition-colors group-hover:text-brand"
+                    stroke={1.5}
+                  />
+                </button>
               </div>
 
               <div className="overflow-hidden rounded-xl border border-line bg-surface/30">
