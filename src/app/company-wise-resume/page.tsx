@@ -1,5 +1,18 @@
 import React from 'react'
+import type { Metadata } from "next";
 import "@/components/ui/button.css";
+
+/**
+ * Three buttons pointing at two PDFs, with no inbound link from anywhere on
+ * the site. Indexing it would spend crawl budget on a thin page that competes
+ * with the pages that should rank, so it's kept out of the index while
+ * staying reachable to anyone given the URL directly.
+ */
+export const metadata: Metadata = {
+  title: "Company Wise Resume",
+  robots: { index: false, follow: true },
+};
+
 function page() {
     return (
         <div className='bg-canvas text-strong'>

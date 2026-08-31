@@ -14,6 +14,7 @@ import {
   IconFileText,
   IconWorld,
 } from "@tabler/icons-react";
+import Head from "next/head";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -27,7 +28,7 @@ type LinkItem = {
 const links: LinkItem[] = [
   {
     title: "Portfolio",
-    href: "https://vaibhavkothari.vercel.app/",
+    href: "https://vaibhavkothari.me/",
     description: "Main site and project showcase",
     icon: <IconWorld size={20} stroke={1.5} />,
   },
@@ -45,7 +46,7 @@ const links: LinkItem[] = [
   },
   {
     title: "X / Twitter",
-    href: "https://twitter.com/vaibhavkotharii/",
+    href: "https://x.com/VaibhavKotharii",
     description: "Thoughts, builds, and updates",
     icon: <IconBrandTwitter size={20} stroke={1.5} />,
   },
@@ -57,7 +58,7 @@ const links: LinkItem[] = [
   },
   {
     title: "Resume",
-    href: "https://www.vaibhavkothari.me/resume.pdf",
+    href: "https://vaibhavkothari.me/resume.pdf",
     description: "Download CV and work history",
     icon: <IconFileText size={20} stroke={1.5} />,
   },
@@ -83,6 +84,23 @@ const links: LinkItem[] = [
 
 export default function LinksPage() {
   return (
+    <>
+      <Head>
+        <title>Links | Vaibhav Kothari</title>
+        <meta
+          name="description"
+          content="Every profile of Vaibhav Kothari in one place — portfolio, GitHub, LinkedIn, X, LeetCode, resume, and contact."
+        />
+        <link rel="canonical" href="https://vaibhavkothari.me/links" />
+        <meta property="og:title" content="Links | Vaibhav Kothari" />
+        <meta
+          property="og:description"
+          content="Every profile of Vaibhav Kothari in one place — portfolio, GitHub, LinkedIn, X, LeetCode, resume, and contact."
+        />
+        <meta property="og:url" content="https://vaibhavkothari.me/links" />
+        <meta property="og:image" content="https://vaibhavkothari.me/opengraph-image" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
     <div className="min-h-screen bg-canvas text-strong">
       <div className="mx-auto max-w-5xl border-x border-line">
         <div className="border-b border-line px-4 py-8 md:px-8 md:py-10">
@@ -158,5 +176,6 @@ export default function LinksPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

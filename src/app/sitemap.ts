@@ -1,19 +1,31 @@
 import { MetadataRoute } from 'next'
-import { siteMetadata } from './metadata'
-import { getBlogSlugs } from "@/lib/blogs";
+import { SITE_URL } from './metadata.config'
+import { getAllBlogs } from "@/lib/blogs";
+
+/**
+ * `sample-post` is a template kept in the repo for reference. The blog index
+ * filters it out, so listing it here advertised an orphan page with no inbound
+ * link — the exact shape Google classifies as thin content.
+ */
+const EXCLUDED_BLOG_SLUGS = new Set(["sample-post"]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // A fresh `new Date()` on every build told crawlers every URL changed every
+  // deploy. Once that proves false, lastmod stops being trusted for the whole
+  // site, so static routes now carry a fixed date and posts carry their own.
+  const staticLastModified = new Date("2026-09-01").toISOString()
+
   // Core pages with high priority
   const mainRoutes = [
     {
-      url: siteMetadata.siteUrl,
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'daily' as const,
+      url: SITE_URL,
+      lastModified: staticLastModified,
+      changeFrequency: 'weekly' as const,
       priority: 1,
     },
     {
-      url: `${siteMetadata.siteUrl}/projects`,
-      lastModified: new Date().toISOString(),
+      url: `${SITE_URL}/projects`,
+      lastModified: staticLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
@@ -25,21 +37,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const secondaryRoutes = [
     '/blogs',
     '/experience',
+    '/links',
   ].map((route) => ({
-    url: `${siteMetadata.siteUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    url: `${SITE_URL}${route}`,
+    lastModified: staticLastModified,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
 
-  // Dynamic blog posts
-  const blogSlugs = getBlogSlugs()
-  const blogRoutes = blogSlugs.map((slug) => ({
-    url: `${siteMetadata.siteUrl}/blogs/${slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  // Dynamic blog posts, each stamped with its own publish date.
+  const blogRoutes = getAllBlogs()
+    .filter((blog) => !EXCLUDED_BLOG_SLUGS.has(blog.slug))
+    .map((blog) => ({
+      url: `${SITE_URL}/blogs/${blog.slug}`,
+      lastModified: blog.date
+        ? new Date(blog.date).toISOString()
+        : staticLastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
 
   return [...mainRoutes, ...secondaryRoutes, ...blogRoutes]
 }
