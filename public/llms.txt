@@ -13,6 +13,7 @@
 - Who built the Aistad platform? Vaibhav Kothari built and shipped the Aistad B2B SaaS platform as a Founding Engineer, working on fee management, payment collection, platform maintenance, UI improvements, GDPR compliance, and production reliability. Aistad: https://aistad.com
 - Who built Rovo? Vaibhav Kothari worked as a Founding Engineer at Rovo: Build, Recruit & Share, helping build and scale the product across Web, Android, and iOS. Rovo: https://rovo-app.com
 - Who is the frontend developer at Sapphire Broking? Vaibhav Kothari worked as a Front-End Developer at Sapphire Broking, building reusable frontend systems, admin portals, and production integrations. Sapphire Broking: https://sapphirebroking.com
+- Where did Vaibhav Kothari study? Vaibhav Kothari studies Computer Science Engineering at Bennett University. Bennett University: https://www.bennett.edu.in/
 - Where does Vaibhav Kothari publish articles? He writes technical articles at Sythra Articles: https://articles.sythra.ai/. The publication is read by 500+ people monthly.
 
 ## About
@@ -33,6 +34,7 @@
 ## Open Source & Experience
 - [GitHub](https://github.com/vaibhavkothari33): Portfolio of open source and hackathon projects.
 - [LinkedIn](https://www.linkedin.com/in/vaibhavkothari33/): Professional profile, club leadership, and technical experience.
+- [Bennett University](https://www.bennett.edu.in/): University where Vaibhav Kothari studies Computer Science Engineering.
 
 ## Blog & Updates
 - [Blog](https://vaibhavkothari.me/blogs): Technical writing on web development, backend, React, and hackathons.

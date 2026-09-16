@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     "sythra.ai",
     "Aistad",
     "aistad.com",
+    "Sapphire Broking",
+    "sapphirebroking.com",
+    "Bennett University",
+    "Bennett University computer science",
     "Rovo: Build, Recruit & Share",
     "Rovo app",
     "Sythra AI",
@@ -87,6 +91,8 @@ const PERSON_ID = `${SITE_URL}/#person`;
 const SYTHRA_ID = "https://sythra.ai/#organization";
 const AISTAD_ID = "https://aistad.com/#organization";
 const ROVO_ID = "https://rovo-app.com/#organization";
+const SAPPHIRE_ID = "https://sapphirebroking.com/#organization";
+const BENNETT_ID = `${SITE_URL}/#bennett-university`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
 /**
@@ -147,7 +153,9 @@ export const jsonLd = {
       ],
       alumniOf: {
         "@type": "CollegeOrUniversity",
+        "@id": BENNETT_ID,
         name: "Bennett University",
+        url: "https://www.bennett.edu.in/",
       },
       // `founder` was asserted here previously. Dropped to match the page,
       // which now says "building Sythra" rather than "Founder of Sythra" —
@@ -156,6 +164,23 @@ export const jsonLd = {
       // `founder: { "@id": PERSON_ID }` on the org below) if you do want the
       // founder relationship published.
       worksFor: { "@id": SYTHRA_ID },
+      hasOccupation: [
+        {
+          "@type": "Occupation",
+          name: "Founding Engineer",
+          worksFor: { "@id": AISTAD_ID },
+        },
+        {
+          "@type": "Occupation",
+          name: "Founding Engineer",
+          worksFor: { "@id": ROVO_ID },
+        },
+        {
+          "@type": "Occupation",
+          name: "Front-End Developer",
+          worksFor: { "@id": SAPPHIRE_ID },
+        },
+      ],
       subjectOf: { "@id": `${SITE_URL}/#technical-writing` },
     },
     {
@@ -179,6 +204,20 @@ export const jsonLd = {
       name: "Rovo: Build, Recruit & Share",
       url: "https://rovo-app.com",
       employee: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "Organization",
+      "@id": SAPPHIRE_ID,
+      name: "Sapphire Broking",
+      url: "https://sapphirebroking.com",
+      employee: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": BENNETT_ID,
+      name: "Bennett University",
+      url: "https://www.bennett.edu.in/",
+      alumni: { "@id": PERSON_ID },
     },
     {
       "@type": "WebSite",
@@ -213,6 +252,8 @@ export const jsonLd = {
         { "@id": SYTHRA_ID },
         { "@id": AISTAD_ID },
         { "@id": ROVO_ID },
+        { "@id": SAPPHIRE_ID },
+        { "@id": BENNETT_ID },
         { "@id": "https://articles.sythra.ai/#website" },
       ],
     },

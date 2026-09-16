@@ -2,19 +2,19 @@ import { IconArrowUpRight, IconBook2, IconUsers } from "@tabler/icons-react";
 
 const latestArticles = [
   {
-    title: "ML model evaluation mistakes that make good numbers meaningless",
-    href: "https://articles.sythra.ai/articles/ml-model-evaluation-mistakes",
+    title: "The attention mechanism, worked out by hand",
+    href: "https://articles.sythra.ai/articles/attention-mechanism-visualized",
     meta: "Machine Learning · 9 min read",
   },
   {
-    title: "Data leakage: the kinds that survive your train/test split",
-    href: "https://articles.sythra.ai/articles/data-leakage-in-machine-learning",
-    meta: "Machine Learning · 10 min read",
+    title: "Agentic AI architecture: the loop and what breaks",
+    href: "https://articles.sythra.ai/articles/agentic-ai-architecture",
+    meta: "AI Architecture · 12 min read",
   },
   {
-    title: "Production ML architecture: training-serving skew",
-    href: "https://articles.sythra.ai/articles/production-ml-architecture",
-    meta: "Machine Learning · 10 min read",
+    title: "Fine-tuning vs RAG: how to actually choose",
+    href: "https://articles.sythra.ai/articles/fine-tuning-vs-rag",
+    meta: "AI · 11 min read",
   },
 ];
 
