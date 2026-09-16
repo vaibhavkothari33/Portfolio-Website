@@ -39,6 +39,7 @@ export default function ExperiencePage() {
         showFeaturedLabel={false}
         heading="All Work Experience"
         className="py-0 pb-20 pt-0"
+        expandAllByDefault
       />
     </div>
   );

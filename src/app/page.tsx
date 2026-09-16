@@ -25,7 +25,7 @@ export default function Home() {
     <div>
       <GridHeroSection />
 
-      <ExperienceSection limit={3} showViewAllButton />
+      <ExperienceSection limit={4} showViewAllButton />
       <Skills />
       <ProjectSection />
 
