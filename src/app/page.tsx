@@ -11,6 +11,7 @@ import { Suspense } from "react";
 import GitHubActivitySection from "@/components/ui/github-activity-section";
 import { GitHubActivityLoading } from "@/components/ui/github-activity-loading";
 import ExperienceSection from "@/components/ui/experience-section";
+import ArticlesSection from "@/components/ui/articles-section";
 // import ClientReviews from "@/components/ui/ClientReviews";
 import type { Metadata } from "next";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <GridHeroSection />
 
       <ExperienceSection limit={4} showViewAllButton />
+      <ArticlesSection />
       <Skills />
       <ProjectSection />
 

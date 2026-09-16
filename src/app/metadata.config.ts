@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     "sythra.ai",
     "Aistad",
     "aistad.com",
+    "Rovo: Build, Recruit & Share",
+    "Rovo app",
+    "Sythra AI",
+    "technical articles",
     "Full Stack Developer",
     "React",
     "Next.js",
@@ -81,6 +85,8 @@ export const metadata: Metadata = {
 
 const PERSON_ID = `${SITE_URL}/#person`;
 const SYTHRA_ID = "https://sythra.ai/#organization";
+const AISTAD_ID = "https://aistad.com/#organization";
+const ROVO_ID = "https://rovo-app.com/#organization";
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
 /**
@@ -135,6 +141,9 @@ export const jsonLd = {
         "TypeScript",
         "Agentic AI",
         "Mobile Development",
+        "Sythra",
+        "Aistad",
+        "Rovo",
       ],
       alumniOf: {
         "@type": "CollegeOrUniversity",
@@ -147,12 +156,39 @@ export const jsonLd = {
       // `founder: { "@id": PERSON_ID }` on the org below) if you do want the
       // founder relationship published.
       worksFor: { "@id": SYTHRA_ID },
+      subjectOf: { "@id": `${SITE_URL}/#technical-writing` },
     },
     {
       "@type": "Organization",
       "@id": SYTHRA_ID,
       name: "Sythra",
       url: "https://sythra.ai",
+      description: "AI-focused products and engineering work by Vaibhav Kothari.",
+      founder: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "Organization",
+      "@id": AISTAD_ID,
+      name: "Aistad S.r.l.",
+      url: "https://aistad.com",
+      employee: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "Organization",
+      "@id": ROVO_ID,
+      name: "Rovo: Build, Recruit & Share",
+      url: "https://rovo-app.com",
+      employee: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://articles.sythra.ai/#website",
+      url: "https://articles.sythra.ai/",
+      name: "Sythra Articles",
+      description:
+        "Technical articles written by Vaibhav Kothari. The publication reaches 500+ readers monthly.",
+      publisher: { "@id": PERSON_ID },
+      author: { "@id": PERSON_ID },
     },
     {
       "@type": "WebSite",
@@ -173,6 +209,22 @@ export const jsonLd = {
       isPartOf: { "@id": WEBSITE_ID },
       about: { "@id": PERSON_ID },
       mainEntity: { "@id": PERSON_ID },
+      mentions: [
+        { "@id": SYTHRA_ID },
+        { "@id": AISTAD_ID },
+        { "@id": ROVO_ID },
+        { "@id": "https://articles.sythra.ai/#website" },
+      ],
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": `${SITE_URL}/#technical-writing`,
+      name: "Technical writing by Vaibhav Kothari",
+      url: "https://articles.sythra.ai/",
+      author: { "@id": PERSON_ID },
+      publisher: { "@id": "https://articles.sythra.ai/#website" },
+      description:
+        "Technical articles on software engineering, web development, and AI, read by 500+ people monthly.",
     },
   ],
 };

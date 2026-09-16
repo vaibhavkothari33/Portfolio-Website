@@ -56,6 +56,12 @@ const links: LinkItem[] = [
     icon: <IconBrandWikipedia size={20} stroke={1.5} />,
   },
   {
+    title: "Sythra Articles",
+    href: "https://articles.sythra.ai/",
+    description: "Technical articles read by 500+ people monthly",
+    icon: <IconWorld size={20} stroke={1.5} />,
+  },
+  {
     title: "Resume",
     href: "https://vaibhavkothari.me/resume.pdf",
     description: "Download CV and work history",

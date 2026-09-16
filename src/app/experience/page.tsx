@@ -1,9 +1,22 @@
-"use client";
-
 import Link from "next/link";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import ExperienceSection from "@/components/ui/experience-section";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experience | Vaibhav Kothari",
+  description:
+    "Professional experience of Vaibhav Kothari across Sythra, Aistad, Rovo, frontend engineering, full-stack development, and product engineering.",
+  keywords: [
+    "Vaibhav Kothari experience",
+    "Aistad engineer",
+    "Rovo founding engineer",
+    "Sythra engineer",
+    "full-stack engineer experience",
+  ],
+  alternates: { canonical: "/experience" },
+};
 
 export default function ExperiencePage() {
   return (
