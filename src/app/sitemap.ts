@@ -24,6 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: `${SITE_URL}/aistad`,
+      lastModified: new Date("2026-09-18").toISOString(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.95,
+    },
+    {
       url: `${SITE_URL}/projects`,
       lastModified: staticLastModified,
       changeFrequency: 'weekly' as const,

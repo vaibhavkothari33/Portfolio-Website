@@ -30,9 +30,14 @@ export const metadata: Metadata = {
   // Kept near ~155 chars so Google doesn't truncate it in results. This is
   // the line searchers actually read, so the founder claim earns its place.
   description:
-    "Vaibhav Kothari — Full Stack Engineer building Sythra. I build scalable web platforms, cross-platform mobile apps, and agentic AI systems.",
+    "Vaibhav Kothari is the Founding Engineer who built Aistad (aistad.com), the legal-tech platform for Italian lawyers. Full-stack engineer building Sythra, Next.js products, and agentic AI.",
   keywords: [
     "Vaibhav Kothari",
+    "Vaibhav Kothari Aistad",
+    "who built Aistad",
+    "Aistad Founding Engineer",
+    "Aistad S.r.l.",
+    "Aistad Rome",
     "Sythra",
     "sythra.ai",
     "Aistad",
@@ -73,17 +78,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "Vaibhav Kothari",
-    title: "Vaibhav Kothari | Full Stack Developer",
+    title: "Vaibhav Kothari | Built Aistad, building Sythra",
     description:
-      "Full Stack Developer specializing in React, Next.js, and open source technologies",
+      "Vaibhav Kothari built Aistad, the legal-tech platform for Italian lawyers, as Founding Engineer at Aistad S.r.l. in Rome.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@VaibhavKotharii",
     creator: "@VaibhavKotharii",
-    title: "Vaibhav Kothari | Full Stack Developer",
+    title: "Vaibhav Kothari | Built Aistad, building Sythra",
     description:
-      "Full Stack Developer specializing in React, Next.js, and open source technologies",
+      "Vaibhav Kothari built Aistad, the legal-tech platform for Italian lawyers, as Founding Engineer at Aistad S.r.l. in Rome.",
   },
 };
 
@@ -118,11 +123,9 @@ const SAME_AS = [
  * can reference each other by @id — that reciprocal link is what lets search
  * engines connect the name "Vaibhav Kothari" to the brand.
  *
- * Note the asymmetry, and keep it: Sythra is a `founder` + `worksFor`
- * relationship. Aistad is freelance client work, which is NOT employment and
- * NOT ownership — asserting either would be false, and structured data that
- * overclaims tends to get discounted wholesale rather than just ignored. The
- * Aistad association is carried by the visible hero copy instead.
+ * Sythra is a `founder` + `worksFor` relationship. Aistad is a founding
+ * engineering role — Person ↔ Organization by @id, plus a SoftwareApplication
+ * node so "who built Aistad" can resolve to this Vaibhav Kothari.
  */
 export const jsonLd = {
   "@context": "https://schema.org",
@@ -131,15 +134,15 @@ export const jsonLd = {
       "@type": "Person",
       "@id": PERSON_ID,
       name: "Vaibhav Kothari",
-      alternateName: "vaibhavkothari33",
+      alternateName: ["vaibhavkothari33", "Vaibhav Kothari Aistad"],
       url: SITE_URL,
       // Mirrors the hero avatar, so the photo Google associates with the
       // entity is the same one a visitor sees.
       image: "https://avatars.githubusercontent.com/u/129139486",
       sameAs: SAME_AS,
-      jobTitle: "Full Stack Engineer",
+      jobTitle: "Founding Engineer at Aistad",
       description:
-        "Full Stack Engineer building Sythra, along with scalable web platforms, cross-platform mobile applications, and agentic AI systems.",
+        "Vaibhav Kothari is a Full Stack Engineer and Founding Engineer at Aistad S.r.l. in Rome. He built Aistad (aistad.com), the legal-tech SaaS for Italian lawyers, and is building Sythra.",
       knowsAbout: [
         "Full Stack Development",
         "React",
@@ -157,13 +160,7 @@ export const jsonLd = {
         name: "Bennett University",
         url: "https://www.bennett.edu.in/",
       },
-      // `founder` was asserted here previously. Dropped to match the page,
-      // which now says "building Sythra" rather than "Founder of Sythra" —
-      // structured data shouldn't claim more than the visible copy supports.
-      // Add `founder: { "@id": SYTHRA_ID }` back (plus the reciprocal
-      // `founder: { "@id": PERSON_ID }` on the org below) if you do want the
-      // founder relationship published.
-      worksFor: { "@id": SYTHRA_ID },
+      worksFor: [{ "@id": AISTAD_ID }, { "@id": SYTHRA_ID }, { "@id": SAPPHIRE_ID }],
       hasOccupation: [
         {
           "@type": "Occupation",
@@ -195,8 +192,25 @@ export const jsonLd = {
       "@type": "Organization",
       "@id": AISTAD_ID,
       name: "Aistad S.r.l.",
+      alternateName: "Aistad",
       url: "https://aistad.com",
+      description:
+        "Italian legal-tech company. The Aistad platform was built by Vaibhav Kothari as Founding Engineer at Aistad S.r.l. in Rome.",
       employee: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${AISTAD_ID}-app`,
+      name: "Aistad",
+      url: "https://aistad.com",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      creator: { "@id": PERSON_ID },
+      author: { "@id": PERSON_ID },
+      contributor: { "@id": PERSON_ID },
+      provider: { "@id": AISTAD_ID },
+      description:
+        "Aistad is a B2B legal-tech SaaS for Italian lawyers. It was built by Vaibhav Kothari, Founding Engineer at Aistad S.r.l., using Next.js.",
     },
     {
       "@type": "Organization",
@@ -251,6 +265,7 @@ export const jsonLd = {
       mentions: [
         { "@id": SYTHRA_ID },
         { "@id": AISTAD_ID },
+        { "@id": `${AISTAD_ID}-app` },
         { "@id": ROVO_ID },
         { "@id": SAPPHIRE_ID },
         { "@id": BENNETT_ID },

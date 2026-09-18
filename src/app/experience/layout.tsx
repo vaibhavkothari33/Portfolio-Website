@@ -7,12 +7,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Professional experience, roles, and engineering work by Vaibhav Kothari.",
+    "Vaibhav Kothari is Founding Engineer at Aistad S.r.l. He built Aistad, the legal-tech platform for Italian lawyers, and has shipped products at Sythra, Rovo, and Sapphire Broking.",
   alternates: { canonical: "/experience" },
   openGraph: {
-    title: "Experience | Vaibhav Kothari",
+    title: "Experience | Vaibhav Kothari — Aistad Founding Engineer",
     description:
-      "Professional experience, roles, and engineering work by Vaibhav Kothari.",
+      "Vaibhav Kothari built Aistad as Founding Engineer at Aistad S.r.l. in Rome. Roles across legal-tech, recruiting, and full-stack product engineering.",
     url: "/experience",
   },
 };

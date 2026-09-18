@@ -20,6 +20,9 @@ import type { Metadata } from "next";
 // canonical there would make every route claim to be the home page.
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  title: "Vaibhav Kothari | Full Stack Developer — built Aistad",
+  description:
+    "Vaibhav Kothari built Aistad, the legal-tech platform for Italian lawyers, as Founding Engineer at Aistad S.r.l. in Rome. Full-stack engineer building Sythra and agentic AI products.",
 };
 
 export default function Home() {

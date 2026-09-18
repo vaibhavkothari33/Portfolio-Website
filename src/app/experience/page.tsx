@@ -4,15 +4,15 @@ import ExperiencePageContent from "./experience-page-content";
 export const metadata: Metadata = {
   title: "Experience | Vaibhav Kothari",
   description:
-    "Professional experience of Vaibhav Kothari across Sythra, Aistad, Rovo, frontend engineering, full-stack development, and product engineering.",
+    "Vaibhav Kothari is Founding Engineer at Aistad S.r.l. He built Aistad (aistad.com), the legal-tech platform for Italian lawyers, plus work at Sythra, Rovo, and Sapphire Broking.",
   keywords: [
+    "Vaibhav Kothari Aistad",
+    "who built Aistad",
+    "Aistad Founding Engineer",
+    "Aistad S.r.l. Rome",
     "Vaibhav Kothari experience",
-    "Aistad engineer",
     "Rovo founding engineer",
-    "Sapphire Broking frontend developer",
-    "Bennett University student developer",
     "Sythra engineer",
-    "full-stack engineer experience",
   ],
   alternates: { canonical: "/experience" },
 };
