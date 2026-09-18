@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useSpring, type MotionValue } from "framer-motion";
+import { motion, useReducedMotion, useSpring, type MotionValue } from "framer-motion";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -121,18 +121,55 @@ function HeroTrustBar() {
 }
 
 function HeroActions() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <div className="mt-8 flex flex-col items-center md:items-start">
+    <div className="mt-20 flex flex-col items-center md:items-start">
       <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface/80 px-5 py-2.5 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-elevated"
-        >
-          <IconFileText className="h-4 w-4" stroke={1.5} />
-          Resume / CV
-        </a>
+        <div className="relative">
+          <motion.div
+            className="pointer-events-none absolute -top-12 left-3 z-10 flex flex-col items-center"
+            initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+            animate={{ opacity: 0.9, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.35 }}
+            aria-hidden="true"
+          >
+            <span
+              className="-rotate-[8deg] whitespace-nowrap text-[13px] text-dim"
+              style={{ fontFamily: '"Comic Sans MS", "Segoe Print", cursive' }}
+            >
+              maybe up to date
+            </span>
+            <svg
+              viewBox="0 0 32 28"
+              className="-mt-0.5 h-7 w-8 rotate-[12deg] text-dim"
+              fill="none"
+            >
+              <path
+                d="M10 3 C12 10, 14 16, 16 25"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M11 20 L16 26 L22 19"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.div>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface/80 px-5 py-2.5 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-elevated"
+          >
+            <IconFileText className="h-4 w-4" stroke={1.5} />
+            Resume / CV
+          </a>
+        </div>
         <Link
           href="https://cal.com/vaibhavkothari33/30min"
           target="_blank"
@@ -311,6 +348,7 @@ export default function GridHeroSection({
   avatarSrc?: string;
 }) {
   const eyeCenterRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const dotX = useSpring(0, { stiffness: 120, damping: 18, mass: 0.4 });
   const dotY = useSpring(0, { stiffness: 120, damping: 18, mass: 0.4 });
 
@@ -385,9 +423,42 @@ export default function GridHeroSection({
               <HeroActions />
             </div>
 
-            <div className="flex shrink-0 flex-col items-center gap-3">
+            <div className="flex shrink-0 flex-col items-center gap-3 pt-10">
               <div className="relative">
                 <div className="absolute -inset-1 rounded-full border border-line-strong" aria-hidden />
+                <motion.div
+                  className="pointer-events-none absolute -top-11 right-2 z-10 flex flex-col items-end md:right-6"
+                  initial={reduceMotion ? false : { opacity: 0, y: -3 }}
+                  animate={{ opacity: 0.9, y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.6 }}
+                  aria-hidden="true"
+                >
+                  <span
+                    className="rotate-[10deg] whitespace-nowrap text-[13px] text-dim"
+                    style={{ fontFamily: '"Comic Sans MS", "Segoe Print", cursive' }}
+                  >
+                    that&apos;s me
+                  </span>
+                  <svg
+                    viewBox="0 0 36 32"
+                    className="-mt-1 mr-3 h-8 w-9 -rotate-[8deg] text-dim"
+                    fill="none"
+                  >
+                    <path
+                      d="M26 3 C24 11, 18 18, 10 26"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M16 22 L9 27 L17 29"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </motion.div>
                 <Image
                   src={avatarSrc}
                   alt="Vaibhav Kothari"

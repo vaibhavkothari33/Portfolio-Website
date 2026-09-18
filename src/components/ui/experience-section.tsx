@@ -146,7 +146,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronDown, ChevronRight, Globe } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Globe, MapPin } from "lucide-react";
 import { useState } from "react";
 import {
   experiences,
@@ -179,23 +179,21 @@ function ExperienceItem({
   experience,
   isExpanded,
   onToggle,
-  onHoverStart,
-  onHoverEnd,
 }: {
   experience: Experience;
   isExpanded: boolean;
   onToggle: () => void;
-  onHoverStart: () => void;
-  onHoverEnd: () => void;
 }) {
   const triggerId = `experience-trigger-${experience.id}`;
   const detailsId = `experience-details-${experience.id}`;
+  const isCurrent = /\bpresent\b/i.test(experience.dateRange);
 
   return (
     <article
-      className="border-b border-line/80 py-4 first:pt-0 last:border-b-0 last:pb-0"
-      onMouseEnter={onHoverStart}
-      onMouseLeave={onHoverEnd}
+      className={cn(
+        "border-b border-line/80 last:border-b-0",
+        isExpanded && "border-line",
+      )}
     >
       <button
         id={triggerId}
@@ -203,22 +201,27 @@ function ExperienceItem({
         aria-expanded={isExpanded}
         aria-controls={detailsId}
         onClick={onToggle}
-        className="flex w-full min-w-0 appearance-none flex-col gap-3 rounded-none border-0 bg-transparent p-0 text-left shadow-none transition-colors hover:text-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line-strong sm:flex-row sm:items-start sm:justify-between"
+        className="group flex w-full min-w-0 appearance-none flex-col gap-3 rounded-none border-0 bg-transparent px-1 py-5 text-left shadow-none sm:flex-row sm:items-center sm:justify-between sm:gap-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-line-strong"
       >
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-line bg-surface">
+        <div className="flex min-w-0 items-center gap-3.5">
+          <div
+            className={cn(
+              "relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border bg-surface",
+              isCurrent ? "border-brand/50" : "border-line",
+            )}
+          >
             <Image
               src={experience.logo}
               alt={`${experience.company} logo`}
               fill
               className="object-cover"
-              sizes="40px"
+              sizes="44px"
             />
           </div>
 
           <div className="min-w-0">
             <div className="flex min-w-0 items-center gap-2">
-              <h3 className="truncate text-lg font-semibold text-strong">
+              <h3 className="truncate text-[17px] font-semibold text-strong">
                 {experience.company}
               </h3>
               {experience.website && (
@@ -234,17 +237,34 @@ function ExperienceItem({
                 </a>
               )}
             </div>
-            <p className="text-sm font-medium text-dim">{experience.role}</p>
+            <p className="mt-0.5 truncate text-sm text-dim">
+              {experience.role}
+              <span className="text-faint"> · </span>
+              <span className="inline-flex items-center gap-1">
+                <MapPin className="hidden h-3 w-3 sm:inline" aria-hidden="true" />
+                {experience.location}
+              </span>
+            </p>
           </div>
         </div>
 
-        <div className="flex min-w-0 items-center justify-between gap-3 sm:shrink-0 sm:justify-end">
-          <p className="text-sm text-dim sm:text-right">{experience.dateRange}</p>
-          {isExpanded ? (
-            <ChevronDown className="h-4 w-4 shrink-0 text-dim" aria-hidden="true" />
-          ) : (
-            <ChevronRight className="h-4 w-4 shrink-0 text-dim" aria-hidden="true" />
-          )}
+        <div className="flex min-w-0 items-center justify-between gap-3 pl-[3.6rem] sm:shrink-0 sm:justify-end sm:pl-0">
+          <p className="inline-flex items-center gap-2 text-sm text-dim sm:text-right">
+            {isCurrent && (
+              <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+              </span>
+            )}
+            {experience.dateRange}
+          </p>
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 shrink-0 text-dim transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-strong motion-reduce:transition-none",
+              isExpanded ? "rotate-0" : "-rotate-90",
+            )}
+            aria-hidden="true"
+          />
         </div>
       </button>
 
@@ -254,22 +274,20 @@ function ExperienceItem({
         aria-labelledby={triggerId}
         aria-hidden={!isExpanded}
         className={cn(
-          "grid overflow-hidden transition-[grid-template-rows,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-          isExpanded
-            ? "grid-rows-[1fr] opacity-100"
-            : "grid-rows-[0fr] opacity-0",
+          "grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+          isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
         <div className="min-h-0 overflow-hidden">
           <div
             className={cn(
-              "mt-4 pl-13 text-sm leading-relaxed text-dim transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none",
-              isExpanded ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0",
+              "px-1 pb-5 pt-1 pl-[3.6rem] text-sm leading-relaxed text-dim transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+              isExpanded
+                ? "translate-y-0 opacity-100 delay-75"
+                : "-translate-y-1 opacity-0 delay-0",
             )}
           >
-            <p>{experience.location}</p>
-
-            <ul className="mt-3 list-[square] space-y-2 pl-5 marker:text-subtle">
+            <ul className="list-[square] space-y-2 pl-5 marker:text-brand/80">
               {experience.highlights.map((highlight, index) => (
                 <HighlightItem
                   key={
@@ -281,7 +299,6 @@ function ExperienceItem({
                 />
               ))}
             </ul>
-
           </div>
         </div>
       </div>
@@ -314,10 +331,6 @@ export default function ExperienceSection({
   const [expandedExperienceIds, setExpandedExperienceIds] = useState<string[]>(
     () => (expandAllByDefault ? items.map((experience) => experience.id) : []),
   );
-  const [hoveredExperienceId, setHoveredExperienceId] = useState<string | null>(
-    null,
-  );
-  const activeExperienceId = expandedExperienceId ?? hoveredExperienceId;
   const visibleExperiences =
     typeof limit === "number" ? items.slice(0, limit) : items;
 
@@ -334,17 +347,28 @@ export default function ExperienceSection({
     >
       <div className="mx-auto max-w-3xl">
         {showFeaturedLabel && (
-          <p className="mb-2 text-sm text-dim">Featured</p>
+          <p className="mb-4 inline-flex items-center gap-2 border border-brand/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-brand">
+            <span aria-hidden>✕</span> FEATURED
+          </p>
         )}
 
         <h2
           id="experience-heading"
-          className="mb-12 text-3xl font-bold tracking-tight text-strong md:text-4xl"
+          className={cn(
+            "text-3xl font-bold tracking-tight text-strong md:text-4xl",
+            !showFeaturedLabel && "mb-10 md:mb-12",
+          )}
         >
           {heading}
         </h2>
+        {showFeaturedLabel && (
+          <p className="mt-3 mb-10 max-w-xl text-sm leading-relaxed text-dim md:mb-12">
+            Roles I&apos;ve held while shipping products with founders and teams
+            across India, Italy, and the UAE.
+          </p>
+        )}
 
-        <div>
+        <div className="border-y border-line">
           {visibleExperiences.map((experience) => (
             <ExperienceItem
               key={experience.id}
@@ -352,18 +376,8 @@ export default function ExperienceSection({
               isExpanded={
                 expandAllByDefault
                   ? expandedExperienceIds.includes(experience.id)
-                  : activeExperienceId === experience.id
+                  : expandedExperienceId === experience.id
               }
-              onHoverStart={() => {
-                if (!expandAllByDefault && !expandedExperienceId) {
-                  setHoveredExperienceId(experience.id);
-                }
-              }}
-              onHoverEnd={() => {
-                if (!expandAllByDefault && !expandedExperienceId) {
-                  setHoveredExperienceId(null);
-                }
-              }}
               onToggle={() => {
                 if (expandAllByDefault) {
                   setExpandedExperienceIds((currentIds) =>
@@ -374,7 +388,6 @@ export default function ExperienceSection({
                   return;
                 }
 
-                setHoveredExperienceId(null);
                 setExpandedExperienceId((currentId) =>
                   currentId === experience.id ? null : experience.id,
                 );
@@ -387,7 +400,7 @@ export default function ExperienceSection({
           <div className="mt-12 flex justify-center">
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-transparent px-6 py-2.5 text-sm font-medium text-strong transition-colors hover:bg-surface"
+              className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-transparent px-6 py-2.5 text-sm font-medium text-strong transition-colors hover:border-line-hover hover:bg-surface"
             >
               Show all work experience
               <ArrowUpRight className="h-4 w-4" />

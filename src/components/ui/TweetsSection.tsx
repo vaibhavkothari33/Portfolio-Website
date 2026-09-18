@@ -10,22 +10,34 @@ import { useTheme } from "next-themes";
 import { getScheme } from "@/lib/themes";
 
 type TwitterWidgets = {
+  ready?: (fn: (twttr: TwitterWidgets) => void) => void;
   widgets: {
-    createTweetEmbed: (
+    createTweet: (
       tweetId: string,
       element: HTMLElement,
       options?: {
         theme?: "dark" | "light";
         align?: "left" | "right" | "center";
         width?: number;
+        dnt?: boolean;
       },
-    ) => Promise<HTMLElement>;
+    ) => Promise<HTMLElement | undefined>;
+    createTweetEmbed?: (
+      tweetId: string,
+      element: HTMLElement,
+      options?: {
+        theme?: "dark" | "light";
+        align?: "left" | "right" | "center";
+        width?: number;
+        dnt?: boolean;
+      },
+    ) => Promise<HTMLElement | undefined>;
   };
 };
 
 declare global {
   interface Window {
-    twttr: TwitterWidgets;
+    twttr?: TwitterWidgets;
   }
 }
 
@@ -39,9 +51,49 @@ const TWEET_URLS = [
   "https://twitter.com/VaibhavKotharii/status/1912213578112782357",
 ] as const;
 
+const TWITTER_SCRIPT_ID = "twitter-wjs";
+const TWITTER_SCRIPT_SRC = "https://platform.twitter.com/widgets.js";
+
 function getTweetIdFromUrl(url: string) {
   const parts = url.split("/");
   return parts[parts.length - 1];
+}
+
+function loadTwitterWidgets(): Promise<TwitterWidgets> {
+  return new Promise((resolve, reject) => {
+    const finish = () => {
+      if (window.twttr?.widgets) {
+        resolve(window.twttr);
+        return;
+      }
+      reject(new Error("Twitter widgets failed to load"));
+    };
+
+    if (window.twttr?.widgets) {
+      window.twttr.ready?.(finish);
+      if (!window.twttr.ready) finish();
+      return;
+    }
+
+    const existing = document.getElementById(TWITTER_SCRIPT_ID);
+    if (existing) {
+      existing.addEventListener("load", finish, { once: true });
+      existing.addEventListener(
+        "error",
+        () => reject(new Error("Twitter widgets failed to load")),
+        { once: true },
+      );
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = TWITTER_SCRIPT_ID;
+    script.src = TWITTER_SCRIPT_SRC;
+    script.async = true;
+    script.onload = finish;
+    script.onerror = () => reject(new Error("Twitter widgets failed to load"));
+    document.body.appendChild(script);
+  });
 }
 
 function SkeletonTweet({ index }: { index: number }) {
@@ -83,7 +135,7 @@ function SkeletonTweet({ index }: { index: number }) {
 }
 
 export default function TweetsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const mountRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [widgetsLoaded, setWidgetsLoaded] = useState(false);
   const { theme } = useTheme();
 
@@ -92,55 +144,53 @@ export default function TweetsSection() {
   const scheme = getScheme(theme);
 
   useEffect(() => {
+    let cancelled = false;
+    const mounts = mountRefs.current;
+
     const renderTweets = async () => {
       setWidgetsLoaded(false);
 
-      if (!containerRef.current || !window.twttr?.widgets) return;
+      try {
+        const twttr = await loadTwitterWidgets();
+        if (cancelled) return;
 
-      const wrappers =
-        containerRef.current.querySelectorAll<HTMLElement>(".tweet-wrapper");
-      if (wrappers.length !== TWEET_URLS.length) return;
+        await Promise.all(
+          TWEET_URLS.map(async (url, index) => {
+            const mount = mounts[index];
+            const create =
+              twttr.widgets.createTweet ?? twttr.widgets.createTweetEmbed;
+            if (!create || !mount) return;
 
-      await Promise.all(
-        TWEET_URLS.map((url, index) => {
-          const wrapper = wrappers[index];
-          if (!wrapper) return Promise.resolve();
+            // Twitter owns this node. Empty it before embedding so a
+            // remount, Strict Mode double-effect, or theme change can't
+            // stack a second copy of the same tweet.
+            mount.replaceChildren();
 
-          // Drop the previously embedded iframe, otherwise a theme change
-          // would append a second copy of every tweet.
-          wrapper.querySelectorAll(".twitter-tweet, iframe").forEach((el) => el.remove());
-
-          return window.twttr.widgets.createTweetEmbed(
-            getTweetIdFromUrl(url),
-            wrapper,
-            {
+            await create(getTweetIdFromUrl(url), mount, {
               theme: scheme,
               align: "center",
               width: 360,
-            },
-          );
-        }),
-      );
+              dnt: true,
+            });
 
-      setWidgetsLoaded(true);
-    };
+            if (cancelled) {
+              mount.replaceChildren();
+            }
+          }),
+        );
 
-    const loadTwitterWidgets = () => {
-      if (typeof window === "undefined") return;
-
-      if (!window.twttr) {
-        const script = document.createElement("script");
-        script.src = "https://platform.twitter.com/widgets.js";
-        script.async = true;
-        script.onload = renderTweets;
-        document.body.appendChild(script);
-        return;
+        if (!cancelled) setWidgetsLoaded(true);
+      } catch {
+        if (!cancelled) setWidgetsLoaded(true);
       }
-
-      renderTweets();
     };
 
-    loadTwitterWidgets();
+    renderTweets();
+
+    return () => {
+      cancelled = true;
+      mounts.forEach((mount) => mount?.replaceChildren());
+    };
   }, [scheme]);
 
   return (
@@ -149,7 +199,7 @@ export default function TweetsSection() {
       className="w-full border-t border-line bg-canvas px-4 py-16 text-strong md:px-10 md:py-20"
       aria-labelledby="posts-heading"
     >
-      <div className="mx-auto max-w-6xl" ref={containerRef}>
+      <div className="mx-auto max-w-6xl">
         <div className="mb-10 md:mb-12">
           <p className="mb-4 inline-flex items-center gap-2 border border-brand/40 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-brand">
             <span aria-hidden>✕</span> Posts
@@ -177,16 +227,25 @@ export default function TweetsSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 md:gap-6">
-          {TWEET_URLS.map((_, index) => (
+          {TWEET_URLS.map((url, index) => (
             <div
-              key={index}
+              key={getTweetIdFromUrl(url)}
               className={cn(
-                "tweet-wrapper min-h-[420px] w-full rounded-xl border border-line bg-surface/30 p-2 transition-colors hover:border-line-strong",
+                "tweet-wrapper relative min-h-[420px] w-full rounded-xl border border-line bg-surface/30 p-2 transition-colors hover:border-line-strong",
                 widgetsLoaded && "animate-[fade-in-up_0.6s_ease-out_forwards] opacity-0",
               )}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {!widgetsLoaded && <SkeletonTweet index={index} />}
+              {!widgetsLoaded && (
+                <div className="pointer-events-none absolute inset-0 z-10 p-2">
+                  <SkeletonTweet index={index} />
+                </div>
+              )}
+              <div
+                ref={(node) => {
+                  mountRefs.current[index] = node;
+                }}
+              />
             </div>
           ))}
         </div>

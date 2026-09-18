@@ -24,12 +24,12 @@ export const achievements: AchievementItem[] = [
     link: "",
     description: "Participated in Hackfest events and demoed projects at GFG HQ.",
   },
-  {
-    title: "me",
-    image: "/vaibhavkothari.JPG",
-    link: "",
-    description: "A snapshot from a memorable developer event.",
-  },
+  // {
+  //   title: "me",
+  //   image: "/vaibhavkothari.JPG",
+  //   link: "",
+  //   description: "A snapshot from a memorable developer event.",
+  // },
   {
     title: "Hackathon Winner",
     image: "https://i.ibb.co/4VsBh60/Screenshot-2024-12-24-212538.png",
@@ -46,7 +46,7 @@ export const achievements: AchievementItem[] = [
     title: "Code Kshetra 2.0",
     image: "/codekshetra.png",
     link: "",
-    description: "Organized and contributed to Code Kshetra competition and community.",
+    description: "Contributed to Code Kshetra competition and community.",
   },
   {
     title: "2x Hackachinno Winner",
