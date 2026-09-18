@@ -15,6 +15,7 @@ import {
   IconMail,
   IconMessage,
   IconMoonStars,
+  IconMovie,
   IconNotebook,
   IconSparkles,
   IconSun,
@@ -164,6 +165,14 @@ export function CommandPalette() {
         run: () => scrollTo("#skills"),
       },
       {
+        id: "sec-motion",
+        label: "Motion",
+        keywords: "video film reels edits motion graphics",
+        group: "Jump to section",
+        icon: <IconMovie className="h-4 w-4" stroke={1.5} />,
+        run: () => scrollTo("#motion"),
+      },
+      {
         id: "sec-achievements",
         label: "Achievements",
         group: "Jump to section",
@@ -203,8 +212,12 @@ export function CommandPalette() {
           ) : (
             <IconSun className="h-4 w-4" stroke={1.5} />
           ),
-        run: () => {
-          switchTheme(nextTheme.id, setTheme);
+        run: (event?: { clientX: number; clientY: number }) => {
+          switchTheme(
+            nextTheme.id,
+            setTheme,
+            event ? { x: event.clientX, y: event.clientY } : undefined,
+          );
           close();
         },
       },

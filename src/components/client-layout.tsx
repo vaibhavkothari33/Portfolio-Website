@@ -15,11 +15,11 @@ import { TetrisLauncher } from "@/components/ui/tetris-launcher";
 const dockItems = [
   { title: "Home", icon: <IconHome />, href: "/" },
   { title: "Linked-in", icon: <IconBrandLinkedin />, href: "https://www.linkedin.com/in/vaibhavkothari33/" },
-  { title: "GitHub", icon: <IconBrandGithub />, href: "https://github.com/vaibhavkothari33/" },
-  { title: "X", icon: <IconBrandTwitter />, href: "https://x.com/VaibhavKotharii" },
   // The dock swaps in a sun/moon icon and the target theme's name for this
   // entry, so the icon and title here are only placeholders.
   { title: "Theme", icon: null, href: "#", id: "theme-switcher" },
+  { title: "X", icon: <IconBrandTwitter />, href: "https://x.com/VaibhavKotharii" },
+  { title: "GitHub", icon: <IconBrandGithub />, href: "https://github.com/vaibhavkothari33/" },
 ];
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {

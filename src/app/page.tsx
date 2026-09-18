@@ -1,6 +1,7 @@
 // import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import GridHeroSection from "@/components/ui/grid-hero-section";
 import ProjectSection from "@/components/ui/project-section";
+import MotionSection from "@/components/ui/motion-section";
 // import { Timeline } from "@/components/ui/timeline";
 import { ContactForm } from "@/components/ui/contact-form";
 import Skills from "@/components/ui/Skills";
@@ -30,6 +31,7 @@ export default function Home() {
       <ArticlesSection />
       <Skills />
       <ProjectSection />
+      <MotionSection />
 
       <AchievementsSection />
       <Suspense fallback={<GitHubActivityLoading />}>

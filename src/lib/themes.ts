@@ -53,8 +53,9 @@ function applyThemeClass(id: ThemeId) {
 }
 
 /**
- * Swaps the theme behind a view transition — a circle wiping in from the
- * top-right corner. See the `::view-transition-*` rules in globals.css.
+ * Swaps the theme behind a view transition — a circle wiping in from
+ * `origin` (the click), or the top-right if none is given. See the
+ * `::view-transition-*` rules in globals.css.
  *
  * The class is applied directly rather than waiting on React, because the
  * browser snapshots the DOM the moment the callback returns; a state
@@ -62,7 +63,11 @@ function applyThemeClass(id: ThemeId) {
  * theme. `persist` then syncs next-themes (state + localStorage), and its
  * own effect re-applies the identical class, which is a visual no-op.
  */
-export function switchTheme(id: ThemeId, persist: (id: ThemeId) => void) {
+export function switchTheme(
+  id: ThemeId,
+  persist: (id: ThemeId) => void,
+  origin?: { x: number; y: number },
+) {
   if (typeof document === "undefined") return;
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -74,6 +79,16 @@ export function switchTheme(id: ThemeId, persist: (id: ThemeId) => void) {
   }
 
   const root = document.documentElement;
+  const x = origin?.x ?? window.innerWidth;
+  const y = origin?.y ?? 0;
+  const radius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y),
+  );
+
+  root.style.setProperty("--theme-x", `${x}px`);
+  root.style.setProperty("--theme-y", `${y}px`);
+  root.style.setProperty("--theme-r", `${radius}px`);
   root.classList.add("theme-swapping");
 
   const transition = document.startViewTransition(() => {

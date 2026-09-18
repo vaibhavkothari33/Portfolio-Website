@@ -157,14 +157,18 @@
   animates only those, on the compositor. The cost is fixed and tiny no
   matter how complex the page, so this stays smooth as the site grows.
 
-  The new theme is revealed by a circle expanding from the top-right
-  corner, while the old one sits still underneath.
+  The new theme is revealed by a circle expanding from the click
+  (--theme-x / --theme-y, set in switchTheme), while the old one sits
+  still underneath. Falls back to the top-right if no origin is given.
   =========================================================================
 */
 :root {
   --theme-sweep: 900ms;
   /* slow out, gentle settle — no abrupt start or stop */
   --theme-sweep-ease: cubic-bezier(0.32, 0, 0.2, 1);
+  --theme-x: 100%;
+  --theme-y: 0%;
+  --theme-r: 150%;
 }
 
 /*
@@ -180,12 +184,10 @@
 
 @keyframes theme-sweep-in {
   from {
-    /* radius is relative to the viewport diagonal, so 0 -> 150% covers
-       every corner from the top-right origin */
-    clip-path: circle(0% at 100% 0%);
+    clip-path: circle(0px at var(--theme-x) var(--theme-y));
   }
   to {
-    clip-path: circle(150% at 100% 0%);
+    clip-path: circle(var(--theme-r) at var(--theme-x) var(--theme-y));
   }
 }
 
@@ -217,7 +219,7 @@
 /*
   Theme swap — overrides the fade above (class selector wins on
   specificity). The outgoing theme holds still while the new one wipes in
-  from the top-right, so the two palettes never blend into mud.
+  from the click, so the two palettes never blend into mud.
 */
 :root.theme-swapping::view-transition-group(root) {
   animation-duration: var(--theme-sweep);

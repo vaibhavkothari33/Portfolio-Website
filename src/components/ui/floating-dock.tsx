@@ -8,7 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useTheme } from "next-themes";
 import { IconMoonStars, IconSun } from "@tabler/icons-react";
 import {
@@ -62,8 +62,8 @@ function useThemeToggle() {
   const index = THEMES.findIndex((t) => t.id === current);
   const next = THEMES[(index + 1) % THEMES.length] ?? THEMES[0];
 
-  const toggle = () => {
-    switchTheme(next.id, setTheme);
+  const toggle = (origin?: { x: number; y: number }) => {
+    switchTheme(next.id, setTheme, origin);
 
     // Keep the browser chrome (mobile address bar) matching the canvas.
     document
@@ -82,12 +82,35 @@ const FloatingDockDesktop = ({
   className?: string;
 }) => {
   const mouseX = useMotionValue(Infinity);
+  const freezeMagnify = useRef(false);
   const { next, toggle, mounted } = useThemeToggle();
+
+  const handleThemeClick = (event: MouseEvent<HTMLButtonElement>) => {
+    freezeMagnify.current = true;
+    mouseX.set(Infinity);
+    toggle({ x: event.clientX, y: event.clientY });
+  };
 
   return (
     <motion.div
-      onMouseMove={(e) => mouseX.set(e.pageX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
+      onPointerMove={(event) => {
+        if (freezeMagnify.current) return;
+        if (event.pointerType === "touch") return;
+        mouseX.set(event.pageX);
+      }}
+      onPointerLeave={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const stillOverDock =
+          event.clientX >= rect.left &&
+          event.clientX <= rect.right &&
+          event.clientY >= rect.top &&
+          event.clientY <= rect.bottom;
+        // View-transition snapshots steal the pointer without the cursor
+        // actually leaving — don't unfreeze on that fake leave.
+        if (freezeMagnify.current && stillOverDock) return;
+        freezeMagnify.current = false;
+        mouseX.set(Infinity);
+      }}
       className={cn(
         "fixed bottom-5 left-1/2 z-50 flex h-[75px] -translate-x-1/2 items-end gap-4 rounded-3xl",
         "border border-line bg-surface/70 px-4 pb-3 shadow-lg backdrop-blur-md",
@@ -119,7 +142,7 @@ const FloatingDockDesktop = ({
                   : <IconSun />
                 : item.icon
             }
-            onClick={isThemeSwitch ? toggle : undefined}
+            onClick={isThemeSwitch ? handleThemeClick : undefined}
           />
         );
       })}
@@ -176,7 +199,7 @@ function IconContainer({
   ariaLabel,
 }: DockItem & {
   mouseX: MotionValue;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   ariaLabel?: string;
 }) {
   if (onClick) {
@@ -211,7 +234,7 @@ function IconContainerButton({
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   ariaLabel: string;
 }) {
   const ref = useRef<HTMLButtonElement | null>(null);
@@ -222,7 +245,10 @@ function IconContainerButton({
     <button
       ref={ref}
       type="button"
-      onClick={onClick}
+      onClick={(event) => {
+        setHovered(false);
+        onClick(event);
+      }}
       aria-label={ariaLabel}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
