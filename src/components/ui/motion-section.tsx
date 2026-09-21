@@ -78,10 +78,11 @@ export default function MotionSection() {
             id="motion-heading"
             className="text-2xl font-bold leading-tight tracking-tight md:text-3xl"
           >
-            Cuts I made
+            Still learning to make things move.
+
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-dim md:text-[15px]">
-            Product films and walkthroughs. Open a still to play it.
+          Playing around with editing, motion, and product storytelling. Here are a few things I&apos;ve made.
           </p>
         </div>
 
