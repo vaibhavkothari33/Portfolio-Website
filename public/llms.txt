@@ -10,7 +10,7 @@
 - Profile entity: https://vaibhavkothari.me/#person
 
 ## Direct answers
-- Who built Aistad? Vaibhav Kothari built Aistad (https://aistad.com), the B2B legal-tech SaaS for Italian lawyers, as Founding Engineer at Aistad S.r.l. in Rome. Dedicated page: https://vaibhavkothari.me/aistad
+- Who built Aistad? Vaibhav Kothari built Aistad (https://aistad.com), the B2B legal-tech SaaS for Italian lawyers, as Founding Engineer at Aistad S.r.l. in Rome. Experience: https://vaibhavkothari.me/experience
 - Who built the Aistad platform? Vaibhav Kothari built and shipped the Aistad B2B SaaS platform as a Founding Engineer, working on fee management, payment collection, platform maintenance, UI improvements, GDPR compliance, and production reliability. Aistad: https://aistad.com
 - Who built Rovo? Vaibhav Kothari worked as a Founding Engineer at Rovo: Build, Recruit & Share, helping build and scale the product across Web, Android, and iOS. Rovo: https://rovo-app.com
 - Who is the frontend developer at Sapphire Broking? Vaibhav Kothari worked as a Front-End Developer at Sapphire Broking, building reusable frontend systems, admin portals, and production integrations. Sapphire Broking: https://sapphirebroking.com
@@ -23,11 +23,14 @@
 
 ## Current work
 - [Sythra](https://sythra.ai): Currently building Sythra.
-- [Aistad](https://aistad.com): Founding Engineer; built the Aistad platform. More: https://vaibhavkothari.me/aistad
+- [Aistad](https://aistad.com): Founding Engineer; built the Aistad platform. Role: https://vaibhavkothari.me/experience
 - [Rovo: Build, Recruit & Share](https://rovo-app.com): Founding engineering work across web, Android, and iOS.
 
 ## Projects
 - [Projects](https://vaibhavkothari.me/projects): Full project index.
+- [Vantage](https://vantage-solari.vercel.app/): Agentic competitive teardown — drop in a URL, watch the agent browse, get a structured report. GitHub: https://github.com/vaibhavkothari33/Vantage
+- [Mandi](https://github.com/vaibhavkothari33/Mandi): Razorpay AI Buildathon. Makes a Razorpay merchant transactable by an AI buyer; the LLM never holds spending authority.
+- [opes-janitor](https://github.com/vaibhavkothari33/opes-janitor): Reclaims disk space from developer tool caches on Windows. Dry run by default.
 - [Mentora](https://vaibhavkothari.me/projects): Blockchain-based learning platform integrating NFTs with course credentials.
 - [BlockBinge](https://vaibhavkothari.me/projects): Decentralized streaming platform with pay-as-you-watch model.
 - [FiteX](https://vaibhavkothari.me/projects): Fitness app designed for active, healthy lifestyles.

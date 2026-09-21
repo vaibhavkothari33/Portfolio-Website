@@ -18,7 +18,7 @@ type ProjectSectionProps = {
 export default function ProjectSection({
   projects = featuredProjects,
   heading = "Selected work",
-  description = "Products shipped across web, mobile, AI, and Web3 — from hackathon prototypes to production-ready platforms.",
+  description = "Products shipped across web, mobile, AI, and Web3, from hackathon prototypes to production-ready platforms.",
   showTag = true,
   showViewAllButton = true,
   className,

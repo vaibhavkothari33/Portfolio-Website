@@ -68,6 +68,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/aistad',
+        destination: '/experience',
+        permanent: true,
+      },
+      {
         source: '/:path*',
         has: [{ type: 'host', value: 'vaibhavkothari.vercel.app' }],
         destination: 'https://vaibhavkothari.me/:path*',

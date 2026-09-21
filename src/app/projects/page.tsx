@@ -31,7 +31,7 @@ export default function ProjectsPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Explore my full project archive — web apps, mobile products, AI tools,
+          Explore my full project archive: web apps, mobile products, AI tools,
           and Web3 builds spanning hackathons, internships, and personal experiments.
         </motion.p>
       </div>

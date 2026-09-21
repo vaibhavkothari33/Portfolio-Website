@@ -7,12 +7,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected work by Vaibhav Kothari — full stack web platforms, cross-platform mobile apps, and agentic AI systems.",
+    "Selected work by Vaibhav Kothari: full stack web platforms, cross-platform mobile apps, and agentic AI systems.",
   alternates: { canonical: "/projects" },
   openGraph: {
     title: "Projects | Vaibhav Kothari",
     description:
-      "Selected work — full stack web platforms, cross-platform mobile apps, and agentic AI systems.",
+      "Selected work: full stack web platforms, cross-platform mobile apps, and agentic AI systems.",
     url: "/projects",
   },
 };
